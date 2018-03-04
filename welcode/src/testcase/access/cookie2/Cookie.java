@@ -1,5 +1,5 @@
 //: access/cookie2/Cookie.java
-package access.cookie2;
+package testcase.access.cookie2;
 
 public class Cookie {
   public Cookie() {
