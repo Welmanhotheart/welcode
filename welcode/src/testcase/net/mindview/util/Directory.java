@@ -2,7 +2,7 @@
 // Produce a sequence of File objects that match a
 // regular expression in either a local directory,
 // or by walking a directory tree.
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.util.regex.*;
 import java.io.*;
 import java.util.*;

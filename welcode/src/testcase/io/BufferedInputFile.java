@@ -1,3 +1,5 @@
+package testcase.io;
+
 //: io/BufferedInputFile.java
 import java.io.*;
 
