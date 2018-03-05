@@ -1,8 +1,12 @@
+package testcase.io;
+
 //: io/DirectoryDemo.java
 // Sample use of Directory utilities.
 import java.io.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+
+import testcase.net.mindview.util.Directory;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class DirectoryDemo {
   public static void main(String[] args) {
