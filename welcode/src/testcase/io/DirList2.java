@@ -1,3 +1,5 @@
+package testcase.io;
+
 //: io/DirList2.java
 // Uses anonymous inner classes.
 // {Args: "D.*\.java"}
