@@ -1,5 +1,5 @@
 //: net/mindview/util/ProcessFiles.java
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.io.*;
 
 public class ProcessFiles {
