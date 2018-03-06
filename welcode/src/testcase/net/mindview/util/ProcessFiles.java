@@ -1,7 +1,12 @@
 //: net/mindview/util/ProcessFiles.java
 package testcase.net.mindview.util;
 import java.io.*;
-
+/**
+ * Strategy pattern, you must find in which point can
+ * you use your strategy 
+ * @author Welmanhotheart
+ *
+ */
 public class ProcessFiles {
   public interface Strategy {
     void process(File file);
