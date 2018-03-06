@@ -1,8 +1,13 @@
+package testcase.concurrency;
+
 //: concurrency/SingleThreadExecutor.java
 import java.util.concurrent.*;
 
 public class SingleThreadExecutor {
   public static void main(String[] args) {
+  	/*
+  	 * can only execute tasks one by one 
+  	 */
     ExecutorService exec =
       Executors.newSingleThreadExecutor();
     for(int i = 0; i < 5; i++)
