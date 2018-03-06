@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/BasicThreads.java
 // The most basic use of the Thread class.
 

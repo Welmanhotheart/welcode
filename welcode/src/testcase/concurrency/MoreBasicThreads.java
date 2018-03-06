@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/MoreBasicThreads.java
 // Adding more threads.
 
