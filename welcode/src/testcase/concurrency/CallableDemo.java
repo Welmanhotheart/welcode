@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/CallableDemo.java
 import java.util.concurrent.*;
 import java.util.*;
@@ -8,6 +10,13 @@ class TaskWithResult implements Callable<String> {
     this.id = id;
   }
   public String call() {
+  	System.out.println("id:" + id);
+  	for (int i = 1; i <= 10000; i++) {
+  		double d = 3.1415926789 * 0.12345;
+  		if (i % 1000 == 0) {
+  			System.out.println("id:" + id + "i : " + i);
+  		}
+  	}
     return "result of TaskWithResult " + id;
   }
 }
@@ -19,6 +28,7 @@ public class CallableDemo {
       new ArrayList<Future<String>>();
     for(int i = 0; i < 10; i++)
       results.add(exec.submit(new TaskWithResult(i)));
+    exec.shutdown();
     for(Future<String> fs : results)
       try {
         // get() blocks until completion:
@@ -29,7 +39,7 @@ public class CallableDemo {
       } catch(ExecutionException e) {
         System.out.println(e);
       } finally {
-        exec.shutdown();
+//        exec.shutdown();
       }
   }
 } /* Output:
