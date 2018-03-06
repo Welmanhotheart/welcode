@@ -1,7 +1,9 @@
+package testcase.concurrency;
+
 //: concurrency/SimpleDaemons.java
 // Daemon threads don't prevent the program from ending.
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class SimpleDaemons implements Runnable {
   public void run() {
@@ -12,6 +14,8 @@ public class SimpleDaemons implements Runnable {
       }
     } catch(InterruptedException e) {
       print("sleep() interrupted");
+    } finally {
+    	System.out.println("be quit");
     }
   }
   public static void main(String[] args) throws Exception {

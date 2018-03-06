@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/SimplePriorities.java
 // Shows the use of thread priorities.
 import java.util.concurrent.*;
