@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/SimpleThread.java
 // Inheriting directly from the Thread class.
 
@@ -7,6 +9,11 @@ public class SimpleThread extends Thread {
   public SimpleThread() {
     // Store the thread name:
     super(Integer.toString(++threadCount));
+    /**
+     * 'start()' inside a constructor, another
+     *  task may access 'threadCount' in an unstable status
+     * 
+     */
     start();
   }
   public String toString() {
