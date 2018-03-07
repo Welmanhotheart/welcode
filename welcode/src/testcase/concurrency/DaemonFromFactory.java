@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/DaemonFromFactory.java
 // Using a Thread Factory to create daemons.
 import java.util.concurrent.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class DaemonFromFactory implements Runnable {
   public void run() {
