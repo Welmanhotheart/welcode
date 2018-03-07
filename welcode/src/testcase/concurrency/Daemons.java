@@ -1,19 +1,32 @@
+package testcase.concurrency;
+
 //: concurrency/Daemons.java
 // Daemon threads spawn other daemon threads.
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Daemon implements Runnable {
   private Thread[] t = new Thread[10];
+  
+  /*
+   * daemons created by daemons are always daemon,
+   * I modify this segment of code by moving "t[i].start"
+   * into the second 'for-loop' behind 'printnb(..)' to eliminated 
+   * the presume-preempted effect of 't[i].start()',which I guess is the
+   * reason that  DaemonSpawn created in Daemon is 'daemon'
+   * above all it's conclude that 'daemons created by daemons are always daemon'
+   */
   public void run() {
     for(int i = 0; i < t.length; i++) {
       t[i] = new Thread(new DaemonSpawn());
-      t[i].start();
+//      t[i].start();
       printnb("DaemonSpawn " + i + " started, ");
     }
-    for(int i = 0; i < t.length; i++)
+    for(int i = 0; i < t.length; i++) {
       printnb("t[" + i + "].isDaemon() = " +
         t[i].isDaemon() + ", ");
+      t[i].start();
+    }
     while(true)
       Thread.yield();
   }
