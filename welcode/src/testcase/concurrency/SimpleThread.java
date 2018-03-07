@@ -11,7 +11,8 @@ public class SimpleThread extends Thread {
     super(Integer.toString(++threadCount));
     /**
      * 'start()' inside a constructor, another
-     *  task may access 'threadCount' in an unstable status
+     *  task may access 'threadCount' in an unstable status?
+     *  no, its simpleThread it self may be access in an unstable status
      * 
      */
     start();
