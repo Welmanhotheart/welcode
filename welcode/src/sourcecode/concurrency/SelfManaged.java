@@ -1,3 +1,5 @@
+package sourcecode.concurrency;
+
 //: concurrency/SelfManaged.java
 // A Runnable containing its own driver Thread.
 
