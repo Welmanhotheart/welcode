@@ -1,6 +1,8 @@
+package testcase.concurrency;
+
 //: concurrency/Joining.java
 // Understanding join().
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Sleeper extends Thread {
   private int duration;
@@ -11,6 +13,10 @@ class Sleeper extends Thread {
   }
   public void run() {
     try {
+    	for(int i = 0; i < 100; i++) {
+    		double d = 3.145926 * 3.1415926;
+    		System.out.println(this.getName() + "sleep is excuting");
+    	}
       sleep(duration);
     } catch(InterruptedException e) {
       print(getName() + " was interrupted. " +
@@ -39,14 +45,17 @@ class Joiner extends Thread {
 }
 
 public class Joining {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     Sleeper
       sleepy = new Sleeper("Sleepy", 1500),
       grumpy = new Sleeper("Grumpy", 1500);
+    sleepy.join();
+    grumpy.join();
     Joiner
       dopey = new Joiner("Dopey", sleepy),
       doc = new Joiner("Doc", grumpy);
-    grumpy.interrupt();
+//    grumpy.interrupt();
+    	System.out.println("main over");
   }
 } /* Output:
 Grumpy was interrupted. isInterrupted(): false
@@ -54,3 +63,8 @@ Doc join completed
 Sleepy has awakened
 Dopey join completed
 *///:~
+/**
+ * join means wait for the execution to be finished, and then execute the code after the
+ * join();
+ * it can still insure concurrency
+ */
