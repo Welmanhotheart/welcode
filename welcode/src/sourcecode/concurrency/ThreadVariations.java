@@ -1,7 +1,9 @@
+package sourcecode.concurrency;
+
 //: concurrency/ThreadVariations.java
 // Creating threads with inner classes.
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 // Using a named inner class:
 class InnerThread1 {
@@ -28,6 +30,10 @@ class InnerThread1 {
     }
   }
   public InnerThread1(String name) {
+  	/**
+  	 * inside the constructor, create an inner thread object
+  	 * use it to start a task
+  	 */
     inner = new Inner(name);
   }
 }
@@ -37,6 +43,10 @@ class InnerThread2 {
   private int countDown = 5;
   private Thread t;
   public InnerThread2(String name) {
+  	/**
+  	 * use an anonymous class to create an object of thread
+  	 * and start at the constructor
+  	 */
     t = new Thread(name) {
       public void run() {
         try {
@@ -63,6 +73,10 @@ class InnerRunnable1 {
   private Inner inner;
   private class Inner implements Runnable {
     Thread t;
+    /**
+     * in an nested class 's constructor, create an thread object
+     * and start();
+     */
     Inner(String name) {
       t = new Thread(this, name);
       t.start();
@@ -92,6 +106,11 @@ class InnerRunnable2 {
   private int countDown = 5;
   private Thread t;
   public InnerRunnable2(String name) {
+  	/** 
+  	 * in an inner class's constructor,
+  	 * pass an object created via anonymous
+  	 * class 'Runnable',and start it 
+  	 **/
     t = new Thread(new Runnable() {
       public void run() {
         try {
@@ -119,7 +138,14 @@ class ThreadMethod {
   private Thread t;
   private String name;
   public ThreadMethod(String name) { this.name = name; }
-  public void runTask() {
+  
+  /**
+   * in an method to create an thread object via local anonymous
+   * class,and start
+   * 
+   * outside the method ,call the method
+   */
+  	public void runTask() {
     if(t == null) {
       t = new Thread(name) {
         public void run() {
