@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/NaiveExceptionHandling.java
 // {ThrowsException}
 import java.util.concurrent.*;
@@ -14,3 +16,7 @@ public class NaiveExceptionHandling {
     }
   }
 } ///:~
+
+/**
+ * too naive to caught exception 
+ */
