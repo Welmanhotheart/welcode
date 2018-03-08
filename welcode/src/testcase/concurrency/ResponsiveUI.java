@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/ResponsiveUI.java
 // User interface responsiveness.
 // {RunByHand}
@@ -20,6 +22,7 @@ public class ResponsiveUI extends Thread {
   public void run() {
     while(true) {
       d = d + (Math.PI + Math.E) / d;
+      System.out.println("d:" + d);// it will catch up with the main code in terms of system.out resource
     }
   }
   public static void main(String[] args) throws Exception {
