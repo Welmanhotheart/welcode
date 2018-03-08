@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/IntGenerator.java
 
 public abstract class IntGenerator {

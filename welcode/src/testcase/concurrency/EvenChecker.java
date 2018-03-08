@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/EvenChecker.java
 import java.util.concurrent.*;
 
