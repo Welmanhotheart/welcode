@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/AtomicIntegerTest.java
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
@@ -30,3 +32,9 @@ public class AtomicIntegerTest implements Runnable {
     }
   }
 } ///:~
+
+/**
+ * yeah its output is what I expec,but having seen the jdk code
+ * I still can't understand that why AtomicInteger.addAndGet() method
+ * can insure atomicity
+ */
