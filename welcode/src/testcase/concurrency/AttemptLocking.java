@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/AttemptLocking.java
 // Locks in the concurrent library allow you
 // to give up on trying to acquire a lock.
@@ -42,6 +44,17 @@ public class AttemptLocking {
         System.out.println("acquired");
       }
     }.start();
+    
+    /**
+     * added another one thread
+     */
+    new Thread() {
+    	{ setDaemon(true); }
+    	public void run() {
+    		al.lock.lock();
+    		System.out.println("acquired");
+    	}
+    }.start();
     Thread.yield(); // Give the 2nd task a chance
     al.untimed(); // False -- lock grabbed by task
     al.timed();   // False -- lock grabbed by task
@@ -53,3 +66,9 @@ acquired
 tryLock(): false
 tryLock(2, TimeUnit.SECONDS): false
 *///:~
+
+/**
+ * I can't reproduce the situation that's descibe in the 'book thinking in java'
+ * without add any more thread , So I add one, and it reappear
+ * 
+ */
