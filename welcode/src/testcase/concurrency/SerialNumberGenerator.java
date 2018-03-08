@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/SerialNumberGenerator.java
 
 public class SerialNumberGenerator {

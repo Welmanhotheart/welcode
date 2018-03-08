@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/SerialNumberChecker.java
 // Operations that may seem safe are not,
 // when threads are present.
@@ -61,3 +63,8 @@ public class SerialNumberChecker {
 } /* Output: (Sample)
 Duplicate: 8468656
 *///:~
+/**
+ * each task call 'SerialNumberGenerator.nextSerialNumber();'
+ * intuitively, it will create different number,but its not
+ * this can demonstrate that 'int++' is not Atomic
+*/
