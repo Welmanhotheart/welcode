@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/ExceptionThread.java
 // {ThrowsException}
 import java.util.concurrent.*;
@@ -11,3 +13,7 @@ public class ExceptionThread implements Runnable {
     exec.execute(new ExceptionThread());
   }
 } ///:~
+
+/**
+ * no exception be caught,
+ */
