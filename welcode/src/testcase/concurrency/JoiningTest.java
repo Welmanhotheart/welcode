@@ -11,29 +11,35 @@ class FJoiner extends Thread {
   }
   public void run() {
   	for (int i = 0; i < 100; i++) {
-			 
-		 }
+			Thread r = new SubJoiner("thread" + i);
+			r.start();
+			try {
+				r.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
   }
 }
 
 class SubJoiner extends Thread {
+	public  SubJoiner(String name) {
+		super(name);
+	}
 	 public void run() {
-		 
-	 }
+		 for (int i = 0; i< 1000; i++) {
+			 double d = 3.133131* 3.1234* 3.12233 * 3.2324234324232;
+			 System.out.println("I am thread" + this.getName());
+		 }
+		 System.out.println("I am over");
+ 	 }
 }
 
 public class JoiningTest {
   public static void main(String[] args) throws InterruptedException {
-    Sleeper
-      sleepy = new Sleeper("Sleepy", 1500),
-      grumpy = new Sleeper("Grumpy", 1500);
-    sleepy.join();
-    grumpy.join();
-    Joiner
-      dopey = new Joiner("Dopey", sleepy),
-      doc = new Joiner("Doc", grumpy);
-//    grumpy.interrupt();
-    	System.out.println("main over");
+  	FJoiner f = new FJoiner("sdfa", null);
+  	f.start();
   }
 } /* Output:
 Grumpy was interrupted. isInterrupted(): false
