@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/ThreadLocalVariableHolder.java
 // Automatically giving each thread its own storage.
 import java.util.concurrent.*;
@@ -38,7 +40,12 @@ public class ThreadLocalVariableHolder {
     TimeUnit.SECONDS.sleep(3);  // Run for a while
     exec.shutdownNow();         // All Accessors will quit
   }
-} /* Output: (Sample)
+} 
+/**
+ * I have seen JDK of the set and get method,and I realize why it can be linked to the current thread
+ * 
+ */
+/* Output: (Sample)
 #0: 9259
 #1: 556
 #2: 6694
