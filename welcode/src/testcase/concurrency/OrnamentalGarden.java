@@ -1,7 +1,9 @@
+package testcase.concurrency;
+
 //: concurrency/OrnamentalGarden.java
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Count {
   private int count = 0;
@@ -70,7 +72,7 @@ public class OrnamentalGarden {
     TimeUnit.SECONDS.sleep(3);
     Entrance.cancel();
     exec.shutdown();
-    if(!exec.awaitTermination(250, TimeUnit.MILLISECONDS))
+    if(!exec.awaitTermination(20, TimeUnit.MILLISECONDS))
       print("Some tasks were not terminated!");
     print("Total: " + Entrance.getTotalCount());
     print("Sum of Entrances: " + Entrance.sumEntrances());
