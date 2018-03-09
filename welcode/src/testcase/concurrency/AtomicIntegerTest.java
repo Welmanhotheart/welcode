@@ -33,6 +33,8 @@ public class AtomicIntegerTest implements Runnable {
   }
 } ///:~
 
+
+
 /**
  * yeah its output is what I expec,but having seen the jdk code
  * I still can't understand that why AtomicInteger.addAndGet() method
