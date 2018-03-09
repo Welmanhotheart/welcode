@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/Interrupting.java
 // Interrupting a blocked thread.
 import java.util.concurrent.*;
 import java.io.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class SleepBlocked implements Runnable {
   public void run() {
@@ -83,3 +85,21 @@ Interrupting SynchronizedBlocked
 Interrupt sent to SynchronizedBlocked
 Aborting with System.exit(0)
 *///:~
+
+/**
+ *the following is my output, we can know that tasks waiting on 
+ *an IO input and task waiting for the synchronize cannot be interrupted
+ * 
+Interrupting testcase.concurrency.SleepBlocked
+Interrupt sent to testcase.concurrency.SleepBlocked
+InterruptedException
+Exiting SleepBlocked.run()
+Waiting for read():
+Interrupting testcase.concurrency.IOBlocked
+Interrupt sent to testcase.concurrency.IOBlocked
+Trying to call f()
+Interrupting testcase.concurrency.SynchronizedBlocked
+Interrupt sent to testcase.concurrency.SynchronizedBlocked
+Aborting with System.exit(0)
+ */
+
