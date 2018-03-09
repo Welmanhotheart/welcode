@@ -1,12 +1,18 @@
+package testcase.concurrency;
+
 //: concurrency/SyncObject.java
 // Synchronizing on another object.
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class DualSynch {
   private Object syncObject = new Object();
   public synchronized void f() {
     for(int i = 0; i < 5; i++) {
       print("f()");
+      /**
+       *yeah, I understand that "Thread.yield()" does not release the lock 
+       * so the f(),g() will printed in turns
+       */
       Thread.yield();
     }
   }
