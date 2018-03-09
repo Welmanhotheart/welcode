@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/CloseResource.java
 // Interrupting a blocked task by
 // closing the underlying resource.
@@ -5,7 +7,7 @@
 import java.net.*;
 import java.util.concurrent.*;
 import java.io.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class CloseResource {
   public static void main(String[] args) throws Exception {
@@ -35,3 +37,21 @@ Exiting IOBlocked.run()
 Closing java.io.BufferedInputStream
 Exiting IOBlocked.run()
 *///:~
+
+/**
+ * we can note that when closing SocketInputStream,interruption appears
+ * but when closing system.in, Interruption doesnt appears
+ * but when I input some words and then press Enter key, the interruption hints showed up
+ * 
+ * Waiting for read():
+Waiting for read():
+Shutting down all threads
+Closing java.net.SocketInputStream
+Interrupted from blocked I/O
+Exiting IOBlocked.run()
+Closing java.io.BufferedInputStream
+sf
+Interrupted from blocked I/O
+Exiting IOBlocked.run()
+
+ */
