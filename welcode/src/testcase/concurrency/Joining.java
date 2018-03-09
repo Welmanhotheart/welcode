@@ -13,10 +13,11 @@ class Sleeper extends Thread {
   }
   public void run() {
     try {
-    	for(int i = 0; i < 100; i++) {
+    	for(int i = 0; i < 100000; i++) {
     		double d = 3.145926 * 3.1415926;
     		System.out.println(this.getName() + "sleep is excuting");
     	}
+    	System.out.println("thread" + this.getName() + "is over" );
       sleep(duration);
     } catch(InterruptedException e) {
       print(getName() + " was interrupted. " +
@@ -50,7 +51,9 @@ public class Joining {
       sleepy = new Sleeper("Sleepy", 1500),
       grumpy = new Sleeper("Grumpy", 1500);
     sleepy.join();
+    System.out.println("sleepy.join has been called");
     grumpy.join();
+    System.out.println("grumpy.join has been called");
     Joiner
       dopey = new Joiner("Dopey", sleepy),
       doc = new Joiner("Doc", grumpy);
