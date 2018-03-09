@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/NIOInterruption.java
 // Interrupting a blocked NIO channel.
 import java.net.*;
@@ -5,7 +7,7 @@ import java.nio.*;
 import java.nio.channels.*;
 import java.util.concurrent.*;
 import java.io.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class NIOBlocked implements Runnable {
   private final SocketChannel sc;
@@ -25,6 +27,20 @@ class NIOBlocked implements Runnable {
   }
 }
 
+/**
+ * once sc2.close(), the underlying channel of sc1 has been closed
+ * and the  AsynchronousCloseException will be cast out
+ *  
+ * Waiting for read() in testcase.concurrency.NIOBlocked@9506dc4
+Waiting for read() in testcase.concurrency.NIOBlocked@7f5663a2
+ClosedByInterruptException
+Exiting NIOBlocked.run() testcase.concurrency.NIOBlocked@9506dc4
+AsynchronousCloseException
+Exiting NIOBlocked.run() testcase.concurrency.NIOBlocked@7f5663a2
+
+ * @author Administrator
+ *
+ */
 public class NIOInterruption {
   public static void main(String[] args) throws Exception {
     ExecutorService exec = Executors.newCachedThreadPool();
