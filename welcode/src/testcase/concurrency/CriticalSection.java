@@ -2,7 +2,7 @@
 // Synchronizing blocks instead of entire methods. Also
 // demonstrates protection of a non-thread-safe class
 // with a thread-safe one.
-package concurrency;
+package testcase.concurrency;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 import java.util.*;
@@ -99,6 +99,13 @@ class PairChecker implements Runnable {
   public void run() {
     while(true) {
       pm.checkCounter.incrementAndGet();
+      /**
+       * At first，I cant understand why checkState() can cause Exception,
+       * then I realize that when the executing point stops at pm.getPair()
+       * It already release the lock of pm, and PairManipulator can abtain the
+       * lock of pm, then manipulate the pair of pm, then here comes resource catching race
+       * between checkState() and pm.increment() for pair of pm
+       */
       pm.getPair().checkState();
     }
   }
