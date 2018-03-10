@@ -59,7 +59,7 @@ public class InterruptingIdiom {
       System.exit(1);
     }
     Thread t = new Thread(new Blocked3());
-//    t.setDaemon(true);//here even its daemon , when blocked, its finally code block can be still running
+//    t.setDaemon(true);//different sleeping time race, cause different blocked position
     t.start();
     TimeUnit.MILLISECONDS.sleep(new Integer(args[0]));
     t.interrupt();
