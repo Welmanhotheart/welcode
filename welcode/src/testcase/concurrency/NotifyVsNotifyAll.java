@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/NotifyVsNotifyAll.java
 import java.util.concurrent.*;
 import java.util.*;
@@ -76,3 +78,9 @@ Timer canceled
 Task2.blocker.prodAll() Thread[pool-1-thread-6,5,main]
 Shutting down
 *///:~
+
+/**
+ * from the output,we can see that notify() only wake up only one task, but notifyAll()
+ * wake up all, and we can also see that none of the notify or notifyAll calls on Task.blocked
+ * cause the Task2 object to wake up
+ */
