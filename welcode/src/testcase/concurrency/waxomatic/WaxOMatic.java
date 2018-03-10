@@ -1,8 +1,8 @@
 //: concurrency/waxomatic/WaxOMatic.java
 // Basic task cooperation.
-package concurrency.waxomatic;
+package testcase.concurrency.waxomatic;
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Car {
   private boolean waxOn = false;
@@ -71,7 +71,11 @@ public class WaxOMatic {
     TimeUnit.SECONDS.sleep(5); // Run for a while...
     exec.shutdownNow(); // Interrupt all tasks
   }
-} /* Output: (95% match)
+} 
+/**
+ * waxOn and waxOff really cooperate well
+ */
+/* Output: (95% match)
 Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Wax Off! Wax On! Exiting via interrupt
 Ending Wax On task
 Exiting via interrupt
