@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/InterruptingIdiom.java
 // General idiom for interrupting a task.
 // {Args: 1100}
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class NeedsCleanup {
   private final int id;
@@ -57,11 +59,16 @@ public class InterruptingIdiom {
       System.exit(1);
     }
     Thread t = new Thread(new Blocked3());
+//    t.setDaemon(true);//here even its daemon , when blocked, its finally code block can be still running
     t.start();
     TimeUnit.MILLISECONDS.sleep(new Integer(args[0]));
     t.interrupt();
   }
-} /* Output: (Sample)
+} 
+/**
+ * different sleeping time race, cause different blocked position
+ */
+/* Output: (Sample)
 NeedsCleanup 1
 Sleeping
 NeedsCleanup 2
