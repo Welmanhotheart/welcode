@@ -1,6 +1,8 @@
+package testcase.concurrency;
+
 //: concurrency/MultiLock.java
 // One thread can reacquire the same lock.
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class MultiLock {
   public synchronized void f1(int count) {
@@ -23,7 +25,12 @@ public class MultiLock {
       }
     }.start();
   }
-} /* Output:
+} 
+/**
+ * task which already has lock can succeed in acquiring the same lock
+*/
+
+/* Output:
 f1() calling f2() with count 9
 f2() calling f1() with count 8
 f1() calling f2() with count 7
