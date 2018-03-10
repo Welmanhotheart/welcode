@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/Interrupting2.java
 // Interrupting a task blocked with a ReentrantLock.
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class BlockedMutex {
   private Lock lock = new ReentrantLock();
@@ -13,7 +15,15 @@ class BlockedMutex {
   }
   public void f() {
     try {
-      // This will never be available to a second task
+      /*
+       *  This will never be available to a second task
+       *  try to acquire the lock, if the lock has already been
+       *  acquired, then the it will stop here in run method
+       *  but when t.interrupt() is issued in the main thread
+       *  then it will be break out and throw an interruptedException
+       *  (once catch block be added, then the code can be executed formally)
+       */
+  
       lock.lockInterruptibly(); // Special call
       print("lock acquired in f()");
     } catch(InterruptedException e) {
