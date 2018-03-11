@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/TestBlockingQueues.java
 // {RunByHand}
 import java.util.concurrent.*;
 import java.io.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class LiftOffRunner implements Runnable {
   private BlockingQueue<LiftOff> rockets;
@@ -64,4 +66,10 @@ public class TestBlockingQueues {
     test("SynchronousQueue", // Size of 1
       new SynchronousQueue<LiftOff>());
   }
-} ///:~
+} 
+/**
+ * inform me to write down what I have understand from see the JDK source code
+ * of LinkedBlockingQueue, and go the other two to see their JDK source code
+ */
+
+///:~
