@@ -1,9 +1,9 @@
 //: concurrency/waxomatic2/WaxOMatic2.java
 // Using Lock and Condition objects.
-package concurrency.waxomatic2;
+package testcase.concurrency.waxomatic2;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Car {
   private Lock lock = new ReentrantLock();
@@ -13,7 +13,17 @@ class Car {
     lock.lock();
     try {
       waxOn = true; // Ready to buff
+      /**
+       * when I comment out the code "condition.signalAll"
+       * and replace it with the "notifyAll", it compile,
+       * but when I try to run this program, the program throws
+       * out an IllegalMonitorStateException
+       * 
+       * the I understand that anyway this program wants to show
+       * an alternative of "wait" and "lock"
+       */
       condition.signalAll();
+//      	notifyAll();
     } finally {
       lock.unlock();
     }
@@ -23,6 +33,7 @@ class Car {
     try {
       waxOn = false; // Ready for another coat of wax
       condition.signalAll();
+//      	notifyAll();
     } finally {
       lock.unlock();
     }
@@ -32,6 +43,7 @@ class Car {
     try {
       while(waxOn == false)
         condition.await();
+//      	wait();
     } finally {
       lock.unlock();
     }
@@ -41,6 +53,7 @@ class Car {
     try {
       while(waxOn == true)
         condition.await();
+//      	wait();
     } finally {
       lock.unlock();
     }
