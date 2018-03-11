@@ -1,7 +1,9 @@
+package testcase.concurrency;
+
 //: concurrency/Restaurant.java
 // The producer-consumer approach to task cooperation.
 import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Meal {
   private final int orderNum;
@@ -71,7 +73,12 @@ public class Restaurant {
   public static void main(String[] args) {
     new Restaurant();
   }
-} /* Output:
+} 
+/**
+ * one waitPerson and one chef, It's easy to understand
+ */
+
+/* Output:
 Order up! Waitperson got Meal 1
 Order up! Waitperson got Meal 2
 Order up! Waitperson got Meal 3
