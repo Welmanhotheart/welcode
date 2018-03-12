@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/DeadlockingDiningPhilosophers.java
 // Demonstrates how deadlock can be hidden in a program.
 // {Args: 0 5 timeout}
@@ -27,3 +29,7 @@ public class DeadlockingDiningPhilosophers {
     exec.shutdownNow();
   }
 } /* (Execute to see output) *///:~
+
+/**
+ * in this program,Circular wats can be easily formed
+ */

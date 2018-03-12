@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/Chopstick.java
 // Chopsticks for dining philosophers.
 
