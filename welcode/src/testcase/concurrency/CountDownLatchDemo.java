@@ -1,7 +1,9 @@
+package testcase.concurrency;
+
 //: concurrency/CountDownLatchDemo.java
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 // Performs some portion of a task:
 class TaskPortion implements Runnable {
@@ -64,3 +66,8 @@ public class CountDownLatchDemo {
     exec.shutdown(); // Quit when all tasks complete
   }
 } /* (Execute to see output) *///:~
+
+/**
+ * when calling 'CountDownLatch.await()',the program will await until the count reaches
+ * to zero
+ */
