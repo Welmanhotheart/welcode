@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/HorseRace.java
 // Using CyclicBarriers.
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Horse implements Runnable {
   private static int counter = 0;
@@ -85,3 +87,8 @@ public class HorseRace {
     new HorseRace(nHorses, pause);
   }
 } /* (Execute to see output) *///:~
+/**
+ * having seen the program, it gives me a feeling that when the count of CyclicBarrier
+ * reaches to zero,It stops and run its own task and go on next generation(circulation)
+ * (Actually it is, I know it from seeing its JDK source code)
+ */
