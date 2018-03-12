@@ -1,9 +1,11 @@
+package testcase.concurrency;
+
 //: concurrency/PipedIO.java
 // Using pipes for inter-task I/O
 import java.util.concurrent.*;
 import java.io.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Sender implements Runnable {
   private Random rand = new Random(47);
@@ -18,8 +20,9 @@ class Sender implements Runnable {
         }
     } catch(IOException e) {
       print(e + " Sender write exception");
-    } catch(InterruptedException e) {
-      print(e + " Sender sleep interrupted");
+    } catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
     }
   }
 }
@@ -55,3 +58,8 @@ public class PipedIO {
 Read: A, Read: B, Read: C, Read: D, Read: E, Read: F, Read: G, Read: H, Read: I, Read: J, Read: K, Read: L, Read: M, java.lang.InterruptedException: sleep interrupted Sender sleep interrupted
 java.io.InterruptedIOException Receiver read exception
 *///:~
+
+/**
+ * The point that I cannot understand is that why 'Sender'
+ * is a writer but receiver is a reader?
+ */
