@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/ToastOMatic.java
 // A toaster that uses queues.
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Toast {
   public enum Status { DRY, BUTTERED, JAMMED }
@@ -131,3 +133,8 @@ public class ToastOMatic {
     exec.shutdownNow();
   }
 } /* (Execute to see output) *///:~
+
+/**
+ * these queues are like pipes that are linked together to transfer
+ * something from one end to the other end 
+ */
