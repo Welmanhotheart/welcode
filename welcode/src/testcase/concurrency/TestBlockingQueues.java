@@ -59,7 +59,7 @@ public class TestBlockingQueues {
     print("Finished " + msg + " test");
   }
   public static void main(String[] args) {
-    test("LinkedBlockingQueue", // Unlimited size
+    test("LinkedBlockingQueue", // Unlimited size,or fixed size
       new LinkedBlockingQueue<LiftOff>());
     test("ArrayBlockingQueue", // Fixed size
       new ArrayBlockingQueue<LiftOff>(3));
@@ -68,8 +68,14 @@ public class TestBlockingQueues {
   }
 } 
 /**
- * inform me to write down what I have understand from see the JDK source code
- * of LinkedBlockingQueue, and go the other two to see their JDK source code
+ * I have seen the JDK source code of 'LinkedBlockingQueue',
+ * I know that in its 'take()', there is a special lock, 
+ * when there is no element in the queue, then it waits
+ * (the 'put' method will signal it)
+ * in the 'put' method, there is another special lock,
+ * and also signal the 'waits' called in 
+ * 'take()' method, when it's already full, it waits
+ * (the 'take' method will signal it)
  */
 
 ///:~
