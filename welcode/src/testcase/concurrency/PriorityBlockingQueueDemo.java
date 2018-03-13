@@ -1,7 +1,9 @@
+package testcase.concurrency;
+
 //: concurrency/PriorityBlockingQueueDemo.java
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class PrioritizedTask implements
 Runnable, Comparable<PrioritizedTask>  {
@@ -15,6 +17,9 @@ Runnable, Comparable<PrioritizedTask>  {
     this.priority = priority;
     sequence.add(this);
   }
+  /**
+   * desc yeah, I know 
+   */
   public int compareTo(PrioritizedTask arg) {
     return priority < arg.priority ? 1 :
       (priority > arg.priority ? -1 : 0);
