@@ -1,6 +1,6 @@
 //: innerclasses/controller/Event.java
 // The common methods for any control event.
-package innerclasses.controller;
+package testcase.innerclasses.controller;
 
 public abstract class Event {
   private long eventTime;

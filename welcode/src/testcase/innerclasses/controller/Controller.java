@@ -1,6 +1,6 @@
 //: innerclasses/controller/Controller.java
 // The reusable framework for control systems.
-package innerclasses.controller;
+package testcase.innerclasses.controller;
 import java.util.*;
 
 public class Controller {

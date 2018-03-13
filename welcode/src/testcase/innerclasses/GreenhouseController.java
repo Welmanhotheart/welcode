@@ -1,7 +1,9 @@
+package testcase.innerclasses;
+
 //: innerclasses/GreenhouseController.java
 // Configure and execute the greenhouse system.
 // {Args: 5000}
-import innerclasses.controller.*;
+import testcase.innerclasses.controller.*;
 
 public class GreenhouseController {
   public static void main(String[] args) {
