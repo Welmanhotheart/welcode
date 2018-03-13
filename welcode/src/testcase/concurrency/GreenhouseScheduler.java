@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/GreenhouseScheduler.java
 // Rewriting innerclasses/GreenhouseController.java
 // to use a ScheduledThreadPoolExecutor.
@@ -154,3 +156,7 @@ public class GreenhouseScheduler {
     gh.repeat(gh.new CollectData(), 500, 500);
   }
 } /* (Execute to see output) *///:~
+
+/**
+ * repeat a task at a certain interval
+ */
