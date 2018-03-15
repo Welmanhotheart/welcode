@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/CarBuilder.java
 // A complex example of tasks working together.
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class Car {
   private final int id;
@@ -65,7 +67,7 @@ class Assembler implements Runnable {
         // Blocks until chassis is available:
         car = chassisQueue.take();
         // Hire robots to perform work:
-        robotPool.hire(EngineRobot.class, this);
+        robotPool.hire(EngineRobot.class, this);//going to notify the robot
         robotPool.hire(DriveTrainRobot.class, this);
         robotPool.hire(WheelRobot.class, this);
         barrier.await(); // Until the robots finish
@@ -118,7 +120,7 @@ abstract class Robot implements Runnable {
       while(!Thread.interrupted()) {
         performService();
         assembler.barrier().await(); // Synchronize
-        // We're done with that job...
+        // We're done with that job...until needed again
         powerDown();
       }
     } catch(InterruptedException e) {
