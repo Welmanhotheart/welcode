@@ -22,8 +22,8 @@ class ExchangerProducer<T> implements Runnable {
     try {
       while(!Thread.interrupted()) {
         for(int i = 0; i < ExchangerDemo.size; i++)
-          holder.add(generator.next());
-        	System.out.println("ExchangerProducer" + " for " + holder);
+        	System.out.println("before exchange ExchangerProducer" + " for " + holder);
+        	holder.add(generator.next());
         // Exchange full for empty:
         holder = exchanger.exchange(holder);
       }
@@ -47,9 +47,9 @@ class ExchangerConsumer<T> implements Runnable {
       while(!Thread.interrupted()) {
         holder = exchanger.exchange(holder);
         for(T x : holder) {
+        	System.out.println("ExchangerConsumer" + " for " + holder);
           value = x; // Fetch out value
           holder.remove(x); // OK for CopyOnWriteArrayList
-          System.out.println("ExchangerConsumer" + " for " + holder);
         }
       }
     } catch(InterruptedException e) {
@@ -100,3 +100,8 @@ public class ExchangerDemo {
 } /* Output: (Sample)
 Final value: Fat id: 29999
 *///:~
+/**
+ * exchanger it means the exchange happens between two tasks , 
+ * if just one call "exchanger.exchange()" it will wait util 
+ * the other calls "exchanger.exchange()"
+ */
