@@ -1,3 +1,6 @@
+package testcase.concurrency;
+
+
 //: concurrency/Pool.java
 // Using a Semaphore inside a Pool, to restrict
 // the number of tasks that can use a resource.
@@ -26,6 +29,7 @@ public class Pool<T> {
     available.acquire();
     return getItem();
   }
+  
   public void checkIn(T x) {
     if(releaseItem(x))
       available.release();

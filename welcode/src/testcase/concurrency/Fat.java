@@ -1,3 +1,5 @@
+package testcase.concurrency;
+
 //: concurrency/Fat.java
 // Objects that are expensive to create.
 

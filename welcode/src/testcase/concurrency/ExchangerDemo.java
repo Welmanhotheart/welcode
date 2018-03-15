@@ -1,7 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/ExchangerDemo.java
 import java.util.concurrent.*;
 import java.util.*;
-import net.mindview.util.*;
+
+import testcase.net.mindview.util.*;
 
 class ExchangerProducer<T> implements Runnable {
   private Generator<T> generator;
@@ -12,12 +15,15 @@ class ExchangerProducer<T> implements Runnable {
     exchanger = exchg;
     generator = gen;
     this.holder = holder;
+    System.out.println("ExchangerProducer " + this.holder);
+
   }
   public void run() {
     try {
       while(!Thread.interrupted()) {
         for(int i = 0; i < ExchangerDemo.size; i++)
           holder.add(generator.next());
+        	System.out.println("ExchangerProducer" + " for " + holder);
         // Exchange full for empty:
         holder = exchanger.exchange(holder);
       }
@@ -34,6 +40,7 @@ class ExchangerConsumer<T> implements Runnable {
   ExchangerConsumer(Exchanger<List<T>> ex, List<T> holder){
     exchanger = ex;
     this.holder = holder;
+    System.out.println("ExchangerConsumer " + this.holder);
   }
   public void run() {
     try {
@@ -42,6 +49,7 @@ class ExchangerConsumer<T> implements Runnable {
         for(T x : holder) {
           value = x; // Fetch out value
           holder.remove(x); // OK for CopyOnWriteArrayList
+          System.out.println("ExchangerConsumer" + " for " + holder);
         }
       }
     } catch(InterruptedException e) {
@@ -50,25 +58,43 @@ class ExchangerConsumer<T> implements Runnable {
     System.out.println("Final value: " + value);
   }
 }
+class CopyOnWriteArrayListsub<T> extends  CopyOnWriteArrayList<T> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getClass().getName() + "@" + Integer.toHexString(hashCode());
+	}
+	
+}
+/**
+ * return getClass().getName() + "@" + Integer.toHexString(hashCode());
+ * @author Administrator
+ *
+ */
 public class ExchangerDemo {
-  static int size = 10;
-  static int delay = 5; // Seconds
+  static int size = 5;
+  static int delay = 100; // Seconds
   public static void main(String[] args) throws Exception {
     if(args.length > 0)
       size = new Integer(args[0]);
     if(args.length > 1)
       delay = new Integer(args[1]);
     ExecutorService exec = Executors.newCachedThreadPool();
+    //'xc' is shared by ExchangerProducer and ExchangerConsumer
     Exchanger<List<Fat>> xc = new Exchanger<List<Fat>>();
     List<Fat>
-      producerList = new CopyOnWriteArrayList<Fat>(),
-      consumerList = new CopyOnWriteArrayList<Fat>();
+      producerList = new CopyOnWriteArrayListsub<Fat>(),
+      consumerList = new CopyOnWriteArrayListsub<Fat>();
     exec.execute(new ExchangerProducer<Fat>(xc,
       BasicGenerator.create(Fat.class), producerList));
     exec.execute(
       new ExchangerConsumer<Fat>(xc,consumerList));
-    TimeUnit.SECONDS.sleep(delay);
+    TimeUnit.MILLISECONDS.sleep(delay);
     exec.shutdownNow();
   }
 } /* Output: (Sample)

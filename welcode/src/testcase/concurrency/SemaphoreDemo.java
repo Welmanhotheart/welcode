@@ -1,8 +1,10 @@
+package testcase.concurrency;
+
 //: concurrency/SemaphoreDemo.java
 // Testing the Pool class
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 // A task to check a resource out of a pool:
 class CheckoutTask<T> implements Runnable {
@@ -61,7 +63,12 @@ public class SemaphoreDemo {
     for(Fat f : list)
       pool.checkIn(f);
     for(Fat f : list)
-      pool.checkIn(f); // Second checkIn ignored
+      pool.checkIn(f); // Second checkIn ignored,redundant check-ins will be ignored
     exec.shutdown();
   }
 } /* (Execute to see output) *///:~
+/*
+ * at first I feel it strange that check-in and check-out operation is not
+ * synchronized , which confused me so much . Then I see the code of 'Pool.java'
+ * I found its synchronized, So foolish am I 
+ */
