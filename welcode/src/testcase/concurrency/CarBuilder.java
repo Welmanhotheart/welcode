@@ -35,10 +35,10 @@ class ChassisBuilder implements Runnable {
   public void run() {
     try {
       while(!Thread.interrupted()) {
-        TimeUnit.MILLISECONDS.sleep(500);
+//        TimeUnit.MILLISECONDS.sleep(500);
         // Make chassis:
         Car c = new Car(counter++);
-        print("ChassisBuilder created " + c);
+//        print("ChassisBuilder created " + c);
         // Insert into queue
         carQueue.put(c);
       }
@@ -60,7 +60,7 @@ class Assembler implements Runnable {
     robotPool = rp;
   }
   public Car car() { return car; }
-  public CyclicBarrier barrier() { return barrier; }
+  public synchronized CyclicBarrier barrier() { return barrier; }
   public void run() {
     try {
       while(!Thread.interrupted()) {
@@ -137,7 +137,7 @@ abstract class Robot implements Runnable {
     assembler = null; // Disconnect from the Assembler
     // Put ourselves back in the available pool:
     pool.release(this);
-    while(engage == false)  // Power down
+//    while(engage == false)  // Power down
       wait();
   }
   public String toString() { return getClass().getName(); }
