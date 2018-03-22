@@ -1,3 +1,3 @@
 //: generics/coffee/Americano.java
-package generics.coffee;
+package testcase.generics.coffee;
 public class Americano extends Coffee {} ///:~

@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/LinkedStack.java
 // A stack implemented with an internal linked structure.
 

@@ -1,8 +1,8 @@
 //: generics/coffee/CoffeeGenerator.java
 // Generate different types of Coffee:
-package generics.coffee;
+package testcase.generics.coffee;
 import java.util.*;
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class CoffeeGenerator
 implements Generator<Coffee>, Iterable<Coffee> {
@@ -23,11 +23,14 @@ implements Generator<Coffee>, Iterable<Coffee> {
     }
   }
   class CoffeeIterator implements Iterator<Coffee> {
+  	/**
+  	 * can access the outside member
+  	 */
     int count = size;
     public boolean hasNext() { return count > 0; }
     public Coffee next() {
       count--;
-      return CoffeeGenerator.this.next();
+      return CoffeeGenerator.this.next();//superclass.this
     }
     public void remove() { // Not implemented
       throw new UnsupportedOperationException();

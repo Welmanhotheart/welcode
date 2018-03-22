@@ -1,6 +1,6 @@
 //: enumerated/menu/Food.java
 // Subcategorization of enums within interfaces.
-package enumerated.menu;
+package testcase.enumerated.menu;
 
 public interface Food {
   enum Appetizer implements Food {
