@@ -1,5 +1,5 @@
 //: net/mindview/util/Enums.java
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.util.*;
 
 public class Enums {

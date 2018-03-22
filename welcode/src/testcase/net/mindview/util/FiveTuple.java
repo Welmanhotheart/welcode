@@ -1,5 +1,5 @@
 //: net/mindview/util/FiveTuple.java
-package net.mindview.util;
+package testcase.net.mindview.util;
 
 public class FiveTuple<A,B,C,D,E>
 extends FourTuple<A,B,C,D> {

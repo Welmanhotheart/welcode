@@ -1,5 +1,7 @@
+package testcase.generics;
+
 //: generics/TupleTest.java
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 class Amphibian {}
 class Vehicle {}
@@ -28,9 +30,20 @@ public class TupleTest {
   public static void main(String[] args) {
     TwoTuple<String,Integer> ttsi = f();
     System.out.println(ttsi);
+    
+    /*
+     * here I use super reference to receive subtype instance
+     * as for generics, Just ignore the last parameters? yes, Its right
+     */
+    TwoTuple<Amphibian, String> tv = g();
     // ttsi.first = "there"; // Compile error: final
+    System.out.println(tv);
+    
     System.out.println(g());
+    TwoTuple<Vehicle, Amphibian> two =h();
+    System.out.println(two);
     System.out.println(h());
+    
     System.out.println(k());
   }
 } /* Output: (80% match)
