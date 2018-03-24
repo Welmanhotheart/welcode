@@ -1,8 +1,10 @@
+package testcase.generics;
+
 //: generics/Generators.java
 // A utility to use with Generators.
-import generics.coffee.*;
+import testcase.generics.coffee.*;
 import java.util.*;
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class Generators {
   public static <T> Collection<T>
@@ -16,6 +18,10 @@ public class Generators {
       new ArrayList<Coffee>(), new CoffeeGenerator(), 4);
     for(Coffee c : coffee)
       System.out.println(c);
+ /*
+  * yeah, Fibonacci extends class<Integer>, it's consistent now
+  * the same as above
+  */
     Collection<Integer> fnumbers = fill(
       new ArrayList<Integer>(), new Fibonacci(), 12);
     for(int i : fnumbers)
