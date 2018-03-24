@@ -4,7 +4,10 @@ package testcase.generics;
 // Generate a Fibonacci sequence.
 import testcase.net.mindview.util.*;
 
-public class Fibonacci implements Generator<Integer> {
+/*
+ * when I add ? extends, It is unable to be compiled
+ */
+public class Fibonacci implements Generator</*? extends */Integer> {
   private int count = 0;
   public Integer next() { return fib(count++); }
   private int fib(int n) {
