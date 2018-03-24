@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericMethods.java
 
 public class GenericMethods {
@@ -21,3 +23,8 @@ java.lang.Float
 java.lang.Character
 GenericMethods
 *///:~
+/**
+ * from the output, I can see that the f(T x) method can figure out
+ * the type of parameter 'T', and when primitive type parameters are
+ * passed in, they are autoboxing into their Wrapped type 
+ */
