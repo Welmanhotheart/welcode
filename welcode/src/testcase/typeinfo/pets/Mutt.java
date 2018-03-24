@@ -1,5 +1,5 @@
 //: typeinfo/pets/Mutt.java
-package typeinfo.pets;
+package testcase.typeinfo.pets;
 
 public class Mutt extends Dog {
   public Mutt(String name) { super(name); }

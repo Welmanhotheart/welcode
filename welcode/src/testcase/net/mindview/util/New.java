@@ -1,8 +1,11 @@
 //: net/mindview/util/New.java
 // Utilities to simplify generic container creation
 // by using type argument inference.
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.util.*;
+
+import testcase.typeinfo.pets.Person;
+import testcase.typeinfo.pets.Pet;
 
 public class New {
   public static <K,V> Map<K,V> map() {
@@ -22,6 +25,10 @@ public class New {
   }
   // Examples:
   public static void main(String[] args) {
+  	/**
+  	 * can be applied to the MapOfList.java
+  	 */
+  	//Map<Person, List<? extends Pet>>  petPeople = New.map();
     Map<String, List<String>> sls = New.map();
     List<String> ls = New.list();
     LinkedList<String> lls = New.lList();
