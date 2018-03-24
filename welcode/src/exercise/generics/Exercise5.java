@@ -2,6 +2,7 @@ package exercise.generics;
 
 
 
+
 //: generics/LinkedStack.java
 //A stack implemented with an internal linked structure.
 
