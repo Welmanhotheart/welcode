@@ -1,8 +1,11 @@
+package testcase.generics;
+
 //: generics/BasicGeneratorDemo.java
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class BasicGeneratorDemo {
   public static void main(String[] args) {
+  	//when pass type object , It can still do type inference
     Generator<CountedObject> gen =
       BasicGenerator.create(CountedObject.class);
     for(int i = 0; i < 5; i++)
