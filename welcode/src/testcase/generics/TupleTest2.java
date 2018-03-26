@@ -1,6 +1,8 @@
+package testcase.generics;
+
 //: generics/TupleTest2.java
-import net.mindview.util.*;
-import static net.mindview.util.Tuple.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Tuple.*;
 
 public class TupleTest2 {
   static TwoTuple<String,Integer> f() {
@@ -21,6 +23,11 @@ public class TupleTest2 {
   }
   public static void main(String[] args) {
     TwoTuple<String,Integer> ttsi = f();
+    /*warning
+     * Type safety: The expression of type TwoTuple needs unchecked
+     *  conversion to conform to TwoTuple<String,Integer>
+     */
+//    TwoTuple<String, Integer> f2 = f2();
     System.out.println(ttsi);
     System.out.println(f2());
     System.out.println(g());
