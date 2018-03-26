@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/CountedObject.java
 
 public class CountedObject {

@@ -3,7 +3,9 @@ package testcase.generics;
 //: generics/Generators.java
 // A utility to use with Generators.
 import testcase.generics.coffee.*;
+
 import java.util.*;
+
 import testcase.net.mindview.util.*;
 
 public class Generators {
@@ -12,6 +14,24 @@ public class Generators {
     for(int i = 0; i < n; i++)
       coll.add(gen.next());
     return coll;
+  }	
+  public static <T> List<T>
+  fill(List<T> coll, Generator<T> gen, int n) {
+  	for(int i = 0; i < n; i++)
+  		coll.add(gen.next());
+  	return coll;
+  }	
+  public static <T> Queue<T>
+  fill(Queue<T> coll, Generator<T> gen, int n) {
+  	for(int i = 0; i < n; i++)
+  		coll.add(gen.next());
+  	return coll;
+  }	
+  public static <T> Set<T>
+  fill(Set<T> coll, Generator<T> gen, int n) {
+  	for(int i = 0; i < n; i++)
+  		coll.add(gen.next());
+  	return coll;
   }	
   public static void main(String[] args) {
     Collection<Coffee> coffee = fill(
