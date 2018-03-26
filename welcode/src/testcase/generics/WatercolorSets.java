@@ -1,9 +1,11 @@
+package testcase.generics;
+
 //: generics/WatercolorSets.java
-import generics.watercolors.*;
+import testcase.generics.watercolors.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
-import static net.mindview.util.Sets.*;
-import static generics.watercolors.Watercolors.*;
+import static testcase.net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Sets.*;
+import static testcase.generics.watercolors.Watercolors.*;
 
 public class WatercolorSets {
   public static void main(String[] args) {

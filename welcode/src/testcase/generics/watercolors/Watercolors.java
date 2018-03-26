@@ -1,5 +1,5 @@
 //: generics/watercolors/Watercolors.java
-package generics.watercolors;
+package testcase.generics.watercolors;
 
 public enum Watercolors {
   ZINC, LEMON_YELLOW, MEDIUM_YELLOW, DEEP_YELLOW, ORANGE,
@@ -9,3 +9,4 @@ public enum Watercolors {
   SAP_GREEN, YELLOW_OCHRE, BURNT_SIENNA, RAW_UMBER,
   BURNT_UMBER, PAYNES_GRAY, IVORY_BLACK
 } ///:~
+

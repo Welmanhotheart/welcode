@@ -1,5 +1,5 @@
 //: net/mindview/util/Sets.java
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.util.*;
 
 public class Sets {
@@ -24,5 +24,16 @@ public class Sets {
   // Reflexive--everything not in the intersection:
   public static <T> Set<T> complement(Set<T> a, Set<T> b) {
     return difference(union(a, b), intersection(a, b));
+  }
+  
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> Set<T> clone(Set<T> original) {
+  	/**
+  	 * this doesn't pass the compilation,what should I do 
+  	 */
+//  	return original instanceof EnumSet?
+//  				((EnumSet<T>)original).clone() : new HashSet<T>(original);
+	  	return original instanceof EnumSet?
+	  				((EnumSet)original).clone() : new HashSet<T>(original);
   }
 } ///:~
