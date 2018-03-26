@@ -21,6 +21,12 @@ public class TupleTest2 {
     return tuple(new Vehicle(), new Amphibian(),
       "hi", 47, 11.1);
   }
+  
+  static
+  SixTuple<Vehicle,Amphibian,String,Integer,Double,Integer> l() {
+  	return tuple(new Vehicle(), new Amphibian(),
+  			"hi", 47, 11.1,12);
+  }
   public static void main(String[] args) {
     TwoTuple<String,Integer> ttsi = f();
     /*warning
@@ -33,6 +39,7 @@ public class TupleTest2 {
     System.out.println(g());
     System.out.println(h());
     System.out.println(k());
+    System.out.println(l());
   }
 } /* Output: (80% match)
 (hi, 47)
