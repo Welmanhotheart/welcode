@@ -4,6 +4,7 @@ package exercise.generics;
 //: generics/IterableFibonacci.java
 //Adapt the Fibonacci class to make it Iterable.
 import java.util.*;
+import java.util.regex.Pattern;
 
 import testcase.generics.Fibonacci;
 
@@ -34,6 +35,17 @@ class IterableFibonacci implements Iterable<Integer> {
 
 public class Exercise7 {
 	public static void main(String[] args) {
-		IterableFibonacci.main(null);
+//		IterableFibonacci.main(null);
+		char ch = '.';
+		System.out.println("ch :" + ch + ";整数形式：" + (int)ch + ";16进制数:" + Integer.toHexString(ch));
+		ch = '你';
+		System.out.println("ch :" + ch + ";整数形式：" + (int)ch + ";16进制数:" + Integer.toHexString(ch));
+		ch = '我';
+		System.out.println("ch :" + ch + ";整数形式：" + (int)ch + ";16进制数:" + Integer.toHexString(ch));
+		ch = '他';
+		System.out.println("ch :" + ch + ";整数形式：" + (int)ch + ";16进制数:" + Integer.toHexString(ch));
+		Pattern ANT_SPECIALCHAR = Pattern.compile("\\s*|\\t|\\r|\\n|-|\\+|\\|\\f|\\e");
+		String str = "sadfdasdd\n\rsdfas\f\t";
+		System.out.println("str : " + str + "; 清除后：" + ANT_SPECIALCHAR.matcher(str).replaceAll(""));
 	}
 }
