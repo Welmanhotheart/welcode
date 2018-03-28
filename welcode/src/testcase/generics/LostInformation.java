@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/LostInformation.java
 import java.util.*;
 
@@ -21,7 +23,7 @@ public class LostInformation {
     System.out.println(Arrays.toString(
       p.getClass().getTypeParameters()));
   }
-} /* Output:
+} /* Output: only placeholders
 [E]
 [K, V]
 [Q]
