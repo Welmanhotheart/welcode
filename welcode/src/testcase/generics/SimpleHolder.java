@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/SimpleHolder.java
 
 public class SimpleHolder {

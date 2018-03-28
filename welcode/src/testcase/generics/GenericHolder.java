@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericHolder.java
 
 public class GenericHolder<T> {
@@ -11,3 +13,7 @@ public class GenericHolder<T> {
     String s = holder.get();
   }
 } ///:~
+
+/**
+ * do casting by the the compiler
+ */
