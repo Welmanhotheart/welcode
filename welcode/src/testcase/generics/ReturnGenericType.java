@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/ReturnGenericType.java
 
 class ReturnGenericType<T extends HasF> {
@@ -5,3 +7,6 @@ class ReturnGenericType<T extends HasF> {
   public ReturnGenericType(T x) { obj = x; }
   public T get() { return obj; }
 } ///:~
+/**
+ * erased to HasF
+ */
