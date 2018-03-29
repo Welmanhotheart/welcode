@@ -26,5 +26,6 @@ public class ErasureAndInheritance {
 } ///:~
 
 /**
- * no generic subclass Derived2, when 
+ * no generic subclass Derived2, when instance of Derived2 call 'get()'
+ * and pass the returned value to the 'set()' method it warning
  */
