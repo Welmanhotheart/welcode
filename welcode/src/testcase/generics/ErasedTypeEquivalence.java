@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/ErasedTypeEquivalence.java
 import java.util.*;
 
