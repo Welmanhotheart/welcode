@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/ArrayMaker.java
 import java.lang.reflect.*;
 import java.util.*;
@@ -13,8 +15,13 @@ public class ArrayMaker<T> {
     ArrayMaker<String> stringMaker =
       new ArrayMaker<String>(String.class);
     String[] stringArray = stringMaker.create(9);
+    System.out.println(stringArray.getClass());
     System.out.println(Arrays.toString(stringArray));
   }
 } /* Output:
 [null, null, null, null, null, null, null, null, null]
 *///:~
+/**
+ * when create arrays in generic class, It's better
+ * to use Array.newInstance(Class<?>,int) 
+ */
