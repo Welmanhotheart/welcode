@@ -1,0 +1,17 @@
+1.如何实现fConstr 继承 fsuperConstr
+	1.构造中间构造函数: var f = function(){};
+	2.令f的原型指向基类的原型: f.prototype = fSuperConstr.prototype;
+	3.fConstr的_superClass属性记录: fConstr._superClass = fSuperConstr;
+	4.让fConstr的原型指向f的一个实例: var p = fConstr.prototype = new f();
+		
+		if (sName) {
+			p._className = sName;
+		}
+	5.让fConstr的原型的构造函数重新指向fConstr:	p.constructor = fConstr;
+
+	效果：var finstance = new fConstr();
+	finstance._proto_ = p = new f();
+	p._proto_ = fSuperConstr.prototype;
+	
+	原型链: finstance._proto_._proto_ 
+2.
