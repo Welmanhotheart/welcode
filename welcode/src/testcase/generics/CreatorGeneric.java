@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/CreatorGeneric.java
 
 abstract class GenericWithCreate<T> {
@@ -23,3 +25,8 @@ public class CreatorGeneric {
 } /* Output:
 X
 *///:~
+
+/**
+ * It seems like that the abstract class 'GenericWithCreate' is a template class
+ * which can be the pattern for other 'creator' to extends it
+ */
