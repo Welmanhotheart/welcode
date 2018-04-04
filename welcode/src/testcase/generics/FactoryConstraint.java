@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/FactoryConstraint.java
 
 interface FactoryI<T> {
@@ -32,3 +34,7 @@ public class FactoryConstraint {
     new Foo2<Widget>(new Widget.Factory());
   }
 } ///:~
+/**
+ * Integer has no default constructor, so it needs to has its own special
+ * factory method
+ */
