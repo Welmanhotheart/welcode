@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericArray.java
 
 public class GenericArray<T> {
@@ -16,6 +18,7 @@ public class GenericArray<T> {
     GenericArray<Integer> gai =
       new GenericArray<Integer>(10);
     // This causes a ClassCastException:
+    //actually it returns type Object[]
     //! Integer[] ia = gai.rep();
     // This is OK:
     Object[] oa = gai.rep();
