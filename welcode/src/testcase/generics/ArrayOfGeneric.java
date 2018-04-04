@@ -1,3 +1,8 @@
+package testcase.generics;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //: generics/ArrayOfGeneric.java
 
 public class ArrayOfGeneric {
@@ -8,7 +13,12 @@ public class ArrayOfGeneric {
     // Compiles; produces ClassCastException:
     //! gia = (Generic<Integer>[])new Object[SIZE];
     // Runtime type is the raw (erased) type:
-    gia = (Generic<Integer>[])new Generic[SIZE];
+  	/*
+  	 * But you can never create an array of that exact type
+  	 * (including the type parameters), why ?
+  	 */
+//    gia = new Generic<Integer>[SIZE];
+    gia = (Generic<Integer>[])new Generic[SIZE]; //no compile error
     System.out.println(gia.getClass().getSimpleName());
     gia[0] = new Generic<Integer>();
     //! gia[1] = new Object(); // Compile-time error
