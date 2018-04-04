@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericArrayWithTypeToken.java
 import java.lang.reflect.*;
 
@@ -21,3 +23,7 @@ public class GenericArrayWithTypeToken<T> {
     Integer[] ia = gai.rep();
   }
 } ///:~
+
+/**
+ * Array.newInstance(Class, size) return the underlying type of an array
+ */
