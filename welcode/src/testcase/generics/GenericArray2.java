@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericArray2.java
 
 public class GenericArray2<T> {
@@ -30,3 +32,7 @@ public class GenericArray2<T> {
 0 1 2 3 4 5 6 7 8 9
 java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.Integer;
 *///:~
+/**
+ * Yeah, I see that when erased, gai.rep() returns 'Object[]', but in which element of
+ * Integer type is stored, so you still cannot say that 'Object[]' is 'Integer[]'
+ */
