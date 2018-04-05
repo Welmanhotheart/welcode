@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/GenericReading.java
 import java.util.*;
 
@@ -7,6 +9,7 @@ public class GenericReading {
   }
   static List<Apple> apples = Arrays.asList(new Apple());
   static List<Fruit> fruit = Arrays.asList(new Fruit());
+  static List<Jonathan> jonathans = Arrays.asList(new Jonathan());
   // A static method adapts to each call:
   static void f1() {
     Apple a = readExact(apples);
@@ -27,6 +30,7 @@ public class GenericReading {
   }
   static class CovariantReader<T> {
     T readCovariant(List<? extends T> list) {
+    	System.out.println(list.get(0).getClass().getSuperclass());
       return list.get(0);
     }
   }
@@ -34,7 +38,15 @@ public class GenericReading {
     CovariantReader<Fruit> fruitReader =
       new CovariantReader<Fruit>();
     Fruit f = fruitReader.readCovariant(fruit);
+    
+	  /*
+	   * but it returns Fruit , why not Apple
+	   * Answer: because if passed List<Orange> , can you return Apple
+	   * 
+	   * so it must returns it root ancestor class
+	   */
     Fruit a = fruitReader.readCovariant(apples);
+    
   }	
   public static void main(String[] args) {
     f1(); f2(); f3();
