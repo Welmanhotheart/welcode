@@ -9,6 +9,9 @@ class Orange extends Fruit {}
 
 public class CovariantArrays {
   public static void main(String[] args) {
+  	/*
+  	 * You can assign an array of a derived type to an array reference of the base type
+  	 */
     Fruit[] fruit = new Apple[10];
     fruit[0] = new Apple(); // OK
     fruit[1] = new Jonathan(); // OK
