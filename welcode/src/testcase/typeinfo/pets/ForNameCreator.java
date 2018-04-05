@@ -1,5 +1,5 @@
 //: typeinfo/pets/ForNameCreator.java
-package typeinfo.pets;
+package testcase.typeinfo.pets;
 import java.util.*;
 
 public class ForNameCreator extends PetCreator {
