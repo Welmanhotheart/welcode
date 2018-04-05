@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/CovariantArrays.java
 
 class Fruit {}
@@ -24,3 +26,7 @@ public class CovariantArrays {
 java.lang.ArrayStoreException: Fruit
 java.lang.ArrayStoreException: Orange
 *///:~
+/**
+ * yeah in compile-time,this is really amazing since it doesnt cause any compile-error
+ * but in the runtime, ArrayStoreException is cast out
+ */
