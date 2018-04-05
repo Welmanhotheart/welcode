@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/InheritBounds.java
 
 class HoldItem<T> {
@@ -34,3 +36,9 @@ public class InheritBounds {
     solid2.weight();
   }
 } ///:~
+
+/**
+ * derived from the inheritance hierarchy, I conclude that Bound 'extends' HasColor
+ * Here actually, 'extends' has a significantly different meaning in the context of 
+ * generic
+ */
