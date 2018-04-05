@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/ArrayOfGenericReference.java
 
 class Generic<T> {}

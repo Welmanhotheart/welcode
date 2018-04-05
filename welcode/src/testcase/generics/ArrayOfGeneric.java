@@ -8,7 +8,7 @@ import java.util.List;
 public class ArrayOfGeneric {
   static final int SIZE = 100;
   static Generic<Integer>[] gia;
-  @SuppressWarnings("unchecked")
+//  @SuppressWarnings("unchecked")
   public static void main(String[] args) {
     // Compiles; produces ClassCastException:
     //! gia = (Generic<Integer>[])new Object[SIZE];
@@ -18,7 +18,8 @@ public class ArrayOfGeneric {
   	 * (including the type parameters), why ?
   	 */
 //    gia = new Generic<Integer>[SIZE];
-    gia = (Generic<Integer>[])new Generic[SIZE]; //no compile error
+  	
+    gia = new Generic[SIZE]; //no compile error
     System.out.println(gia.getClass().getSimpleName());
     gia[0] = new Generic<Integer>();
     //! gia[1] = new Object(); // Compile-time error
