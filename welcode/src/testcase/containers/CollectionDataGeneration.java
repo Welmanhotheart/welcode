@@ -1,7 +1,9 @@
+package testcase.containers;
+
 //: containers/CollectionDataGeneration.java
 // Using the Generators defined in the Arrays chapter.
 import java.util.*;
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class CollectionDataGeneration {
   public static void main(String[] args) {
@@ -16,3 +18,8 @@ public class CollectionDataGeneration {
 [YNzbrnyGc, FOWZnTcQr, GseGZMmJM, RoEsuEcUO, neOEdLsmw, HLGEahKcx, rEqUCBbkI, naMesbtWH, kjUrUkZPg, wsqPzDyCy]
 [573, 4779, 871, 4367, 6090, 7882, 2017, 8037, 3455, 299]
 *///:~
+
+/**
+ * 10
+ * 		9
+ */

@@ -1,6 +1,6 @@
 //: net/mindview/util/CountingGenerator.java
 // Simple generator implementations.
-package net.mindview.util;
+package testcase.net.mindview.util;
 
 public class CountingGenerator {
   public static class
