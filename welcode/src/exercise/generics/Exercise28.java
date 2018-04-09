@@ -26,6 +26,7 @@ public class Exercise28 {
 		T element = generic2.getElement();
 	}
 	public static void main(String[] args) {
+		f1(new Generic1<Individual>(), new Individual("sdjk"));
 		f1(new Generic1<Individual>(), new Person("sdjk"));
 		f1(new Generic1<Individual>(), new Cat("sdjk"));
 //		f1(new Generic1<Person>(), new Individual("sdjk")); wont compile

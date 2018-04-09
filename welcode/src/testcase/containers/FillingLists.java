@@ -1,3 +1,5 @@
+package testcase.containers;
+
 //: containers/FillingLists.java
 // The Collections.fill() & Collections.nCopies() methods.
 import java.util.*;
@@ -22,3 +24,9 @@ public class FillingLists {
 [StringAddress@82ba41 Hello, StringAddress@82ba41 Hello, StringAddress@82ba41 Hello, StringAddress@82ba41 Hello]
 [StringAddress@923e30 World!, StringAddress@923e30 World!, StringAddress@923e30 World!, StringAddress@923e30 World!]
 *///:~
+/**
+ * Source code analysis:
+ * Collections.nCopies return a instance of class 'CopiesList', and it has its own 
+ * toArray() method,and Connection.fill(list, T o),will replace the element of list
+ * with o  
+ */
