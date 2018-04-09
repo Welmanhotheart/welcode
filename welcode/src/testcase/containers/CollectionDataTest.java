@@ -1,6 +1,8 @@
+package testcase.containers;
+
 //: containers/CollectionDataTest.java
 import java.util.*;
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 class Government implements Generator<String> {
   String[] foundation = ("strange women lying in ponds " +
@@ -21,3 +23,7 @@ public class CollectionDataTest {
 } /* Output:
 [strange, women, lying, in, ponds, distributing, swords, is, no, basis, for, a, system, of, government]
 *///:~
+/**
+ * having seen the source code, we can see that the LinkedHashSet use a LinkedHashMap to 
+ * eniminate the repetition
+ */
