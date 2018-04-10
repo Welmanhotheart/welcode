@@ -1,3 +1,5 @@
+package testcase.containers;
+
 //: containers/TypesForSets.java
 // Methods necessary to put your own type in a Set.
 import java.util.*;
@@ -9,6 +11,9 @@ class SetType {
     return o instanceof SetType && (i == ((SetType)o).i);
   }
   public String toString() { return Integer.toString(i); }
+//  public int hashCode() {
+//  	return i;
+//  }
 }
 
 class HashType extends SetType {
@@ -72,3 +77,14 @@ public class TypesForSets {
 java.lang.ClassCastException: SetType cannot be cast to java.lang.Comparable
 java.lang.ClassCastException: HashType cannot be cast to java.lang.Comparable
 *///:~
+
+/**
+ * having seen the source code, I know that the implementation of LinkedHashSet
+ * is based on LinkedHashMap, and in the meanwhile, the implementation of HashSet
+ * is based on HashMap, when adding element to HashMap(LinkedhashMap),the element must implements
+ * its own 'hashCode()' method, so as to eliminated the repetition
+ * 
+ * having seen the source code, I know that the implementation of TreeSet is 
+ * based on TreeMap, which requires its key implements the Comparable interface 
+ * 
+ */
