@@ -1,7 +1,9 @@
+package testcase.containers;
+
 //: containers/SortedSetDemo.java
 // What you can do with a TreeSet.
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class SortedSetDemo {
   public static void main(String[] args) {
@@ -36,3 +38,7 @@ two
 [eight, five, four, one, seven, six, three]
 [one, seven, six, three, two]
 *///:~
+/**
+ * Having seen the source code, I know that the treeSet keeps a Tree structure
+ * in this Tree t.left.key < t.key < t.right.key 
+ */
