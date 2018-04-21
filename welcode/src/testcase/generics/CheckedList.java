@@ -1,6 +1,6 @@
-//: generics/CheckedList.java
-// Using Collection.checkedList().
-import typeinfo.pets.*;
+package testcase.generics;
+
+import testcase.typeinfo.pets.*;
 import java.util.*;
 
 public class CheckedList {
