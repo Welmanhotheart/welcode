@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/OrdinaryArguments.java
 
 class OrdinarySetter {
