@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/Mixins.java
 import java.util.*;
 
