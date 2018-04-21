@@ -1,5 +1,5 @@
 //: generics/decorator/Decoration.java
-package generics.decorator;
+package testcase.generics.decorator;
 import java.util.*;
 
 class Basic {
@@ -22,6 +22,7 @@ class TimeStamped extends Decorator {
     timeStamp = new Date().getTime();
   }
   public long getStamp() { return timeStamp; }
+  
 }
 
 class SerialNumbered extends Decorator {
@@ -36,10 +37,12 @@ public class Decoration {
     TimeStamped t = new TimeStamped(new Basic());
     TimeStamped t2 = new TimeStamped(
       new SerialNumbered(new Basic()));
+    System.out.println(t2.get());
     //! t2.getSerialNumber(); // Not available
     SerialNumbered s = new SerialNumbered(new Basic());
     SerialNumbered s2 = new SerialNumbered(
       new TimeStamped(new Basic()));
+    System.out.println(s2.get());
     //! s2.getStamp(); // Not available
   }
 } ///:~
