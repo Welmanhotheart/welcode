@@ -1,7 +1,9 @@
+package testcase.generics;
+
 //: generics/ThrowGenericException.java
 import java.util.*;
 
-interface Processor<T,E extends Exception> {
+interface Processor<T,E extends Exception> {// must extends Exception
   void process(List<T> resultCollector) throws E;
 }
 
