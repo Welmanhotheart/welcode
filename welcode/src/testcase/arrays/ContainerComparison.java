@@ -1,6 +1,8 @@
+package testcase.arrays;
+
 //: arrays/ContainerComparison.java
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 class BerylliumSphere {
   private static long counter;
