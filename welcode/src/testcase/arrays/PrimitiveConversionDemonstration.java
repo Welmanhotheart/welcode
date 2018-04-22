@@ -1,6 +1,8 @@
+package testcase.arrays;
+
 //: arrays/PrimitiveConversionDemonstration.java
 import java.util.*;
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class PrimitiveConversionDemonstration {
   public static void main(String[] args) {
