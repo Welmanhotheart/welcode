@@ -1,5 +1,7 @@
+package testcase.arrays;
+
 //: arrays/GeneratorsTest.java
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class GeneratorsTest {
   public static int size = 10;
