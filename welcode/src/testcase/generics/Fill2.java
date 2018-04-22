@@ -1,17 +1,19 @@
+package testcase.generics;
+
 //: generics/Fill2.java
 // Using adapters to simulate latent typing.
 // {main: Fill2Test}
-import generics.coffee.*;
+import testcase.generics.coffee.*;
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
 interface Addable<T> { void add(T t); }
 
 public class Fill2 {
   // Classtoken version:
   public static <T> void fill(Addable<T> addable,
-  Class<? extends T> classToken, int size) {
+  Class<? extends T> classToken, int size) { 
     for(int i = 0; i < size; i++)
       try {
         addable.add(classToken.newInstance());
@@ -47,7 +49,7 @@ class Adapter {
 
 // To adapt a specific type, you can use inheritance.
 // Make a SimpleQueue Addable using inheritance:
-class AddableSimpleQueue<T>
+class AddableSimpleQueue<T> 
 extends SimpleQueue<T> implements Addable<T> {
   public void add(T item) { super.add(item); }
 }
