@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/Fill.java
 // Generalizing the FilledList idea
 // {main: FillTest}
@@ -18,6 +20,9 @@ public class Fill {
         throw new RuntimeException(e);
       }
   }
+  public static void main(String[] args) {
+  	FillTest.main(args);
+	}
 }
 
 class Contract {
