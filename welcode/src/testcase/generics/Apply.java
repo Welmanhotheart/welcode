@@ -1,8 +1,10 @@
+package testcase.generics;
+
 //: generics/Apply.java
 // {main: ApplyTest}
 import java.lang.reflect.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class Apply {
   public static <T, S extends Iterable<? extends T>>
@@ -14,6 +16,9 @@ public class Apply {
       // Failures are programmer errors
       throw new RuntimeException(e);
     }
+  }
+  public static void main(String[] args) throws Exception {
+  	ApplyTest.main(null);
   }
 }	
 
@@ -58,7 +63,8 @@ class ApplyTest {
     Apply.apply(new FilledList<Shape>(Square.class, 10),
       Shape.class.getMethod("rotate"));
 
-    SimpleQueue<Shape> shapeQ = new SimpleQueue<Shape>();
+//    SimpleQueue<Shape> shapeQ = new SimpleQueue<Shape>();
+    SimpleQueue<? super Shape> shapeQ = new SimpleQueue<Shape>();
     for(int i = 0; i < 5; i++) {
       shapeQ.add(new Shape());
       shapeQ.add(new Square());
