@@ -1,11 +1,14 @@
+package testcase.arrays;
+
 //: arrays/FillingArrays.java
 // Using Arrays.fill()
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class FillingArrays {
   public static void main(String[] args) {
     int size = 6;
+    // many overloaded method of both Arrays.fill() and Arrays.toString() 
     boolean[] a1 = new boolean[size];
     byte[] a2 = new byte[size];
     char[] a3 = new char[size];
