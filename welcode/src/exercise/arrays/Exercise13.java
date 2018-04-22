@@ -10,8 +10,9 @@ import testcase.net.mindview.util.Generated;
 
 
 
-public class Exercise12 {
+public class Exercise13 {
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(ConvertTo.primitive(Generated.array(Double.class, new CountingGenerator.Double(), 6))));
+		Character[] array = Generated.array(Character.class, new CountingGenerator.Character(), 7);
+		System.out.println(new String(ConvertTo.primitive(array)));
 	}
 }
