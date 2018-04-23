@@ -1,9 +1,19 @@
+package testcase.arrays;
+
 //: arrays/CompType.java
 // Implementing Comparable in a class.
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
+/*
+ * Having seen the source code, when calling Arrays.sort()
+ * if the element is of primitive type, then the sort adapt 
+ * the improved quick-sort method, if the element is Object type
+ * then the element must implements Comparable interface when there isn't a Comparator;
+ * when there is a Comparator, then use the Comparator, and also you could define your own
+ * comparator
+ */
 public class CompType implements Comparable<CompType> {
   int i;
   int j;
