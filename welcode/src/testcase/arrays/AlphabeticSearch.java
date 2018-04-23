@@ -1,8 +1,14 @@
+package testcase.arrays;
+
 //: arrays/AlphabeticSearch.java
 // Searching with a Comparator.
 import java.util.*;
-import net.mindview.util.*;
 
+import testcase.net.mindview.util.*;
+/*
+ * just like the Arrays.sort,It also has the overloaded version:
+ *  binarySearch(T[] a, T key, Comparator<? super T> c)...
+ */
 public class AlphabeticSearch {
   public static void main(String[] args) {
     String[] sa = Generated.array(new String[30],
