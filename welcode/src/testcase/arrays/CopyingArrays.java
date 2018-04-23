@@ -29,6 +29,7 @@ public class CopyingArrays {
     Arrays.fill(v, new Integer(99));
     print("u = " + Arrays.toString(u));
     print("v = " + Arrays.toString(v));
+    //shallow copy
     System.arraycopy(v, 0, u, u.length/2, v.length);
     print("u = " + Arrays.toString(u));
   }
