@@ -1,8 +1,10 @@
+package testcase.arrays;
+
 //: arrays/ArraySearching.java
 // Using Arrays.binarySearch().
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class ArraySearching {
   public static void main(String[] args) {
@@ -26,3 +28,8 @@ public class ArraySearching {
 Sorted array: [128, 140, 200, 207, 258, 258, 278, 288, 322, 429, 511, 520, 522, 551, 555, 589, 693, 704, 809, 861, 861, 868, 916, 961, 998]
 Location of 322 is 8, a[8] = 322
 *///:~
+
+/*
+ * when calling Arrays.binarySearch, it will return the place where the target object is find
+ * or a negative value representing the place that the element should be inserted 
+ */
