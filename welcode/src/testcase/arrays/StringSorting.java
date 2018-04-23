@@ -1,9 +1,18 @@
+package testcase.arrays;
+
 //: arrays/StringSorting.java
 // Sorting an array of Strings.
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
 
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
+
+/* 
+ * Arrays.sort has an overloaded version, that is sort(T[] a, Comparator<? super T> c)
+ * we can pass two parameters, one is T [], and the other is a Comparator<? super T> c
+ * and ? must be the super type of T
+ *
+ */
 public class StringSorting {
   public static void main(String[] args) {
     String[] sa = Generated.array(new String[20],
