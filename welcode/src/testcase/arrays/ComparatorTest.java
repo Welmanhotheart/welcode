@@ -1,9 +1,14 @@
+package testcase.arrays;
+
 //: arrays/ComparatorTest.java
 // Implementing a Comparator for a class.
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
-
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
+/*
+ * just like this, you can define your own Comparator,and pass it int Arrays.sort method
+ *
+ */
 class CompTypeComparator implements Comparator<CompType> {
   public int compare(CompType o1, CompType o2) {
     return (o1.j < o2.j ? -1 : (o1.j == o2.j ? 0 : 1));
