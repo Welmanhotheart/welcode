@@ -35,5 +35,6 @@ public class Exercise19 {
 			arr2[i] = new Exer19(arr1[i].getField());
 		}
 		System.out.println(Arrays.equals(arr1, arr2));
+		System.out.println(null == null); // null == null
 	}
 }
