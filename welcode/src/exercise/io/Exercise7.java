@@ -19,19 +19,20 @@ public class Exercise7 {
 		String s;
 		LinkedList<String> lst = new LinkedList<String>();
 		while((s = in.readLine())!= null)
-			lst.add(s);
+			lst.add(s + '\n');
 		in.close();
 		return lst;
 	}
 	public static void main(String[] args) throws IOException {
-		LinkedList<String> read = read("D:/learnjavaworkspace/TheReplacements.txt");
+		LinkedList<String> read = read(args[0]);
+//		"D:/learnjavaworkspace/TheReplacements.txt"
 		/*
 		 * descendingIterator:Returns an iterator over the elements in this deque in reverse sequential order. 
 		 * The elements will be returned in order from last (tail) to first (head).
 		 */
 		Iterator<String> iterator = read.descendingIterator();
 		while(iterator.hasNext()) {
-			System.out.println(iterator.next());
+			System.out.write(iterator.next().getBytes());
 		}
 	}
 }
