@@ -13,7 +13,14 @@ public class ProcessFiles {
   }
   private Strategy strategy;
   private String ext;
-  public ProcessFiles(Strategy strategy, String ext) {
+  
+  public Strategy getStrategy() {
+		return strategy;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public ProcessFiles(Strategy strategy, String ext) {
     this.strategy = strategy;
     this.ext = ext;
   }
