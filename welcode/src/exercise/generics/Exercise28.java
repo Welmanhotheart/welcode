@@ -34,5 +34,36 @@ public class Exercise28 {
 		f2(new Generic2<Individual>());
 		f2(new Generic2<Person>());
 		f2(new Generic2<Cat>());
+		
+		String str = "ads";
+		String str1 = "ad" + 's';
+		String str2 = "ad" + "s";
+		String a = "a";
+		String s = "s";
+		String str3 = a + "ds";
+		String str4 = "ad" + s;
+		char ch = str4.charAt(0);
+		System.out.println(str == str1);
+		System.out.println(str == str2);
+		System.out.println(str == str3);
+		System.out.println(str == str4);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println(str1 == str2);
+		System.out.println(str1 == str3);
+		System.out.println(str1 == str4);
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println(str2 == str3);
+		System.out.println(str2 == str4);
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println(str3 == str4);
+		
 	}
 }

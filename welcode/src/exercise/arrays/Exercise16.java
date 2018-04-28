@@ -8,7 +8,7 @@ import testcase.net.mindview.util.ConvertTo;
 import testcase.net.mindview.util.Generated;
 import testcase.net.mindview.util.Generator;
 
-class SkipGenerator<T> implements Generator<T> {
+class SkipGenerator<T> implements Generator<Object> {
 	private Generator<T> gen;//Adapt design pattern
 	private int increment;
 	
@@ -25,11 +25,15 @@ class SkipGenerator<T> implements Generator<T> {
 		}
 		return gen.next();
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static <T> Generator<T> getSkipGenerator(Generator<T> gen,int increment) {
+		return (Generator<T>)(new SkipGenerator(gen,increment));
+	}
 }
 
 
 public class Exercise16 {
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(ConvertTo.primitive(Generated.array(Double.class, new SkipGenerator<Double>(new CountingGenerator.Double(), 2), 6))));
+		System.out.println(Arrays.toString(ConvertTo.primitive(Generated.array(Double.class, SkipGenerator.getSkipGenerator(new CountingGenerator.Double(), 2), 6))));
 	}
 }
