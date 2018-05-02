@@ -98,4 +98,7 @@ read short : 970
 read byte : 100
 read string : That was pi
 read string : Square root of 2
+
+Having seeing the source code, I can know that read different data of different types,
+the number of bytes ahead is different
  */
