@@ -8,9 +8,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 
-
-
-
 public class Exercise12 {
 	public static LinkedList<String>
 	read(String filename) throws IOException {
