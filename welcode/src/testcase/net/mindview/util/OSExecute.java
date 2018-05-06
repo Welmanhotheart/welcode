@@ -1,7 +1,7 @@
 //: net/mindview/util/OSExecute.java
 // Run an operating system command
 // and send the output to the console.
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.io.*;
 
 public class OSExecute {
@@ -23,6 +23,10 @@ public class OSExecute {
         System.err.println(s);
         err = true;
       }
+    /*
+     * Here the catch block can't catch the error that produced by the execution of the process
+     * because the error inside the process has nothing to do with the errors outside
+     */
     } catch(Exception e) {
       // Compensate for Windows 2000, which throws an
       // exception for the default command line:
