@@ -1,7 +1,9 @@
+package testcase.generics;
+
 //: generics/LatentReflection.java
 // Using Reflection to produce latent typing.
 import java.lang.reflect.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 // Does not implement Performs:
 class Mime {

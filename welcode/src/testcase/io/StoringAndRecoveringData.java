@@ -1,3 +1,5 @@
+package testcase.io;
+
 //: io/StoringAndRecoveringData.java
 import java.io.*;
 

@@ -1,8 +1,10 @@
+package testcase.containers;
+
 //: containers/Lists.java
 // Things you can do with Lists.
 import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+import testcase.net.mindview.util.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class Lists {
   private static boolean b;

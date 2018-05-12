@@ -1,6 +1,8 @@
+package testcase.io;
+
 //: io/OSExecuteDemo.java
 // Demonstrates standard I/O redirection.
-import net.mindview.util.*;
+import testcase.net.mindview.util.*;
 
 public class OSExecuteDemo {
   public static void main(String[] args) {

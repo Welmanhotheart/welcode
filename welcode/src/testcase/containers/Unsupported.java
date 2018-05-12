@@ -1,3 +1,5 @@
+package testcase.containers;
+
 //: containers/Unsupported.java
 // Unsupported operations in Java containers.
 import java.util.*;
@@ -11,27 +13,34 @@ public class Unsupported {
     Collection<String> c2 = new ArrayList<String>(subList);
     try { c.retainAll(c2); } catch(Exception e) {
       System.out.println("retainAll(): " + e);
+      e.printStackTrace();
     }
     try { c.removeAll(c2); } catch(Exception e) {
       System.out.println("removeAll(): " + e);
+      e.printStackTrace();
     }
     try { c.clear(); } catch(Exception e) {
       System.out.println("clear(): " + e);
+      e.printStackTrace();
     }
     try { c.add("X"); } catch(Exception e) {
       System.out.println("add(): " + e);
+      e.printStackTrace();
     }
     try { c.addAll(c2); } catch(Exception e) {
       System.out.println("addAll(): " + e);
+      e.printStackTrace();
     }
     try { c.remove("C"); } catch(Exception e) {
       System.out.println("remove(): " + e);
+      e.printStackTrace();
     }
     // The List.set() method modifies the value but
     // doesn't change the size of the data structure:
     try {
       list.set(0, "X");
     } catch(Exception e) {
+    	e.printStackTrace();
       System.out.println("List.set(): " + e);
     }
   }
@@ -62,3 +71,10 @@ addAll(): java.lang.UnsupportedOperationException
 remove(): java.lang.UnsupportedOperationException
 List.set(): java.lang.UnsupportedOperationException
 *///:~
+
+/**
+ * as for the list created by calling 'Arrays.asList()'
+ * when passed a list that is created by calling 'Arrays.asList()', which returns an arrayList,
+ * its primary implementation is Arrays$ArrayList, this class extends AbstractList when calling
+ * 'remove()' it throw UnsupportedOperationException, and its the same when calling 'add()'
+*/

@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/SimpleQueue.java
 // A different kind of container that is Iterable
 import java.util.*;

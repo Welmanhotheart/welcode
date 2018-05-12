@@ -10,6 +10,7 @@ public class BufferedInputFile {
     // Reading input by lines:
     BufferedReader in = new BufferedReader(
       new FileReader(filename));
+    
     String s;
     StringBuilder sb = new StringBuilder();
     while((s = in.readLine())!= null)
@@ -19,6 +20,6 @@ public class BufferedInputFile {
   }
   public static void main(String[] args)
   throws IOException {
-    System.out.print(read("BufferedInputFile.java"));
+    System.out.print(read("D:/learnjavaworkspace/TheReplacements.txt"));
   }
 } /* (Execute to see output) *///:~

@@ -1,6 +1,8 @@
+package testcase.innerclasses;
+
 //: innerclasses/AnonymousConstructor.java
 // Creating a constructor for an anonymous inner class.
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 abstract class Base {
   public Base(int i) {

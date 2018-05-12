@@ -1,10 +1,10 @@
 //: net/mindview/util/TextFile.java
 // Static functions for reading and writing text files as
 // a single string, and treating a file as an ArrayList.
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.io.*;
 import java.util.*;
-
+//A1 A2 A3 A4
 public class TextFile extends ArrayList<String> {
   // Read a file as a single string:
   public static String read(String fileName) {
@@ -67,15 +67,20 @@ public class TextFile extends ArrayList<String> {
   }
   // Simple test:
   public static void main(String[] args) {
-    String file = read("TextFile.java");
+    String file = read("src/testcase/net/mindview/util/TextFile.java");
     write("test.txt", file);
     TextFile text = new TextFile("test.txt");
     text.write("test2.txt");
     // Break into unique sorted list of words:
     TreeSet<String> words = new TreeSet<String>(
-      new TextFile("TextFile.java", "\\W+"));
+      new TextFile("src/testcase/net/mindview/util/TextFile.java", "\\W+"));
     // Display the capitalized words:
-    System.out.println(words.headSet("a"));
+    /*
+     * Returns a view of the portion of this set whose elements are strictly less than toElement.
+     * The returned set is backed by this set, so changes in the returned set are reflected in this set,
+     * and vice-versa. The returned set supports all optional set operations that this set supports. 
+     */
+    System.out.println(words.headSet("A4"));
   }
 } /* Output:
 [0, ArrayList, Arrays, Break, BufferedReader, BufferedWriter, Clean, Display, File, FileReader, FileWriter, IOException, Normally, Output, PrintWriter, Read, Regular, RuntimeException, Simple, Static, String, StringBuilder, System, TextFile, Tools, TreeSet, W, Write]

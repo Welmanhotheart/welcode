@@ -11,8 +11,14 @@ public class CheckedList {
   public static void main(String[] args) {
     List<Dog> dogs1 = new ArrayList<Dog>();
     oldStyleMethod(dogs1); // Quietly accepts a Cat
+    
+    /**
+     * Having seen its source code,realize that this method 'checkedList'
+     * return an instance of CheckedRandomAccessList or CheckedList,so before 
+     * calling add method, it will check the element is whether an instance of the class
+     */
     List<Dog> dogs2 = Collections.checkedList(
-      new ArrayList<Dog>(), Dog.class);
+      new ArrayList<Dog>(), Dog.class); 
     try {
       oldStyleMethod(dogs2); // Throws an exception
     } catch(Exception e) {

@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/ComparablePet.java
 
 public class ComparablePet

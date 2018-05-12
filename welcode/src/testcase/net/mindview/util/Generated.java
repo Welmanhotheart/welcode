@@ -1,5 +1,5 @@
 //: net/mindview/util/Generated.java
-package net.mindview.util;
+package testcase.net.mindview.util;
 import java.util.*;
 
 public class Generated {
@@ -15,4 +15,9 @@ public class Generated {
       (T[])java.lang.reflect.Array.newInstance(type, size);
     return new CollectionData<T>(gen, size).toArray(a);
   }
+	public static Boolean[] array(Class<Double> class1,
+			SkipGenerator<Double> skipGenerator, int size) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 } ///:~

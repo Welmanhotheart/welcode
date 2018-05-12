@@ -1,3 +1,5 @@
+package testcase.generics;
+
 //: generics/CovariantReturnTypes.java
 
 class Base {}

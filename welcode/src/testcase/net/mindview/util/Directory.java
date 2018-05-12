@@ -65,7 +65,28 @@ public final class Directory {
     }
     return result;
   }
-  // Simple validation test:
+  
+  public static TreeInfo
+  walk(File start, FileFilter fileFilter) { // Overloaded
+    return recurseDirs(start, fileFilter);
+  }
+  
+  private static TreeInfo recurseDirs(File startDir, FileFilter fileFilter) {
+  	 TreeInfo result = new TreeInfo();
+     for(File item : startDir.listFiles()) {
+    	 if (!fileFilter.accept(item)) {
+    		 continue;
+    	 }
+       if(item.isDirectory()) {
+         result.dirs.add(item);
+         result.addAll(recurseDirs(item, fileFilter));
+       } else  {// Regular file
+         result.files.add(item);
+       }
+     }
+     return result;
+	}
+	// Simple validation test:
   public static void main(String[] args) {
     if(args.length == 0)
       System.out.println(walk("."));

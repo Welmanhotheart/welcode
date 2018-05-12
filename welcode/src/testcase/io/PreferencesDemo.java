@@ -1,6 +1,8 @@
+package testcase.io;
+
 //: io/PreferencesDemo.java
 import java.util.prefs.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 public class PreferencesDemo {
   public static void main(String[] args) throws Exception {

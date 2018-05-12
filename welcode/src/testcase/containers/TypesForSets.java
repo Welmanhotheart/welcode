@@ -1,10 +1,11 @@
 package testcase.containers;
 
+import java.io.Serializable;
 //: containers/TypesForSets.java
 // Methods necessary to put your own type in a Set.
 import java.util.*;
 
-class SetType {
+class SetType implements Serializable{
   int i;
   public SetType(int n) { i = n; }
   public boolean equals(Object o) {

@@ -1,10 +1,10 @@
 //: concurrency/restaurant2/RestaurantWithQueues.java
 // {Args: 5}
-package concurrency.restaurant2;
-import enumerated.menu.*;
+package testcase.concurrency.restaurant2;
+import testcase.enumerated.menu.*;
 import java.util.concurrent.*;
 import java.util.*;
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 // This is given to the waiter, who gives it to the chef:
 class Order { // (A data-transfer object)
