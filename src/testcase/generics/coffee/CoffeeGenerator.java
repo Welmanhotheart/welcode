@@ -1,51 +1,70 @@
 //: generics/coffee/CoffeeGenerator.java
 // Generate different types of Coffee:
 package testcase.generics.coffee;
+
 import java.util.*;
+
 import testcase.net.mindview.util.*;
 
 public class CoffeeGenerator
-implements Generator<Coffee>, Iterable<Coffee> {
-  private Class[] types = { Latte.class, Mocha.class,
-    Cappuccino.class, Americano.class, Breve.class, };
-  private static Random rand = new Random(47);
-  public CoffeeGenerator() {}
-  // For iteration:
-  private int size = 0;
-  public CoffeeGenerator(int sz) { size = sz; }	
-  public Coffee next() {
-    try {
-      return (Coffee)
-        types[rand.nextInt(types.length)].newInstance();
-      // Report programmer errors at run time:
-    } catch(Exception e) {
-      throw new RuntimeException(e);
+        implements Generator<Coffee>, Iterable<Coffee> {
+    private Class[] types = {Latte.class, Mocha.class,
+            Cappuccino.class, Americano.class, Breve.class,};
+    private static Random rand = new Random(47);
+
+    public CoffeeGenerator() {
     }
-  }
-  class CoffeeIterator implements Iterator<Coffee> {
-  	/**
-  	 * can access the outside member
-  	 */
-    int count = size;
-    public boolean hasNext() { return count > 0; }
+
+    // For iteration:
+    private int size = 0;
+
+    public CoffeeGenerator(int sz) {
+        size = sz;
+    }
+
     public Coffee next() {
-      count--;
-      return CoffeeGenerator.this.next();//superclass.this
+        try {
+            return (Coffee)
+                    types[rand.nextInt(types.length)].newInstance();
+            // Report programmer errors at run time:
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
-    public void remove() { // Not implemented
-      throw new UnsupportedOperationException();
+
+    class CoffeeIterator implements Iterator<Coffee> {
+        /**
+         * can access the outside member
+         */
+        int count = size;
+
+        public boolean hasNext() {
+            return count > 0;
+        }
+
+        public Coffee next() {
+            count--;
+            return CoffeeGenerator.this.next();//superclass.this
+        }
+
+        public void remove() { // Not implemented
+            throw new UnsupportedOperationException();
+        }
     }
-  };	
-  public Iterator<Coffee> iterator() {
-    return new CoffeeIterator();
-  }
-  public static void main(String[] args) {
-    CoffeeGenerator gen = new CoffeeGenerator();
-    for(int i = 0; i < 5; i++)
-      System.out.println(gen.next());
-    for(Coffee c : new CoffeeGenerator(5))
-      System.out.println(c);
-  }
+
+    ;
+
+    public Iterator<Coffee> iterator() {
+        return new CoffeeIterator();
+    }
+
+    public static void main(String[] args) {
+        CoffeeGenerator gen = new CoffeeGenerator();
+        for (int i = 0; i < 5; i++)
+            System.out.println(gen.next());
+        for (Coffee c : new CoffeeGenerator(5))
+            System.out.println(c);
+    }
 } /* Output:
 Americano 0
 Latte 1

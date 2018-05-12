@@ -3,15 +3,16 @@ package testcase.generics;
 //: generics/GenericsAndReturnTypes.java
 
 interface GenericGetter<T extends GenericGetter<T>> {
-  T get();
+    T get();
 }
 
-interface Getter extends GenericGetter<Getter> {}
+interface Getter extends GenericGetter<Getter> {
+}
 
 public class GenericsAndReturnTypes {
-  void test(Getter g) {
-    Getter result = g.get();
-    GenericGetter gg = g.get(); // Also the base type
-    //GenericGetter<Getter> gg1 = g.get(); // Also the base type,but with parameter
-  }
+    void test(Getter g) {
+        Getter result = g.get();
+        GenericGetter gg = g.get(); // Also the base type
+        //GenericGetter<Getter> gg1 = g.get(); // Also the base type,but with parameter
+    }
 } ///:~

@@ -4,4 +4,6 @@ package testcase.net.mindview.util;
 
 import testcase.enumerated.menu.Food;
 
-public interface Generator<T> { T next(); } ///:~
+public interface Generator<T> {
+    T next();
+} ///:~
