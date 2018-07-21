@@ -1,4 +1,4 @@
-//: object/Documentation1.java
+package testcase.object;//: object/Documentation1.java
 
 /**
  * A class comment

@@ -1,4 +1,4 @@
-//: object/Documentation2.java
+package testcase.object;//: object/Documentation2.java
 
 /**
  * <pre>
