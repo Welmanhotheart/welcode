@@ -1,7 +1,2 @@
-/Java.txt
-/ServiceFramework.txt
-/databaseNotes.txt
-/exercise
-/jsstudy.txt
-/sourcecode
-/testcase
+bin/
+.idea/
