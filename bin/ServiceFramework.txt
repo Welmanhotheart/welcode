@@ -1,0 +1,23 @@
+1.webservice
+	1.1 定义一个接口
+		@javax.jws.WebService
+		public interface WebService {
+			String sayHello(String name);
+		}
+	1.2 定义一个实现类
+		@javax.jws.WebService
+		public class WebServiceImpl implements WebService {
+			@Override
+			public String sayHello(String name) {
+				System.out.println("成功了：" + name);
+				return name;
+			}
+		}
+	1.3 定义一个publish类
+		public class WebServicePublish {
+			public static void main(String[] args) {
+				String address = "http://localhost:8989/WS_Server/Webservice";
+				Endpoint.publish(address, new WebserviceImpl());
+			}
+		}
+	
