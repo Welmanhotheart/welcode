@@ -1,3 +1,5 @@
+package testcase.object;
+
 //: object/HelloDate.java
 
 import java.util.*;
