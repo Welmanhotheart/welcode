@@ -1,13 +1,14 @@
-//: operators/URShift.java
+package testcase.operators;//: operators/URShift.java
 // Test of unsigned right shift.
 
-import static net.mindview.util.Print.*;
+import static sourcecode.net.mindview.util.Print.*;
 
 public class URShift {
     public static void main(String[] args) {
         int i = -1;
         print(Integer.toBinaryString(i));
         i >>>= 10;
+        System.out.println(i);
         print(Integer.toBinaryString(i));
         long l = -1;
         print(Long.toBinaryString(l));

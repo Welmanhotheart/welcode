@@ -1,9 +1,9 @@
-//: control/VowelsAndConsonants.java
+package testcase.control;//: control/VowelsAndConsonants.java
 // Demonstrates the switch statement.
 
 import java.util.*;
 
-import static net.mindview.util.Print.*;
+import static sourcecode.net.mindview.util.Print.*;
 
 public class VowelsAndConsonants {
     public static void main(String[] args) {

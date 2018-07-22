@@ -1,6 +1,6 @@
-//: operators/Literals.java
+package testcase.operators;//: operators/Literals.java
 
-import static net.mindview.util.Print.*;
+import static sourcecode.net.mindview.util.Print.*;
 
 public class Literals {
     public static void main(String[] args) {
@@ -24,6 +24,11 @@ public class Literals {
         float f3 = 1f; // float suffix
         double d1 = 1d; // double suffix
         double d2 = 1D; // double suffix
+        int bit8 = 17;//前面加0表示8进制
+        print(bit8);//15
+        double bitd_8 = 09.49;
+        print(bitd_8);//15
+
         // (Hex and Octal also work with long)
     }
 } /* Output:

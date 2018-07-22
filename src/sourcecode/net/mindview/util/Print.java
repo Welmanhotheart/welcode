@@ -1,7 +1,7 @@
 //: net/mindview/util/Print.java
 // Print methods that can be used without
 // qualifiers, using Java SE5 static imports:
-package net.mindview.util;
+package sourcecode.net.mindview.util;
 
 import java.io.*;
 

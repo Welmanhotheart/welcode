@@ -1,4 +1,4 @@
-//: initialization/NewVarArgs.java
+package testcase.initialization;//: initialization/NewVarArgs.java
 // Using array syntax to create variable argument lists.
 
 public class NewVarArgs {
@@ -18,11 +18,13 @@ public class NewVarArgs {
         // Or an array:
         printArray((Object[]) new Integer[]{1, 2, 3, 4});
         printArray(); // Empty list is OK
+        printArray((Object[]) new Integer[]{1, 2, 3, 4},2,56);
     }
 } /* Output: (75% match)
 47 3.14 11.11
 47 3.14 11.11
 one two three
 A@1bab50a A@c3c749 A@150bd4d
+[Ljava.lang.Integer;@4a79717e 2 56
 1 2 3 4
 *///:~

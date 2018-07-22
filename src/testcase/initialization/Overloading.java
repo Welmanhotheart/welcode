@@ -1,8 +1,8 @@
 //: initialization/Overloading.java
 // Demonstration of both constructor
 // and ordinary method overloading.
-
-import static net.mindview.util.Print.*;
+package testcase.initialization;
+import static sourcecode.net.mindview.util.Print.*;
 
 class Tree {
     int height;
