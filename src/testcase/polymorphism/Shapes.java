@@ -1,7 +1,7 @@
-//: polymorphism/Shapes.java
+package testcase.polymorphism;//: polymorphism/Shapes.java
 // Polymorphism in Java.
 
-import polymorphism.shape.*;
+import testcase.polymorphism.shape.*;
 
 public class Shapes {
     private static RandomShapeGenerator gen =

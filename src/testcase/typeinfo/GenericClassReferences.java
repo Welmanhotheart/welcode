@@ -1,3 +1,5 @@
+package testcase.typeinfo;
+
 //: typeinfo/GenericClassReferences.java
 
 public class GenericClassReferences {
@@ -7,5 +9,9 @@ public class GenericClassReferences {
         genericIntClass = Integer.class; // Same thing
         intClass = double.class;
         // genericIntClass = double.class; // Illegal
+        System.out.println(Integer.TYPE == int.class);
+        System.out.println(Integer.TYPE);
+        System.out.println(int.class);
+        
     }
 } ///:~

@@ -1,8 +1,8 @@
 //: reusing/Chess.java
 // Inheritance, constructors and arguments.
-
-import static net.mindview.util.Print.*;
-
+package testcase.reusing;
+import static sourcecode.net.mindview.util.Print.*;
+//Exercise6
 class Game {
     Game(int i) {
         print("Game constructor");
@@ -18,7 +18,7 @@ class BoardGame extends Game {
 
 public class Chess extends BoardGame {
     Chess() {
-        super(11);
+        super(11);//must be the first statement in the constructor body
         print("Chess constructor");
     }
 

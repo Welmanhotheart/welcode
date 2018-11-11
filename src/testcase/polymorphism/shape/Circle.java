@@ -1,7 +1,7 @@
 //: polymorphism/shape/Circle.java
-package polymorphism.shape;
+package testcase.polymorphism.shape;
 
-import static net.mindview.util.Print.*;
+import static sourcecode.net.mindview.util.Print.*;
 
 public class Circle extends Shape {
     public void draw() {

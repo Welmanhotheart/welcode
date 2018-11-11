@@ -1,5 +1,5 @@
 //: typeinfo/factory/Factory.java
-package typeinfo.factory;
+package testcase.typeinfo.factory;
 
 public interface Factory<T> {
     T create();

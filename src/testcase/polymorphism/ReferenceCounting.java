@@ -1,11 +1,12 @@
 //: polymorphism/ReferenceCounting.java
 // Cleaning up shared member objects.
-
-import static net.mindview.util.Print.*;
+package testcase.polymorphism;
+import static sourcecode.net.mindview.util.Print.*;
 
 class Shared {
-    private int refcount = 0;
+    private int refcount = (int)counter;
     private static long counter = 0;
+    private static long counter_1 = (++counter);
     private final long id = counter++;
 
     public Shared() {

@@ -1,3 +1,5 @@
+package testcase.typeinfo;
+
 //: typeinfo/ClassInitialization.java
 
 import java.util.*;
@@ -6,7 +8,7 @@ class Initable {
     static final int staticFinal = 47;
     static final int staticFinal2 =
             ClassInitialization.rand.nextInt(1000);
-
+    static final int staticFinal3 = 45;
     static {
         System.out.println("Initializing Initable");
     }
@@ -37,7 +39,7 @@ public class ClassInitialization {
         // Does not trigger initialization:
         System.out.println(Initable.staticFinal);
         // Does trigger initialization:
-        System.out.println(Initable.staticFinal2);
+        System.out.println(Initable.staticFinal3);
         // Does trigger initialization:
         System.out.println(Initable2.staticNonFinal);
         Class initable3 = Class.forName("Initable3");

@@ -1,3 +1,5 @@
+package testcase.typeinfo;
+
 //: typeinfo/Shapes.java
 
 import java.util.*;
@@ -28,6 +30,11 @@ class Triangle extends Shape {
     }
 }
 
+class Rhomboid extends Shape{
+	public String toString(){
+		return "Rhomboid";
+	}
+}
 public class Shapes {
     public static void main(String[] args) {
         List<Shape> shapeList = Arrays.asList(
@@ -35,6 +42,10 @@ public class Shapes {
         );
         for (Shape shape : shapeList)
             shape.draw();
+        Shape rh = new Rhomboid();
+        if (rh instanceof Circle) {
+        	((Circle)rh).draw();
+        }
     }
 } /* Output:
 Circle.draw()

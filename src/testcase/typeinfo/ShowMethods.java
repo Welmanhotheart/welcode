@@ -1,3 +1,5 @@
+package testcase.typeinfo;
+
 //: typeinfo/ShowMethods.java
 // Using reflection to show all the methods of a class,
 // even if the methods are defined in the base class.
@@ -6,9 +8,9 @@
 import java.lang.reflect.*;
 import java.util.regex.*;
 
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
-public class ShowMethods {
+ class ShowMethods {// make it non-public then the compiler doesnt sythesized a default - contructor for
     private static String usage =
             "usage:\n" +
                     "ShowMethods qualified.class.name\n" +
@@ -17,7 +19,7 @@ public class ShowMethods {
                     "To search for methods involving 'word'";
     private static Pattern p = Pattern.compile("\\w+\\.");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
         if (args.length < 1) {
             print(usage);
             System.exit(0);
@@ -25,6 +27,7 @@ public class ShowMethods {
         int lines = 0;
         try {
             Class<?> c = Class.forName(args[0]);
+            c.newInstance();
             Method[] methods = c.getMethods();
             Constructor[] ctors = c.getConstructors();
             if (args.length == 1) {

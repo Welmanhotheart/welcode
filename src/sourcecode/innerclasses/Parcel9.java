@@ -2,7 +2,7 @@
 // An anonymous inner class that performs
 // initialization. A briefer version of Parcel5.java.
 
-public class Parcel9 {
+public class xParcel9 {
     // Argument must be final to use inside
     // anonymous inner class:
     public Destination destination(final String dest) {

@@ -1,8 +1,8 @@
 //: polymorphism/PrivateOverride.java
 // Trying to override a private method.
-package polymorphism;
+package testcase.polymorphism;
 
-import static net.mindview.util.Print.*;
+import static sourcecode.net.mindview.util.Print.*;
 
 public class PrivateOverride {
     private void f() {
@@ -11,7 +11,7 @@ public class PrivateOverride {
 
     public static void main(String[] args) {
         PrivateOverride po = new Derived();
-        po.f();
+        po.f();//如果是基类可以访问的，优先访问积累的函数（从更加私有的层面）
     }
 }
 
@@ -21,4 +21,7 @@ class Derived extends PrivateOverride {
     }
 } /* Output:
 private f()
+
+
+
 *///:~

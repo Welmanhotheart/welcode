@@ -6,6 +6,7 @@ public class Individual implements Comparable<Individual> {
     private final long id = counter++;
     private String name;
 
+    private static 
     public Individual(String name) {
         this.name = name;
     }

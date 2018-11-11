@@ -1,8 +1,8 @@
 //: typeinfo/toys/ToyTest.java
 // Testing class Class.
-package typeinfo.toys;
+package testcase.typeinfo.toys;
 
-import static net.mindview.util.Print.*;
+import static testcase.net.mindview.util.Print.*;
 
 interface HasBatteries {
 }
@@ -13,18 +13,22 @@ interface Waterproof {
 interface Shoots {
 }
 
+interface NewToy{
+	
+}
+
 class Toy {
     // Comment out the following default constructor
     // to see NoSuchMethodError from (*1*)
-    Toy() {
-    }
+//    Toy() {//Exercise1
+//    }
 
     Toy(int i) {
     }
 }
-
+//Exercise2
 class FancyToy extends Toy
-        implements HasBatteries, Waterproof, Shoots {
+        implements HasBatteries, Waterproof, NewToy {
     FancyToy() {
         super(1);
     }

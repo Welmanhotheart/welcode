@@ -1,8 +1,8 @@
 //: reusing/FinalOverridingIllusion.java
 // It only looks like you can override
 // a private or private final method.
-
-import static net.mindview.util.Print.*;
+package testcase.reusing;
+import static sourcecode.net.mindview.util.Print.*;
 
 class WithFinals {
     // Identical to "private" alone:
@@ -27,6 +27,7 @@ class OverridingPrivate extends WithFinals {
 }
 
 class OverridingPrivate2 extends OverridingPrivate {
+
     public final void f() {
         print("OverridingPrivate2.f()");
     }
@@ -45,7 +46,7 @@ public class FinalOverridingIllusion {
         OverridingPrivate op = op2;
         // But you can't call the methods:
         //! op.f();
-        //! op.g();
+        //! op.g();//of course they are private
         // Same here:
         WithFinals wf = op2;
         //! wf.f();

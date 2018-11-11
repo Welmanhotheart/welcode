@@ -1,5 +1,5 @@
 //: polymorphism/shape/Shape.java
-package polymorphism.shape;
+package testcase.polymorphism.shape;
 
 public class Shape {
     public void draw() {
