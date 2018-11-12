@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="var" path="JRE_LIB" sourcepath="/JRE_LIB">
+	<classpathentry kind="src" path="jvm"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="/src">
 		<attributes>
 			<attribute name="source_encoding" value="ISO-8859-1"/>
 		</attributes>
