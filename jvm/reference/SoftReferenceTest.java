@@ -12,6 +12,7 @@ public class SoftReferenceTest {
             values=new int[2048];
         }
     }
+
     public static void main(String[] args) {
         int count=100;//对象数量为100000，保证使得堆内存溢出
         SoftReference[] values=new SoftReference[count];
