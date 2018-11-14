@@ -4,6 +4,7 @@ import java.lang.ref.SoftReference;
 
 public class SoftReferenceTest {
 
+    //即将返回其他分支进行开发
     private static class BiggerObject{//占用空间的一个大对象
         public int[] values;
         public String name;
