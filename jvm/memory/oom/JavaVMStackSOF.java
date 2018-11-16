@@ -1,4 +1,4 @@
-package memory;
+package memory.oom;
 
 public class JavaVMStackSOF {
 	private int stackLength = 1;

@@ -1,4 +1,4 @@
-package memory;
+package memory.oom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class RuntimeConstantPoolOOM {
 //		while (true) {
 //			list.add(String.valueOf(i++).intern());
 //		}
-//		String str1 = new StringBuilder("¼ÆËã»ú").append("Èí¼þ").toString();
+//		String str1 = new StringBuilder("ï¿½ï¿½ï¿½ï¿½ï¿½").append("ï¿½ï¿½ï¿½").toString();
 //		System.out.println(str1.intern() == str1);
 		
 //		String str1 = new StringBuilder("rt").append("vs").toString();

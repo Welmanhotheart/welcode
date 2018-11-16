@@ -1,4 +1,4 @@
-package memory;
+package memory.oom;
 
 public class JavaVMStackOOM {
 	private void dontStop() {

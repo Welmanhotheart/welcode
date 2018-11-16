@@ -1,4 +1,4 @@
-package memory;
+package memory.oom;
 
 import net.sf.cglib.proxy.Enhancer;
 
