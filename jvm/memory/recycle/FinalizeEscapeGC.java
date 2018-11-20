@@ -21,7 +21,7 @@ public class FinalizeEscapeGC{
         for (int i = 0; i < 400; i ++) {
             SAVE_HOOK=new FinalizeEscapeGC();
         }
-        Thread.sleep(30000);
+        Thread.sleep(60000);
 //对象第一次成功拯救自己
         SAVE_HOOK=null;
         Thread.sleep(500);
