@@ -17,7 +17,7 @@ public class AnalyseClassFileTool {
      */
     public static int CLASS_HEAD_LEN = 4;
 
-    public static int MINOR
+    public static int MINOR = 2;
     /**
      * 全类名
      */
