@@ -275,3 +275,158 @@
 
         4.3
         【@特征签名就是参数列表】
+
+
+属性表集合
+    背景：属性表（attribute_info）在前面的讲解之中已经出现过数次，在Class文件、 字段表、 方
+         法表都可以携带自己的属性表集合，以用于描述某些场景专有的信息。
+    1.属性表排列特点
+        1.1 与Class文件中其他的数据项目要求严格的@顺序、 @长度 和@内容 不同，属性表集合的限制稍
+        微宽松了一些，不再要求各个属性表具有严格顺序，并且只要不与已有属性名重复，任何人
+        实现的编译器都可以向属性表中写入自己定义的属性信息，Java虚拟机运行时会忽略掉它不
+        认识的属性。 为了能正确解析Class文件，《Java虚拟机规范（第2版）》 中预定义了9项虚拟
+        机实现应当能识别的属性，而在最新的《Java虚拟机规范（Java SE 7）》 版中，预定义属性
+        已经增加到21项，具体内容见表6-13。
+
+    2.每个属性的表结构，详见：imgs/property_structure.png
+
+        2.1 Code属性表
+            1.Java程序方法体中的代码经过Javac编译器处理后，最终变为字节码指令存储在Code属性
+              内。
+            2.Code属性出现在方法表的属性集合之中，但并非所有的方法表都必须存在这个属性，譬
+              如接口或者抽象类中的方法就不存在Code属性，如果方法表有Code属性存在，那么它的结构
+            将，详见：imgs/property_code_structure.png。
+
+            3.attribute_name_index，attribute_name_index是一项指向CONSTANT_Utf8_info型常量的索引，
+             常量值固定为“Code”，它代表了该属性的属性名称
+
+            4.attribute_length，attribute_length指示了属性值的长度
+
+                    【由于属性名称索引与属性长度一共为6字节，
+                    所以属性值的长度固定为整个属性表长度减去6个字节】
+            5.max_stack,代表了操作数栈（Operand Stacks）深度的最大值。 在方法执行的任意时刻，
+              操作数栈都不会超过这个深度。 !!!!虚拟机运行的时候需要根据这个值来分配栈帧（Stack Frame）中的操作栈深度。
+
+            6.max_locals，代表了局部变量表所需的存储空间。
+                1.max_locals的单位是Slot,Slot是虚拟机为局部变量分配内存所使用的最小单位。
+                2.对于byte、 char、 float、 int、 short、 boolean 和returnAddress等长度不超过32位的数据类型，
+                每个局部变量占用1个Slot，而double和long这 两种64位的数据类型则需要两个Slot来存放。
+                3.局部变量包含
+                  3.1 方法参数（包括实例方法中的隐藏参数“this”）、
+                  3.2 显式异常处理器的参数（Exception Handler Parameter，就是try-catch语句中catch
+                        块所定义的异常）、
+                  3.3 方法体中定义的局部变量都需要使用局部变量表来存放。
+
+                  3.4 另外，并不是在方法中用到了多少个局部变量，就把这些局部变量所占Slot之和作为max_locals的值，
+                      原因是局部变量表中的Slot可以重用，当代码执行超出一个局部变量的作用域时，这个局部变量
+                      所占的Slot可以被其他局部变量所使用，Javac编译器会根据变量的作用域来分配Slot给各个
+                      变量使用，然后计算出max_locals的大小。
+                      【比如for循环里面声明的局部变量，离开for循环之后，其占用的Slot空间就消失了】
+
+                  3.5 code_length和code用来存储Java源程序编译后生成的字节码指令。
+                       1.code_length代表字节码长度
+                       2.code是用于存储字节码指令的一系列字节流。
+                            1.字节码指令，每个指令就是一个u1类型的单字节
+                            2.虚拟机读取到code中的一个字节码时，可以知道如下信息：
+                                1.字节码代表的是什么指令
+                                2.指令后面是否需要跟随参数，以及参数应当如何理解。
+
+                            3.字节码种类及数目
+                                1.取值范围为0x00～0xFF，对应十进制的0～255，也就是一共可以表达256条指令
+                                  Java虚拟机规范已经定义了其中约200条编码值对应的指令含义，编码与指令之间
+                                  的对应关系可查阅本书的附录B“@@@@虚拟机字节码指令表”。
+                            4.
+
+                       3.关于code_length长度允许问题
+                            1.虽然它是一个u4类型的长度值，理论上最大值可以达到2的32次方-1，
+                            2.但是虚拟机规范中明确限制了一个方法不允许超过65535条字节码指令，
+                              即它实际只使用了u2的长度，如果超过这个限制，Javac编译器也会拒绝编译。
+                            3.编写Java代码时，不要刻意去编写一个超长的方法来为难编译
+
+                            4.关于jsp编译问题，
+                                编译一个很复杂的JSP文件时，某些JSP编译器会把JSP内容和页面输出的信息归并于一个方法之中，
+                                就可能因为方法生成字节码超长的原因而导致编译失败。
+
+
+            7.异常表，结构详见；imgs/property_code_exception_table_structure.png
+                它包含4个字段，这些字段的含义为：如果当字节码在第start_pc行[1]到第end_pc行之间
+                （不含第end_pc行）出现了类型为catch_type或者其子类的异常
+                （catch_type为指向一个CONSTANT_Class_info型常量的索引），则转到第handler_pc行继续
+                处理。 当catch_type的值为0时，代表任意异常情况都需要转向到handler_pc处进行处理
+
+        2.2 Exceptions属性，结构详见：imgs/property_exceptions_structure.png
+            Exceptions属性中的number_of_exceptions项表示方法可能抛出number_of_exceptions种受查
+            异常，每一种受查异常使用一个exception_index_table项表示，exception_index_table是一个指
+            向常量池中CONSTANT_Class_info型常量的索引，代表了该受查异常的类型。
+
+        2.3 LineNumberTable属性，结构详见：imgs/property_lineNumberTable_structure.png
+             1. 功能：用于描述Java源码行号与字节码行号（字节码的偏移量）之间的对应关系。
+
+             2. 特点：它并不是运行时必需的属性，但默认会生成到Class文件之中，
+
+             3. 如何避免不生成：可以在Javac中分别使用-g：none或-g：lines选项来取消或要求生成这项信息。
+
+             4. 不生成会有什么后果：对程序运行产生的最主要的影响就是当抛出异常时，堆栈中将不会显示出错的行号
+                【说白了，就是不利于调试】
+
+             5.line_number_table是一个数量为line_number_table_length、 类型为line_number_info的集
+               合，line_number_info表包括了start_pc和line_number两个u2类型的数据项，前者是字节码行
+               号，后者是Java源码行号
+
+        2.4.LocalVariableTable属性,结构详见：imgs/property_localVariableTable_structure.png
+            1.local_variable_info项目代表了一个栈帧与源码中的局部变量的关联,代表源码与局部变量的映射关系
+               结构详见：imgs/property_localVariableTable_localVariable_info_structure.png
+
+                1.start_pc和length属性,分别代表了这个局部变量的生命周期开始的字节码偏移量及其作用
+                范围覆盖的长度，两者结合起来就是这个局部变量在字节码之中的作用域范围。
+
+                2.name_index和descriptor_index都是指向常量池中CONSTANT_Utf8_info型常量的索引，分
+                  别代表了局部变量的名称以及这个局部变量的描述符。
+
+                3.index是这个局部变量在栈帧局部变量表中Slot的位置。 当这个变量数据类型是64位类型
+                时（double和long），它占用的Slot为index和index+1两个。
+
+        2.5 LocalVariableTypeTable
+                顺便提一下，在JDK 1.5引入泛型之后，LocalVariableTable属性增加了一个“姐妹属性”：
+                LocalVariableTypeTable，这个新增的属性结构与LocalVariableTable非常相似，仅仅是把记录
+                的字段描述符的descriptor_index替换成了字段的特征签名（Signature），对于非泛型类型来
+                说，描述符和特征签名能描述的信息是基本一致的，但是泛型引入之后，由于描述符中泛型
+                的参数化类型被擦除掉[3]，描述符就不能准确地描述泛型类型了，因此出现了
+                LocalVariableTypeTable。
+
+        2.6 ConstantValue属性，结构详见：imgs/property_constantValue_structure.png
+            1.ConstantValue属性的作用是通知虚拟机自动为静态变量赋值!!!。 只有被static关键字修饰的
+              变量（类变量）才可以使用这项属性。
+
+            2.虚拟机的赋值方式
+                1.对于非static类型的变量（也就是实例变量）的赋值是在实例构造器＜init＞方法中进行的；
+                2.而对于类变量，则有两种方式可以选择：
+                    2.1 在类构造器＜clinit＞方法中或者使用ConstantValue属性。
+
+                3.目前Sun Javac编译器的选择
+                    3.1 如果同时使用final和static来修饰一个变量（按照习惯，这里称“常量”更贴切），
+                        并且这个变量的数据类型是基本类型或者java.lang.String的话，就生成ConstantValue属性来进行初始化
+                        【编译时常量】
+                    3.2 如果这个变量没有被final修饰，或者并非基本类型及字符串，则将会选择在＜clinit＞方法中进行初始化。
+            3.数据结构
+                1.ConstantValue属性是一个定长属性
+                2.它的attribute_length数据项值必须固定为2
+                3.constantvalue_index数据项代表了常量池中一个字面量常量的引用，根据字
+                  段类型的不同，字面量可以是CONSTANT_Long_info、 CONSTANT_Float_info、
+                  CONSTANT_Double_info、 CONSTANT_Integer_info、 CONSTANT_String_info常量中的一种
+        2.7 InnerClasses属性，结构详见 imgs/property_innerClass_structure.png
+                功能：InnerClasses属性用于记录内部类与宿主类之间的关联。 如果一个类中定义了内部类，那
+                        编译器将会为它以及它所包含的内部类生成InnerClasses属性。
+                数据项：
+                    1.number_of_classes代表需要记录多少个内部类信息，每一个内部类的信息都由一
+                      个inner_classes_info表进行描述。
+
+                    2.inner_classes_info表的结构详见 imgs/property_InnerClasses_inner_classes_info.png
+                        2.1 inner_class_info_index和outer_class_info_index都是指向常量池中CONSTANT_Class_info
+                            型常量的索引，分别代表了内部类和宿主类的符号引用。
+                        2.2 inner_name_index是指向常量池中CONSTANT_Utf8_info型常量的索引，代表这个内部类
+                            的名称，如果是匿名内部类，那么这项值为0。
+                        2.3 inner_class_access_flags是内部类的访问标志，类似于类的access_flags，它的取值范围
+                            详见 imgs/property_InnerClasses_inner_classes_info_inner_class_access_flags.png
+
+        【属性表集合里的属性介绍到此，后面的不再赘述】
