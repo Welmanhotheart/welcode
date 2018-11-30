@@ -148,4 +148,90 @@
     access_flags中一共有16个标志位可以使用，当前只定义了其中8个[1]，没有使用到的标志
     位要求一律为0
 
+类索引、 父类索引与接口索引集合
+    1.类索引（this_class）和父类索引（super_class）都是一个u2类型的数据，是指向常量池中CONSTANT_Class_info型数据
+      的一个索引
+
+    2.接口索引集合（interfaces）是一组u2类型的数据的集合，分别指向常量池中不同CONSTANT_Class_info型数据
+
+    3.Class文件中由这三项数据来确定这个类的继承关系
+        1.类索引用于确定这个类的全限定名
+            【除了java.lang.Object之外，所有的Java类都有父类，因此除了java.lang.Object外，所有Java类的父类索引都不为0】
+        2.父类索引用于确定这个类的父类的全限定名。 由于Java语言不允许多重继承，所以父类索引只有一个
+
+        3.接口索引集合就用来描述这个类实现了哪些接口，这些被实现的接口将按implements语句（如果这个类本身
+                是一个接口，则应当是extends语句）后的接口顺序从左到右排列在接口索引集合中
+
+字段表集合
+    1.字段表（field_info）用于描述接口或者类中声明的变量。
+
+    2.字段（field）包括类级变量(static修饰)以及实例级变量，但不包括在方法内部声明的局部变量。
+
+    3.字段信息可以包括的信息有：字段的作用域（public、 private、 protected修饰
+    符）、 是实例变量还是类变量（static修饰符）、 可变性（final）、 并发可见性（volatile修饰
+    符，是否强制从主内存读写）、 可否被序列化（transient修饰符）、 字段数据类型（基本类
+    型、 对象、 数组）、 字段名称。 上述这些信息中，各个修饰符都是布尔值，要么有某个修饰
+    符，要么没有，很适合使用标志位来表示。
+
+     字段表结构详见：imgs/field_structure.png
+
+     字段访问标志详见：imgs/field_access_flags.png
+
+    4.跟随access_flags标志的是两项索引值：name_index和descriptor_index。 它们都是对常量池的引用，
+        1.name_index表示字段的简单名称
+            1.1 如private static int m , 简单名称为m
+            1.2 如private static ClassA a, 简单名称为a
+        2.descriptor_index 表示字段和方法的描述符
+
+        3.关于"简单名称”、 “描述符” 以及前面出现过多次的“全限定名”的概念解释
+            3.1 全限定名,
+                如：“org/fenixsoft/clazz/TestClass”是这个类的全限定名，仅仅是把类全名中的“.”替换成
+                        了“/”而已，为了使连续的多个全限定名之间不产生混淆，在使用时最后一般会加入一
+                        个“；”表示全限定名结束
+
+            3.2 简单名称，简单名称是指没有类型和参数修饰的方法或者字段名称
+                如：
+                     3.2.1 private static int m , 简单名称为m
+                     3.2.2 如private static ClassA a, 简单名称为a
+                     3.2.3 如 public static void inc(), 简单名称为 inc
+            3.3 描述符
+                描述符的作用是用来描述字段的数据类型、 方法的@参数列表（包括@数量、 @类型以及@顺序）和@返回值。 根据描
+                述符规则，基本数据类型（byte、 char、 double、 float、 int、 long、 short、 boolean）以及代表
+                无返回值的void类型都用一个大写字符来表示，而对象类型则用字符L加对象的全限定名来表示
+                详见：imgs/discriptor_char_mean.png
+                    3.3.1 对于数组类型
+                        如：对于数组类型，每一维度将使用一个前置的“[”字符来描述，如一个定义
+                        为“java.lang.String[][]”类型的二维数组，将被记录为：“[[Ljava/lang/String；”，一个整型数
+                        组“int[]”将被记录为“[I”。
+                    3.3.2 描述方法时，按照先参数列表，后返回值的顺序描述，参数列表按照参数的严格顺序放在一组小括号“（）”之内
+                        如：
+                            1.如方法void inc（）的描述符为“（）V”
+                            2.方法java.lang.String toString（）的描述符为“（）Ljava/lang/String
+                            3.方法int indexOf（char[]source,int sourceOffset,int sourceCount,char[]target,int targetOffset,int
+                              targetCount,int fromIndex）的描述符为“（[CII[CIII）I”
+
+            3.4 关于字段描述符之后的attrubute_info
+                字段表都包含的固定数据项目到descriptor_index为止就结束了，不过在descriptor_index
+                之后跟随着一个属性表集合用于存储一些额外的信息，字段都可以在属性表中描述零至多项
+                的额外信息。 对于本例中的字段private int m，它的属性表计数器为0，也就是没有需要额外描述的信
+                息，但是，如果将字段m的声明改为“final static int m=123；”，那就可能会存在一项名称为
+                ConstantValue的属性，其值指向常量123。 关于attribute_info的其他内容，将在6.3.7节介绍属
+                性表的数据项目时再进一步讲解
+
+
+    5 关于字段表中是否存在父类或者父接口中继承而来的字段
+        5.1 字段表集合中！！！！不会列出从超类或者父接口中继承而来的字段
+        5.2 但有可能列出原本Java代码之中不存在的字段，譬如在内部类中为了保持对外部类的访问性，
+              会自动添加指向外部类实例的字段
+              【ps:这样可以解释为什么内部类可以访问外部类】
+
+    6.关于字段重载
+        Java语言中字段是无法重载的，两个字段的数据类型、 修饰符不管是否相同，都必须使用不一样的名称，
+        但是对于字节码来讲，如果两个字段的描述符不一致，那字段重名就是合法的
+        【还是字节码强大，能Java所不能！！！！】
+
+
+
+
+
 
