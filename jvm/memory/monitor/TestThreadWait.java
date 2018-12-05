@@ -11,8 +11,8 @@ public class TestThreadWait {
         Thread thread=new Thread( new Runnable( ) {
             @Override
             public void run( ) {
-                while( true) //第41行
-;}}
+                while( true); //第41行
+}}
 , "testBusyThread") ;
         thread.start( ) ;
     }
