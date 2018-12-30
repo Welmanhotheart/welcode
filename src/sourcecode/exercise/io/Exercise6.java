@@ -22,6 +22,6 @@ public class Exercise6 {
                 System.out.println(file);
             }
         }, "class");
-        psf.start(new String[]{"D:\\maven_repository\\org\\mybatis\\mybatis\\3.4.1\\mybatis-3.4.1\\org\\apache\\ibatis"});
+        psf.start(new String[]{"D:\\maven_repository\\org\\springframework\\spring-beans\\4.0.0.RELEASE\\spring-beans-4.0.0.RELEASE\\org\\springframework\\beans"});
     }
 }
