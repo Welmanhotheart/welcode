@@ -1,5 +1,6 @@
 //: generics/ListOfGenerics.java
 
+package generics;
 import java.util.*;
 
 public class ListOfGenerics<T> {

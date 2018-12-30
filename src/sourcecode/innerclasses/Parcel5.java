@@ -1,4 +1,4 @@
-//: innerclasses/Parcel5.java
+package innerclasses;//: innerclasses/Parcel5.java
 // Nesting a class within a method.
 
 public class Parcel5 {

@@ -1,5 +1,5 @@
 //: typeinfo/Shapes.java
-
+package typeinfo;
 import java.util.*;
 
 abstract class Shape {

@@ -1,5 +1,5 @@
 //: generics/ClassTypeCapture.java
-
+package generics;
 class Building {
 }
 

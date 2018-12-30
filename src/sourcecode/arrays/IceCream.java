@@ -1,6 +1,6 @@
 //: arrays/IceCream.java
 // Returning arrays from methods.
-
+package arrays;
 import java.util.*;
 
 public class IceCream {

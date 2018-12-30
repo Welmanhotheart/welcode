@@ -1,4 +1,4 @@
-//: reusing/Detergent.java
+package reusing;//: reusing/Detergent.java
 // Inheritance syntax & properties.
 
 import static net.mindview.util.Print.*;

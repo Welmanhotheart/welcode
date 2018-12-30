@@ -1,5 +1,5 @@
 //: interfaces/Factories.java
-
+package interfaces;
 import static net.mindview.util.Print.*;
 
 interface Service {

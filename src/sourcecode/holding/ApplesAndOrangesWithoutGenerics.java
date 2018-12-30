@@ -1,7 +1,7 @@
 //: holding/ApplesAndOrangesWithoutGenerics.java
 // Simple container example (produces compiler warnings).
 // {ThrowsException}
-
+package holding;
 import java.util.*;
 
 class Apple {

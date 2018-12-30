@@ -1,5 +1,5 @@
 //: typeinfo/ClassCasts.java
-
+package typeinfo;
 class Building {
 }
 

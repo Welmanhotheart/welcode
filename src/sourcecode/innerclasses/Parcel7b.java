@@ -1,4 +1,4 @@
-//: innerclasses/Parcel7b.java
+package innerclasses;//: innerclasses/Parcel7b.java
 // Expanded version of Parcel7.java
 
 public class Parcel7b {

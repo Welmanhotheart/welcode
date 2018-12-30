@@ -21,19 +21,7 @@ public class Exercise6 {
             public void process(File file) {
                 System.out.println(file);
             }
-        }, "java") {
-            public void processDirectoryTree(File root) throws IOException {
-                for (File file : Directory.walk(root, new FileFilter() {
-
-                    @Override
-                    public boolean accept(File pathname) {
-                        return pathname.lastModified() > d.getTime();
-                    }
-                })) {
-                    getStrategy().process(file.getCanonicalFile());
-                }
-            }
-        };
-        psf.start(args);
+        }, "class");
+        psf.start(new String[]{"D:\\maven_repository\\org\\mybatis\\mybatis\\3.4.1\\mybatis-3.4.1\\org\\apache\\ibatis"});
     }
 }

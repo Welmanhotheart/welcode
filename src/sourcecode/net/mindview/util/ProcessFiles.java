@@ -38,11 +38,19 @@ public class ProcessFiles {
         }
     }
 
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
     public void
     processDirectoryTree(File root) throws IOException {
+        int i = 0;
         for (File file : Directory.walk(
-                root.getAbsolutePath(), ".*\\." + ext))
+                root.getAbsolutePath(), ".*\\." + ext)) {
             strategy.process(file.getCanonicalFile());
+            i++;
+        }
+        System.out.println("总" + ext + "数:" + i);
     }
 
     // Demonstration of how to use it:

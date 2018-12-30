@@ -1,6 +1,6 @@
 //: generics/MultipleInterfaceVariants.java
 // {CompileTimeError} (Won't compile)
-
+package generics;
 interface Payable<T> {
 }
 

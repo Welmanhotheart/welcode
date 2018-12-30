@@ -1,6 +1,6 @@
 //: concurrency/Tester.java
 // Framework to test performance of concurrency containers.
-
+package concurrency;
 import java.util.concurrent.*;
 
 import net.mindview.util.*;

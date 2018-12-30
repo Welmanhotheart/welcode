@@ -1,6 +1,6 @@
 //: initialization/DynamicArray.java
 // Array initialization.
-
+package initialization;
 public class DynamicArray {
     public static void main(String[] args) {
         Other.main(new String[]{"fiddle", "de", "dum"});

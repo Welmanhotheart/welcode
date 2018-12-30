@@ -1,6 +1,6 @@
 //: reusing/FinalData.java
 // The effect of final on fields.
-
+package reusing;
 import java.util.*;
 
 import static net.mindview.util.Print.*;
