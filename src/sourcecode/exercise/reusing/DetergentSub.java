@@ -1,6 +1,6 @@
 package exercise.reusing;
 
-import testcase.reusing.Detergent;
+import reusing.Detergent;
 //exercise2
 public class DetergentSub extends Detergent {
     @Override

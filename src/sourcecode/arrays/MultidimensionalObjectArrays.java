@@ -1,4 +1,4 @@
-//: arrays/MultidimensionalObjectArrays.java
+package arrays;//: arrays/MultidimensionalObjectArrays.java
 
 import java.util.*;
 

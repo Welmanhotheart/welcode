@@ -1,4 +1,4 @@
-//: containers/CountedString.java
+package containers;//: containers/CountedString.java
 // Creating a good hashCode().
 
 import java.util.*;

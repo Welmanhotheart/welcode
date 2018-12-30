@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 
 
-import testcase.io.BufferedInputFile;
+import io.BufferedInputFile;
 
 public class Exercise13 {
     public static void main(String[] args) throws IOException {

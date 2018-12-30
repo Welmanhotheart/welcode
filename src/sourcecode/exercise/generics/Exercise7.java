@@ -4,10 +4,11 @@ package exercise.generics;
 //: generics/IterableFibonacci.java
 //Adapt the Fibonacci class to make it Iterable.
 
+import generics.Fibonacci;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
-import testcase.generics.Fibonacci;
 
 class IterableFibonacci implements Iterable<Integer> {
     private int n;

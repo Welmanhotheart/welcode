@@ -1,4 +1,4 @@
-//: generics/EpicBattle.java
+package generics;//: generics/EpicBattle.java
 // Demonstrating bounds in Java generics.
 
 import java.util.*;

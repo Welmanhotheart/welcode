@@ -1,4 +1,4 @@
-//: generics/ListMaker.java
+package generics;//: generics/ListMaker.java
 
 import java.util.*;
 

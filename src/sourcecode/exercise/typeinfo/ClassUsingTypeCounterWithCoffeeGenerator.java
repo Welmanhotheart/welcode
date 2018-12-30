@@ -5,8 +5,8 @@ package exercise.typeinfo;
 //Exercise12
 import java.util.*;
 
-import testcase.generics.coffee.*;
-import testcase.net.mindview.util.*;
+import generics.coffee.*;
+import net.mindview.util.*;
 
 class ClassUsingTypeCounterWithCoffeeGenerator implements Generator<Coffee>, Iterable<Coffee> {
 	private Class[] types = { Latte.class, Mocha.class, Cappuccino.class,

@@ -1,4 +1,4 @@
-//: holding/SimpleIteration.java
+package holding;//: holding/SimpleIteration.java
 
 import typeinfo.pets.*;
 

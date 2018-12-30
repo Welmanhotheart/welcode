@@ -1,4 +1,4 @@
-//: generics/GenericVarargs.java
+package generics;//: generics/GenericVarargs.java
 
 import java.util.*;
 

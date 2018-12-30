@@ -5,7 +5,7 @@ package sourcecode.concurrency;
 
 import java.util.concurrent.*;
 
-import static testcase.net.mindview.util.Print.*;
+import static net.mindview.util.Print.*;
 
 // Using a named inner class:
 class InnerThread1 {

@@ -1,6 +1,6 @@
 package exercise.generics;
 
-import testcase.typeinfo.pets.*;
+import typeinfo.pets.*;
 
 class Generic1<T> {
     public void setT(T element2) {

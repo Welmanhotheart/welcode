@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 
-import testcase.io.BufferedInputFile;
+import io.BufferedInputFile;
 
 public class Exercise14 {
     /**

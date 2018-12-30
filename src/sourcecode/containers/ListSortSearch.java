@@ -1,4 +1,4 @@
-//: containers/ListSortSearch.java
+package containers;//: containers/ListSortSearch.java
 // Sorting and searching Lists with Collections utilities.
 
 import java.util.*;

@@ -1,16 +1,11 @@
 package exercise.io;
 
+import net.mindview.util.BinaryFile;
+import net.mindview.util.Directory;
+import net.mindview.util.Directory.TreeInfo;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import testcase.net.mindview.util.BinaryFile;
-import testcase.net.mindview.util.Directory;
-import testcase.net.mindview.util.Directory.TreeInfo;
-import testcase.net.mindview.util.TextFile;
 
 
 public class Exercise20 {

@@ -13,6 +13,6 @@ final class ClassWithFinalMethodsSub extends ClassWithFinalMethods {
     }
 }
 
-class ClassWithFinalMethodsSubSub extends ClassWithFinalMethodsSub{//cant inherit from final class
+class ClassWithFinalMethodsSubSub /*extends ClassWithFinalMethodsSub*/{//cant inherit from final class
 
 }

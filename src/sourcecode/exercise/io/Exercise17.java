@@ -1,11 +1,9 @@
 package exercise.io;
 
-import java.util.HashMap;
+import net.mindview.util.TextFile;
+
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
-import testcase.net.mindview.util.TextFile;
 
 
 public class Exercise17 {

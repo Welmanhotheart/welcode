@@ -1,15 +1,15 @@
 package exercise.generics;
 
-import testcase.generics.SimpleQueue;
-import testcase.generics.coffee.*;
+import generics.SimpleQueue;
+import generics.coffee.*;
 
 import java.util.*;
 
-import testcase.net.mindview.util.*;
+import net.mindview.util.*;
 
-import static testcase.net.mindview.util.Print.*;
+import static net.mindview.util.Print.*;
 
-import testcase.typeinfo.pets.*;
+import typeinfo.pets.*;
 
 public class Exercise41 {
     public static void main(String[] args) {

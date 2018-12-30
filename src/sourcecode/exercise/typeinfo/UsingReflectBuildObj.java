@@ -2,7 +2,7 @@ package exercise.typeinfo;
 
 
 
-import static testcase.net.mindview.util.Print.*;
+import static net.mindview.util.Print.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

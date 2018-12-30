@@ -1,4 +1,4 @@
-//: concurrency/GreenhouseScheduler.java
+package concurrency;//: concurrency/GreenhouseScheduler.java
 // Rewriting innerclasses/GreenhouseController.java
 // to use a ScheduledThreadPoolExecutor.
 // {Args: 5000}

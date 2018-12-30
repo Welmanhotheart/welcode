@@ -1,5 +1,6 @@
-//: generics/Manipulation.java
+package generics;//: generics/Manipulation.java
 // {CompileTimeError} (Won't compile)
+
 
 class Manipulator<T> {
     private T obj;
@@ -10,7 +11,7 @@ class Manipulator<T> {
 
     // Error: cannot find symbol: method f():
     public void manipulate() {
-        obj.f();
+//        obj.f();
     }
 }
 

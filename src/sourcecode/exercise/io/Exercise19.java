@@ -1,13 +1,10 @@
 package exercise.io;
 
+import net.mindview.util.BinaryFile;
+
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
-import testcase.net.mindview.util.BinaryFile;
-import testcase.net.mindview.util.TextFile;
 
 
 public class Exercise19 {

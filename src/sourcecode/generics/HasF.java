@@ -1,4 +1,4 @@
-//: generics/HasF.java
+package generics;//: generics/HasF.java
 
 public class HasF {
     public void f() {

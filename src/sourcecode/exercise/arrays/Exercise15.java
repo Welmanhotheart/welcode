@@ -1,10 +1,10 @@
 package exercise.arrays;
 
-import testcase.net.mindview.util.Generated;
-import testcase.net.mindview.util.Generator;
+import net.mindview.util.Generated;
+import net.mindview.util.Generator;
 
 
-class BerylliumSphere {
+class BerylliumSphere1 {
     private static long counter;
     private final long id = counter++;
 
@@ -14,7 +14,6 @@ class BerylliumSphere {
 }
 
 class BerylliumSphereGenerator implements Generator<BerylliumSphere> {
-    @Override
     public BerylliumSphere next() {
         // TODO Auto-generated method stub
         return new BerylliumSphere();

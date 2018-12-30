@@ -1,4 +1,4 @@
-//: generics/ReturnGenericType.java
+package generics;//: generics/ReturnGenericType.java
 
 class ReturnGenericType<T extends HasF> {
     private T obj;

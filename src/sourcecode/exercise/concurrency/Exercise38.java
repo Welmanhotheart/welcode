@@ -2,18 +2,9 @@ package exercise.concurrency;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
-import static testcase.net.mindview.util.Print.*;
-
-import testcase.net.mindview.util.BasicGenerator;
+import static net.mindview.util.Print.print;
 
 class House {
 

@@ -1,4 +1,4 @@
-//: access/ChocolateChip2.java
+package access;//: access/ChocolateChip2.java
 
 import access.cookie2.*;
 

@@ -3,10 +3,10 @@ package exercise.arrays;
 
 import java.util.Arrays;
 
-import testcase.net.mindview.util.CountingGenerator;
-import testcase.net.mindview.util.ConvertTo;
-import testcase.net.mindview.util.Generated;
-import testcase.net.mindview.util.Generator;
+import net.mindview.util.CountingGenerator;
+import net.mindview.util.ConvertTo;
+import net.mindview.util.Generated;
+import net.mindview.util.Generator;
 
 class SkipGenerator<T> implements Generator<Object> {
     private Generator<T> gen;//Adapt design pattern
@@ -17,7 +17,7 @@ class SkipGenerator<T> implements Generator<Object> {
         this.increment = increment;
     }
 
-    @Override
+
     public T next() {
         if (this.increment == 1) return gen.next();
         for (int i = 0; i < this.increment - 1; i++) {

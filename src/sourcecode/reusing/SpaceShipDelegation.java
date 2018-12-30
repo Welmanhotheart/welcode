@@ -1,4 +1,7 @@
-//: reusing/SpaceShipDelegation.java
+package reusing;//: reusing/SpaceShipDelegation.java
+
+
+import reusing.SpaceShipControls;
 
 public class SpaceShipDelegation {
     private String name;

@@ -1,4 +1,4 @@
-//: concurrency/ListComparisons.java
+package concurrency;//: concurrency/ListComparisons.java
 // {Args: 1 10 10} (Fast verification check during build)
 // Rough comparison of thread-safe List performance.
 

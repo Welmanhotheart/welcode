@@ -1,4 +1,4 @@
-//: generics/Manipulator3.java
+package generics;//: generics/Manipulator3.java
 
 class Manipulator3 {
     private HasF obj;

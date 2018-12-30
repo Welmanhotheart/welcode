@@ -1,12 +1,11 @@
 package exercise.typeinfo;
 
+import typeinfo.pets.Rat;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import java.util.Iterator;
-
-import testcase.typeinfo.pets.Rat;
 //exercise8,9,10
 public class PrintsHierarchy {
 	public static void printsHierarchy(Object o, int layer) {

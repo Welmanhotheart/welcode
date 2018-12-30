@@ -1,4 +1,4 @@
-//: concurrency/PriorityBlockingQueueDemo.java
+package concurrency;//: concurrency/PriorityBlockingQueueDemo.java
 
 import java.util.concurrent.*;
 import java.util.*;

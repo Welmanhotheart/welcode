@@ -1,6 +1,8 @@
-//: io/RecoverCADState.java
+package io;//: io/RecoverCADState.java
 // Restoring the state of the pretend CAD system.
 // {RunFirst: StoreCADState}
+
+import polymorphism.shape.Shape;
 
 import java.io.*;
 import java.util.*;

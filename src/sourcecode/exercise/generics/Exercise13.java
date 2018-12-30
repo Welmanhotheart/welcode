@@ -4,12 +4,12 @@ package exercise.generics;
 //: generics/Generators.java
 //A utility to use with Generators.
 
-import testcase.generics.Fibonacci;
-import testcase.generics.coffee.*;
+import generics.Fibonacci;
+import generics.coffee.*;
 
 import java.util.*;
 
-import testcase.net.mindview.util.*;
+import net.mindview.util.*;
 
 class Generators {
     public static <T> Collection<T>
@@ -42,8 +42,8 @@ class Generators {
 
     public static void main(String[] args) {
         //The method fill(Collection<Coffee>, Generator<Coffee>, int) is ambiguous for the type Generators
-        fill(
-                new LinkedList<Coffee>(), new CoffeeGenerator(), 4);
+//        fill(
+//                new LinkedList<Coffee>(), new CoffeeGenerator(), 4);
 
     }
 } /* Output:

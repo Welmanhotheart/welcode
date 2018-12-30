@@ -1,4 +1,4 @@
-//: generics/LimitsOfInference.java
+package generics;//: generics/LimitsOfInference.java
 
 import typeinfo.pets.*;
 

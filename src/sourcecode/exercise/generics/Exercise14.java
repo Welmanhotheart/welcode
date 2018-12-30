@@ -1,8 +1,10 @@
 package exercise.generics;
 
-import testcase.generics.CountedObject;
+import generics.CountedObject;
+import net.mindview.util.BasicGenerator;
+import net.mindview.util.Generator;
+
 //: generics/BasicGeneratorDemo.java
-import testcase.net.mindview.util.*;
 
 class BasicGeneratorDemo {
     public static void main(String[] args) {

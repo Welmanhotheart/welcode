@@ -1,4 +1,4 @@
-//: concurrency/ActiveObjectDemo.java
+package concurrency;//: concurrency/ActiveObjectDemo.java
 // Can only pass constants, immutables, "disconnected
 // objects," or other active objects as arguments
 // to asynch methods.

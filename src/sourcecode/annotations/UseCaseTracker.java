@@ -1,7 +1,9 @@
-//: annotations/UseCaseTracker.java
+package annotations;//: annotations/UseCaseTracker.java
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class UseCaseTracker {
     public static void

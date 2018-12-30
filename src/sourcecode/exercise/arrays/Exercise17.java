@@ -1,17 +1,14 @@
 package exercise.arrays;
 
 
+import net.mindview.util.Generated;
+import net.mindview.util.Generator;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-import testcase.net.mindview.util.CountingGenerator;
-import testcase.net.mindview.util.ConvertTo;
-import testcase.net.mindview.util.Generated;
-import testcase.net.mindview.util.Generator;
-
 class BigDecimalGenerator implements Generator<BigDecimal> {
 
-    @Override
     public BigDecimal next() {
         return new BigDecimal(12);
     }

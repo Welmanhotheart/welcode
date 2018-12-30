@@ -1,5 +1,7 @@
-//: generics/IterableFibonacci.java
+package generics;//: generics/IterableFibonacci.java
 // Adapt the Fibonacci class to make it Iterable.
+
+import generics.Fibonacci;
 
 import java.util.*;
 

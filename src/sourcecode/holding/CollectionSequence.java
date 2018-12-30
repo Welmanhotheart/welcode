@@ -1,5 +1,6 @@
 //: holding/CollectionSequence.java
 
+import holding.InterfaceVsIterator;
 import typeinfo.pets.*;
 
 import java.util.*;
