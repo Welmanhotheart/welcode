@@ -1,4 +1,4 @@
-//: concurrency/ThreadLocalVariableHolder.java
+package concurrency;//: concurrency/ThreadLocalVariableHolder.java
 // Automatically giving each thread its own storage.
 
 import java.util.concurrent.*;
