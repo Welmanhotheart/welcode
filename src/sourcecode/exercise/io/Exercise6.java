@@ -11,17 +11,17 @@ import net.mindview.util.ProcessFiles;
 
 public class Exercise6 {
     public static void main(String[] args) {
-//	  new ProcessFiles(new ProcessFiles.Strategy() {
-//      public void process(File file) {
-//        System.out.println(file);
-//      }
-//    }, "java").start(args);
-        final Date d = new Date(2018, 2, 25);
-        ProcessFiles psf = new ProcessFiles(new ProcessFiles.Strategy() {
-            public void process(File file) {
-                System.out.println(file);
-            }
-        }, "class");
-        psf.start(new String[]{"D:\\maven_repository\\org\\springframework\\spring-beans\\4.0.0.RELEASE\\spring-beans-4.0.0.RELEASE\\org\\springframework\\beans"});
+	  new ProcessFiles(new ProcessFiles.Strategy() {
+      public void process(File file) {
+        System.out.println(file);
+      }
+    }, "java").start(args);
+//        final Date d = new Date(2018, 2, 25);
+//        ProcessFiles psf = new ProcessFiles(new ProcessFiles.Strategy() {
+//            public void process(File file) {
+//                System.out.println(file);
+//            }
+//        }, "class");
+//        psf.start(new String[]{"D:\\maven_repository\\org\\springframework\\spring-beans\\4.0.0.RELEASE\\spring-beans-4.0.0.RELEASE\\org\\springframework\\beans"});
     }
 }
