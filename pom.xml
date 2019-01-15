@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>abnio</module>
+        <module>netty-file-parent-master</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
@@ -38,4 +39,17 @@
         <!--</dependency>-->
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
