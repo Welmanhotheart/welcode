@@ -51,10 +51,10 @@ public class TestBuffer {
 		// get() -> 获取当前游标指向的位置的数据。
 		// System.out.println(buffer.get());
 		
-		/*for(int i = 0; i < buffer.remaining(); i++){
+		for(int i = 0; i < buffer.remaining(); i++){
 			// get(int index) -> 获取指定位置的数据。
 			int data = buffer.get(i);
 			System.out.println(i + " - " + data);
-		}*/
+		}
 	}
 }

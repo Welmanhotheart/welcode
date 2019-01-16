@@ -23,7 +23,7 @@ public class Server {
 			System.out.println("server started!");
 			while(true){
 				Socket socket = server.accept();
-				
+				System.out.println("取得第一次连接......");
 				service.execute(new Handler(socket));
 			}
 		}catch(Exception e){

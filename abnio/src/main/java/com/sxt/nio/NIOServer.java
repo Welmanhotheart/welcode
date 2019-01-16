@@ -61,6 +61,7 @@ public class NIOServer implements Runnable {
 				// 阻塞方法，当至少一个通道被选中，此方法返回。
 				// 通道是否选择，由注册到多路复用器中的通道标记决定。
 				this.selector.select();
+				System.out.println("有通路被选中");
 				// 返回以选中的通道标记集合， 集合中保存的是通道的标记。相当于是通道的ID。
 				Iterator<SelectionKey> keys = this.selector.selectedKeys().iterator();
 				while(keys.hasNext()){
