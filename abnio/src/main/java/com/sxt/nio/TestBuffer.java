@@ -56,5 +56,10 @@ public class TestBuffer {
 			int data = buffer.get(i);
 			System.out.println(i + " - " + data);
 		}
+
+		System.out.println("读取数据之后 ： " + buffer);
+
+		buffer.clear();
+		System.out.println("清除数据之后：" + buffer);
 	}
 }
