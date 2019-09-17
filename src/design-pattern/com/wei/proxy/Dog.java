@@ -10,17 +10,14 @@ public class Dog implements Animal {
         this();
         this.name = name;
     }
-    @Override
     public void eat(Food f, int num) {
         System.out.println("小狗喜欢吃" + num + "斤" + f);
     }
 
-    @Override
     public String sleep(int hours) {
        return "小狗一天睡" + hours + "小时";
     }
 
-    @Override
     public void eat(Food food) {
         System.out.println("小狗喜欢吃" + food);
     }
