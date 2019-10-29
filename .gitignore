@@ -59,3 +59,7 @@ node_modules
 # Python
 __pycache__
 *.pyc
+
+# classes
+*.class
+*.jar
