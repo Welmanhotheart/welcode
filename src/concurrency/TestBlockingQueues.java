@@ -1,5 +1,7 @@
-//: concurrency/TestBlockingQueues.java
+package concurrency;//: concurrency/TestBlockingQueues.java
 // {RunByHand}
+
+import concurrency.LiftOff;
 
 import java.util.concurrent.*;
 import java.io.*;

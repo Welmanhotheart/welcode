@@ -1,12 +1,15 @@
-//: concurrency/CachedThreadPool.java
+package concurrency;//: concurrency/CachedThreadPool.java
 
 import java.util.concurrent.*;
 
 public class CachedThreadPool {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
         for (int i = 0; i < 5; i++)
             exec.execute(new LiftOff());
+
+//        Thread.sleep(10000);
+        exec.execute(new LiftOff());
         exec.shutdown();
     }
 } /* Output: (Sample)
