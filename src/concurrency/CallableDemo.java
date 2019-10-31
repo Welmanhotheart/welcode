@@ -1,4 +1,4 @@
-//: concurrency/CallableDemo.java
+package concurrency;//: concurrency/CallableDemo.java
 
 import java.util.concurrent.*;
 import java.util.*;
@@ -10,8 +10,17 @@ class TaskWithResult implements Callable<String> {
         this.id = id;
     }
 
-    public String call() {
-        return "result of TaskWithResult " + id;
+    public String call() throws InterruptedException {
+        Thread.sleep(2000);
+//        if (id % 2 == 0) {
+//            int count = 0;
+//            while(count < 1000000000) {
+//                double result = 3.00004* Math.PI * 2.1234242352345234 * 3.2542353453456345;
+//                result = 3.00004* Math.PI * 2.1234242352345234 * 3.2542353453456345*2;
+//                count++;
+//            }
+//        }
+        return  "result of TaskWithResult " + id;
     }
 }
 
@@ -25,12 +34,16 @@ public class CallableDemo {
         for (Future<String> fs : results)
             try {
                 // get() blocks until completion:
-                System.out.println(fs.get());
+//                if (fs.isDone()) {
+                    System.out.println(fs.get(200,TimeUnit.MILLISECONDS));
+//                }
             } catch (InterruptedException e) {
                 System.out.println(e);
                 return;
             } catch (ExecutionException e) {
                 System.out.println(e);
+            } catch (TimeoutException e) {
+                e.printStackTrace();
             } finally {
                 exec.shutdown();
             }

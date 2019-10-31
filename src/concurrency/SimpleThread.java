@@ -1,4 +1,4 @@
-//: concurrency/SimpleThread.java
+package concurrency;//: concurrency/SimpleThread.java
 // Inheriting directly from the Thread class.
 
 public class SimpleThread extends Thread {

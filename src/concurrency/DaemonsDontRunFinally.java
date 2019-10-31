@@ -1,4 +1,4 @@
-//: concurrency/DaemonsDontRunFinally.java
+package concurrency;//: concurrency/DaemonsDontRunFinally.java
 // Daemon threads don't run the finally clause
 
 import java.util.concurrent.*;

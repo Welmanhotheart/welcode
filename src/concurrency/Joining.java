@@ -1,4 +1,4 @@
-//: concurrency/Joining.java
+package concurrency;//: concurrency/Joining.java
 // Understanding join().
 
 import static net.mindview.util.Print.*;
@@ -46,8 +46,8 @@ class Joiner extends Thread {
 public class Joining {
     public static void main(String[] args) {
         Sleeper
-                sleepy = new Sleeper("Sleepy", 1500),
-                grumpy = new Sleeper("Grumpy", 1500);
+                sleepy = new Sleeper("Sleepy", 25000),
+                grumpy = new Sleeper("Grumpy", 25000);
         Joiner
                 dopey = new Joiner("Dopey", sleepy),
                 doc = new Joiner("Doc", grumpy);

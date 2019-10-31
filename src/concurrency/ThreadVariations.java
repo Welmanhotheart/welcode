@@ -1,4 +1,4 @@
-package sourcecode.concurrency;
+package concurrency;
 
 //: concurrency/ThreadVariations.java
 // Creating threads with inner classes.

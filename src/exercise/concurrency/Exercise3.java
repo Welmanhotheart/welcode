@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 public class Exercise3 {
     public static void main(String[] args) {
         ExecutorService service = Executors.newCachedThreadPool();
-//        service = Executors.newFixedThreadPool(10);
-//        service = Executors.newSingleThreadExecutor();
+        service = Executors.newFixedThreadPool(10);
+        service = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 10; i++) {
             service.execute(new YieldHintClassExecutor());
         }

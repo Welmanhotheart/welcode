@@ -1,4 +1,4 @@
-//: concurrency/SerialNumberChecker.java
+package concurrency;//: concurrency/SerialNumberChecker.java
 // Operations that may seem safe are not,
 // when threads are present.
 // {Args: 4}
@@ -11,7 +11,7 @@ class CircularSet {
     private int len;
     private int index = 0;
 
-    public CircularSet(int size) {
+    public  CircularSet(int size) {
         array = new int[size];
         len = size;
         // Initialize to a value not produced

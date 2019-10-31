@@ -20,12 +20,7 @@ public class LiftOff implements Runnable {
     public void run() {
         while (countDown-- > 0) {
             System.out.println(status());
-            try {
-                Thread.sleep(1000);
-                Thread.yield();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.yield();
         }
     }
 } ///:~

@@ -1,4 +1,6 @@
-//: concurrency/SettingDefaultHandler.java
+package concurrency;//: concurrency/SettingDefaultHandler.java
+
+import concurrency.ExceptionThread;
 
 import java.util.concurrent.*;
 

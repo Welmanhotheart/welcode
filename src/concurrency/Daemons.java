@@ -1,4 +1,4 @@
-//: concurrency/Daemons.java
+package concurrency;//: concurrency/Daemons.java
 // Daemon threads spawn other daemon threads.
 
 import java.util.concurrent.*;

@@ -1,4 +1,4 @@
-//: concurrency/AttemptLocking.java
+package concurrency;//: concurrency/AttemptLocking.java
 // Locks in the concurrent library allow you
 // to give up on trying to acquire a lock.
 

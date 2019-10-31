@@ -1,4 +1,4 @@
-//: concurrency/ResponsiveUI.java
+package concurrency;//: concurrency/ResponsiveUI.java
 // User interface responsiveness.
 // {RunByHand}
 
@@ -27,7 +27,7 @@ public class ResponsiveUI extends Thread {
     }
 
     public static void main(String[] args) throws Exception {
-        //! new UnresponsiveUI(); // Must kill this process
+         //!new UnresponsiveUI(); // Must kill this process
         new ResponsiveUI();
         System.in.read();
         System.out.println(d); // Shows progress
