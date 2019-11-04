@@ -24,7 +24,7 @@ class ExplicitPairManager1 extends PairManager {
 class ExplicitPairManager2 extends PairManager {
     private Lock lock = new ReentrantLock();
 
-    public void increment() {
+    public void increment() { //此处锁用的有问题，此处用的是lock,但是在PairChecker处用的是this（方法处的synchronize）
         Pair temp;
         lock.lock();
         try {
