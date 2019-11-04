@@ -10,4 +10,13 @@ public class DaemonThreadPoolExecutor
                 new SynchronousQueue<Runnable>(),
                 new DaemonThreadFactory());
     }
+
+    public static void main(String[] args) {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(20,10,
+                60L,TimeUnit.SECONDS,new SynchronousQueue<Runnable>(),
+                new DaemonThreadFactory());
+    }
 } ///:~
+
+
+
