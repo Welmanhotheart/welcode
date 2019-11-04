@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 public class AtomicityTest implements Runnable {
     private int i = 0;
 
-    public int  getValue() {
+    public /*synchronized*/ int  getValue() { // 在evenIncrement被执行时，可能会得到中间态的值，
         return i;
     }
 
