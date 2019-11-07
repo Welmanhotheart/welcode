@@ -1,4 +1,4 @@
-//: concurrency/Interrupting2.java
+package concurrency;//: concurrency/Interrupting2.java
 // Interrupting a task blocked with a ReentrantLock.
 
 import java.util.concurrent.*;
