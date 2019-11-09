@@ -36,6 +36,31 @@ class LiftOffRunner implements Runnable {
     }
 }
 
+class  LiftOnRunner implements Runnable {
+    private BlockingQueue<LiftOff> rockets;
+
+    public LiftOnRunner(BlockingQueue<LiftOff> queue) {
+        rockets = queue;
+    }
+
+
+
+    public void run() {
+        try {
+            int count = 100;
+            while (!Thread.interrupted()) {
+               while(count >= 0) {
+                   rockets.put(new LiftOff(count--));
+                   TimeUnit.MILLISECONDS.sleep(100);
+               }
+            }
+        } catch (InterruptedException e) {
+            print("Waking from take()");
+        }
+        print("Exiting LiftOffRunner");
+    }
+}
+
 public class TestBlockingQueues {
     static void getkey() {
         try {
@@ -57,10 +82,13 @@ public class TestBlockingQueues {
     test(String msg, BlockingQueue<LiftOff> queue) {
         print(msg);
         LiftOffRunner runner = new LiftOffRunner(queue);
+        LiftOnRunner runnerAdder = new LiftOnRunner(queue);
         Thread t = new Thread(runner);
+        Thread t2 = new Thread(runnerAdder);
         t.start();
-        for (int i = 0; i < 5; i++)
-            runner.add(new LiftOff(5));
+        t2.start();
+//        for (int i = 0; i < 5; i++)
+//            runner.add(new LiftOff(5));
         getkey("Press 'Enter' (" + msg + ")");
         t.interrupt();
         print("Finished " + msg + " test");
