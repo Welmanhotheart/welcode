@@ -1,4 +1,4 @@
-//: concurrency/SyncObject.java
+package concurrency;//: concurrency/SyncObject.java
 // Synchronizing on another object.
 
 import static net.mindview.util.Print.*;

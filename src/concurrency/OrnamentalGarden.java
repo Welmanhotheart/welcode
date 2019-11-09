@@ -1,5 +1,7 @@
 package concurrency;//: concurrency/OrnamentalGarden.java
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 import java.util.concurrent.*;
 import java.util.*;
 
@@ -53,6 +55,7 @@ class Entrance implements Runnable {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
                 print("sleep interrupted");
+//                return;
             }
         }
         print("Stopping " + this);
@@ -89,6 +92,31 @@ public class OrnamentalGarden {
         exec.shutdown();
         if (!exec.awaitTermination(250, TimeUnit.MILLISECONDS))
             print("Some tasks were not terminated!");
+        print("Total: " + Entrance.getTotalCount());
+        print("Sum of Entrances: " + Entrance.sumEntrances());
+    }
+
+    public static void ex_19() {
+//        ExecutorService exec = Executors.newCachedThreadPool();
+        List<Thread> threads = new ArrayList<Thread>(10);
+        for (int i = 0; i < 5; i++) {
+            Thread t = new Thread(new Entrance(i));
+            t.start();
+            threads.add(t);
+        }
+        for (Thread thread : threads) {
+            while (!thread.isInterrupted()) {
+                thread.interrupt();
+            }
+        }
+        // Run for a while, then stop and collect the data:
+        try {
+            TimeUnit.SECONDS.sleep(3);
+//            Entrance.cancel();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         print("Total: " + Entrance.getTotalCount());
         print("Sum of Entrances: " + Entrance.sumEntrances());
     }

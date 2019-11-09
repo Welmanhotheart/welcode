@@ -25,6 +25,7 @@ class Blocked3 implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
+                System.out.println("Thread.interrupted()" + Thread.interrupted());
                 // point1
                 NeedsCleanup n1 = new NeedsCleanup(1);
                 // Start try-finally immediately after definition
