@@ -61,6 +61,7 @@ class Chef implements Runnable {
                 if (++count == 10) {
                     print("Out of food, closing");
                     restaurant.exec.shutdownNow();
+//                    return; //after calling return；the thread here will not throw ‘InterruptedException’
                 }
                 printnb("Order up! ");
                 synchronized (restaurant.waitPerson) {
