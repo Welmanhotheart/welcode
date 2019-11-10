@@ -1,4 +1,4 @@
-//: concurrency/ToastOMatic.java
+package concurrency;//: concurrency/ToastOMatic.java
 // A toaster that uses queues.
 
 import java.util.concurrent.*;
