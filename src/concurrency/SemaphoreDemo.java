@@ -40,16 +40,21 @@ public class SemaphoreDemo {
         final Pool<Fat> pool =
                 new Pool<Fat>(Fat.class, SIZE);
         ExecutorService exec = Executors.newCachedThreadPool();
-        for (int i = 0; i < SIZE; i++)
+
+        for (int i = 0; i < SIZE; i++) {
             exec.execute(new CheckoutTask<Fat>(pool));
+        }
         print("All CheckoutTasks created");
+
         List<Fat> list = new ArrayList<Fat>();
+
         for (int i = 0; i < SIZE; i++) {
             Fat f = pool.checkOut();
             printnb(i + ": main() thread checked out ");
             f.operation();
             list.add(f);
         }
+
         Future<?> blocked = exec.submit(new Runnable() {
             public void run() {
                 try {
@@ -62,7 +67,9 @@ public class SemaphoreDemo {
             }
         });
         TimeUnit.SECONDS.sleep(2);
+
         blocked.cancel(true); // Break out of blocked call
+
         print("Checking in objects in " + list);
         for (Fat f : list)
             pool.checkIn(f);
