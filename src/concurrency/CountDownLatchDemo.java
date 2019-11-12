@@ -1,4 +1,4 @@
-//: concurrency/CountDownLatchDemo.java
+package concurrency;//: concurrency/CountDownLatchDemo.java
 
 import java.util.concurrent.*;
 import java.util.*;
@@ -20,6 +20,8 @@ class TaskPortion implements Runnable {
         try {
             doWork();
             latch.countDown();
+            long count = latch.getCount();
+            System.out.println("count" + count);
         } catch (InterruptedException ex) {
             // Acceptable way to exit
         }
