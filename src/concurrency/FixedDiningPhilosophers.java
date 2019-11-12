@@ -1,8 +1,10 @@
-//: concurrency/FixedDiningPhilosophers.java
+package concurrency;//: concurrency/FixedDiningPhilosophers.java
 // Dining philosophers without deadlock.
 // {Args: 5 5 timeout}
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class FixedDiningPhilosophers {
     public static void main(String[] args) throws Exception {
