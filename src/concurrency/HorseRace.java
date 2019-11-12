@@ -66,6 +66,7 @@ public class HorseRace {
                 print(s);
                 for (Horse horse : horses)
                     print(horse.tracks());
+
                 for (Horse horse : horses)
                     if (horse.getStrides() >= FINISH_LINE) {
                         print(horse + "won!");
