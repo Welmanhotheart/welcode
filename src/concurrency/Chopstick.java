@@ -1,4 +1,4 @@
-//: concurrency/Chopstick.java
+package concurrency;//: concurrency/Chopstick.java
 // Chopsticks for dining philosophers.
 
 public class Chopstick {
