@@ -1,4 +1,4 @@
-//: concurrency/Philosopher.java
+package concurrency;//: concurrency/Philosopher.java
 // A dining philosopher
 
 import java.util.concurrent.*;
@@ -13,7 +13,7 @@ public class Philosopher implements Runnable {
     private final int ponderFactor;
     private Random rand = new Random(47);
 
-    private void pause() throws InterruptedException {
+    /*private*/ protected void pause() throws InterruptedException {
         if (ponderFactor == 0) return;
         TimeUnit.MILLISECONDS.sleep(
                 rand.nextInt(ponderFactor * 250));
