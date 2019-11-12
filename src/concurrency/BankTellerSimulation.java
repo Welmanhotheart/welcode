@@ -204,6 +204,7 @@ public class BankTellerSimulation {
         // If line is too long, customers will leave:
         CustomerLine customers =
                 new CustomerLine(MAX_LINE_SIZE);
+
         exec.execute(new CustomerGenerator(customers));
         // Manager will add and remove tellers as necessary:
         exec.execute(new TellerManager(
