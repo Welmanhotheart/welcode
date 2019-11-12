@@ -4,13 +4,14 @@
 package concurrency;
 import java.util.concurrent.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pool<T> {
     private int size;
     private List<T> items = new ArrayList<T>();
     private volatile boolean[] checkedOut;
     private Semaphore available;
-
+    private AtomicInteger count = new AtomicInteger(0);
     public Pool(Class<T> classObject, int size) {
         this.size = size;
         checkedOut = new boolean[size];
@@ -26,13 +27,20 @@ public class Pool<T> {
     }
 
     public T checkOut() throws InterruptedException {
+        System.out.println("I am waiting:" + this.count.intValue());
         available.acquire();
+        int count = this.count.getAndIncrement();
+        int queueLength = available.getQueueLength();
+        System.out.println("already used:" + count);
         return getItem();
     }
 
     public void checkIn(T x) {
-        if (releaseItem(x))
+        if (releaseItem(x)) {
             available.release();
+            int count = this.count.getAndDecrement();
+            System.out.println("already used:" + count);
+        }
     }
 
     private synchronized T getItem() {
