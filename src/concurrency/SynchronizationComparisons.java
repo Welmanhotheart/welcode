@@ -1,4 +1,4 @@
-//: concurrency/SynchronizationComparisons.java
+package concurrency;//: concurrency/SynchronizationComparisons.java
 // Comparing the performance of explicit Locks
 // and Atomics versus the synchronized keyword.
 
