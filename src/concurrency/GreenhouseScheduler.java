@@ -6,6 +6,9 @@ package concurrency;//: concurrency/GreenhouseScheduler.java
 import java.util.concurrent.*;
 import java.util.*;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 public class GreenhouseScheduler {
     private volatile boolean light = false;
     private volatile boolean water = false;
@@ -178,3 +181,116 @@ public class GreenhouseScheduler {
         gh.repeat(gh.new CollectData(), 500, 500);
     }
 } /* (Execute to see output) *///:~
+
+class MyGreenhouseScheduler extends GreenhouseScheduler {
+    DelayQueue<RepeatedTask> queue = new DelayQueue<RepeatedTask>();
+    ExecutorService service = Executors.newCachedThreadPool();
+    public void schedule(final Runnable event, long delay) {
+        queue.add(new RepeatedTask(event, delay, 0) {
+            @Override
+            public void run() {
+                event.run();
+            }
+        });
+    }
+
+    public void
+    repeat(Runnable event, long initialDelay, long period) {
+        RepeatedTask task = new RepeatedTask(event, initialDelay, period);
+        queue.add(task);
+    }
+
+    public void startTask() throws InterruptedException {
+        while(!queue.isEmpty()) {
+            RepeatedTask take = queue.take();
+            service.execute(take);
+        }
+    }
+
+    class Terminate extends GreenhouseScheduler.Terminate {
+        @Override
+        public void run() {
+            System.out.println("Terminating");
+            service.shutdownNow();
+            // Must start a separate task to do this job,
+            // since the scheduler has been shut down:
+            new Thread() {
+                public void run() {
+                    for (DataPoint d : data)
+                        System.out.println(d);
+                }
+            }.start();
+        }
+    }
+    private static class RepeatedTask implements Runnable , Delayed {
+        private static int counter = 0;
+        private final int id = counter++;
+        private final long delta;
+        private final long trigger;
+        private long period;
+        private Runnable event;
+        public RepeatedTask(Runnable event, long delayInMilliseconds, long period) {
+            this.event = event;
+            delta = delayInMilliseconds;
+            trigger = System.nanoTime() +
+                    NANOSECONDS.convert(delta, MILLISECONDS);
+            this.period = period;
+        }
+
+        public long getDelay(TimeUnit unit) {
+            long delay =  unit.convert(
+                    trigger - System.nanoTime(), NANOSECONDS);
+            return delay;
+        }
+
+        public int compareTo(Delayed arg) {
+            RepeatedTask that = (RepeatedTask) arg;
+            if (trigger < that.trigger) return -1;
+            if (trigger > that.trigger) return 1;
+            return 0;
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (!Thread.interrupted()) {
+                    event.run();
+                    TimeUnit.MILLISECONDS.sleep(this.period);
+                }
+            } catch (InterruptedException e) {
+
+            }
+        }
+    }
+}
+class TestMyGreenhouseScheduler {
+    public static void main(String[] args) {
+        GreenhouseScheduler gh = new GreenhouseScheduler();
+        gh.schedule(gh.new Terminate(), 5000);
+        // Former "Restart" class not necessary:
+        gh.repeat(gh.new Bell(), 0, 1000);
+        gh.repeat(gh.new ThermostatNight(), 0, 2000);
+        gh.repeat(gh.new LightOn(), 0, 200);
+        gh.repeat(gh.new LightOff(), 0, 400);
+        gh.repeat(gh.new WaterOn(), 0, 600);
+        gh.repeat(gh.new WaterOff(), 0, 800);
+        gh.repeat(gh.new ThermostatDay(), 0, 1400);
+        gh.repeat(gh.new CollectData(), 500, 500);
+    }
+}
+class TestScheduledThreadPoolExecutor {
+    public static void main(String[] args) throws InterruptedException {
+        MyGreenhouseScheduler gh = new MyGreenhouseScheduler();
+        gh.schedule(gh.new Terminate(), 5000);
+        // Former "Restart" class not necessary:
+        gh.repeat(gh.new Bell(), 0, 1000);
+        gh.repeat(gh.new ThermostatNight(), 0, 2000);
+        gh.repeat(gh.new LightOn(), 0, 200);
+        gh.repeat(gh.new LightOff(), 0, 400);
+        gh.repeat(gh.new WaterOn(), 0, 600);
+        gh.repeat(gh.new WaterOff(), 0, 800);
+        gh.repeat(gh.new ThermostatDay(), 0, 1400);
+        gh.repeat(gh.new CollectData(), 500, 500);
+        gh.startTask();
+    }
+}
