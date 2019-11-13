@@ -69,6 +69,7 @@ abstract class Accumulator {
         }
         try {
             barrier.await();
+            System.out.println("done...");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -89,8 +90,14 @@ class BaseLine extends Accumulator {
     }
 
     public void accumulate() {
-        value += preLoaded[index++];
-        if (index >= SIZE) index = 0;
+        try {
+            value += preLoaded[index++];
+        } catch(Exception e) {
+
+        } finally {
+            if (index >= SIZE) index = 0;
+        }
+
     }
 
     public long read() {
@@ -152,10 +159,18 @@ class AtomicTest extends Accumulator {
         // Oops! Relying on more than one Atomic at
         // a time doesn't work. But it still gives us
         // a performance indicator:
-        int i = index.getAndIncrement();
-        value.getAndAdd(preLoaded[i]);
-        if (++i >= SIZE)
-            index.set(0);
+        int i = 0;
+        try {
+            i = index.getAndIncrement();
+            value.getAndAdd(preLoaded[i]);
+        } catch (Exception e) {
+
+        } finally {
+            if (++i >= SIZE)
+                index.set(0);
+        }
+
+
     }
 
     public long read() {
@@ -190,7 +205,7 @@ public class SynchronizationComparisons {
             iterations = new Integer(args[0]);
         // The first time fills the thread pool:
         print("Warmup");
-        baseLine.timedTest();
+//        baseLine.timedTest();
         // Now the initial test doesn't include the cost
         // of starting the threads for the first time.
         // Produce multiple data points:
