@@ -7,7 +7,6 @@ import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
-import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
@@ -65,14 +64,11 @@ public class TestDelayQueueDemo {
 
         // normally traverse the queue,to see the order of each element
 
-//        Iterator<DelayTaskL> iterator = queue.iterator();
-//        while (iterator.hasNext()) {
-//            DelayTaskL next = iterator.next();
-//            System.out.println(next);
-//        }
-//        for (DelayTaskL delayTaskL : queue) {
-//            System.out.println(delayTaskL);
-//        }
+        Iterator<DelayTaskL> iterator = queue.iterator();
+        while (iterator.hasNext()) {
+            DelayTaskL next = iterator.next();
+            System.out.println(next);
+        }
 
         //get an element out by calling take() method, but it has to block unit the delay of the element becomes zero
         long start = System.currentTimeMillis();
