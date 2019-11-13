@@ -64,6 +64,10 @@ abstract class Worker implements Runnable {
         this.company = company;
     }
 
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
     abstract void performService();
 
     public synchronized void engage() {
@@ -100,9 +104,6 @@ abstract class Worker implements Runnable {
         }
     }
 
-    public void setAgent(Agent agent) {
-        this.agent = agent;
-    }
 }
 
 /**
