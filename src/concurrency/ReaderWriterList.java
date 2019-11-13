@@ -1,4 +1,4 @@
-//: concurrency/ReaderWriterList.java
+package concurrency;//: concurrency/ReaderWriterList.java
 
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
@@ -20,6 +20,8 @@ public class ReaderWriterList<T> {
     public T set(int index, T element) {
         Lock wlock = lock.writeLock();
         wlock.lock();
+        Lock rlock = lock.readLock();
+//        print("in write 获取锁的读者:" + lock.getReadLockCount());
         try {
             return lockedList.set(index, element);
         } finally {
@@ -34,7 +36,8 @@ public class ReaderWriterList<T> {
             // Show that multiple readers
             // may acquire the read lock:
             if (lock.getReadLockCount() > 1)
-                print(lock.getReadLockCount());
+                print("获取锁的读者:" + lock.getReadLockCount());
+
             return lockedList.get(index);
         } finally {
             rlock.unlock();
