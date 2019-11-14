@@ -29,6 +29,12 @@ abstract class MapTest
     }
 
     class Writer extends TestTask {
+
+        private final int id;
+        public Writer(int id) {
+            super();
+            this.id = id;
+        }
         void test() {
             for (long i = 0; i < testCycles; i++)
                 for (int index = 0; index < containerSize; index++)
@@ -44,7 +50,7 @@ abstract class MapTest
         for (int i = 0; i < nReaders; i++)
             exec.execute(new Reader());
         for (int i = 0; i < nWriters; i++)
-            exec.execute(new Writer());
+            exec.execute(new Writer(i+1));
     }
 }
 
@@ -63,6 +69,18 @@ class SynchronizedHashMapTest extends MapTest {
     }
 }
 
+class SynchronizedReaderWriterHashMapTest extends MapTest {
+    private static final Random r = new Random();
+    SynchronizedReaderWriterHashMapTest( int nReaders, int nWriters) {
+        super("Synched ReaderWriterHashMap", nReaders, nWriters);
+    }
+
+    @Override
+    Map<Integer, Integer> containerInitializer() {
+        return new ReaderWriterHashMap(containerSize,new CountingGenerator.Integer(),r.nextInt());
+    }
+}
+
 class ConcurrentHashMapTest extends MapTest {
     Map<Integer, Integer> containerInitializer() {
         return new ConcurrentHashMap<Integer, Integer>(
@@ -76,12 +94,34 @@ class ConcurrentHashMapTest extends MapTest {
     }
 }
 
+class MapComparisionsSPL {
+    public static void main(String[] args) {
+        Tester.initMain(args);
+        new SynchronizedHashMapTest(10, 0);
+        new SynchronizedHashMapTest(9, 1);
+        new SynchronizedHashMapTest(5, 5);
+
+        new ConcurrentHashMapTest(10, 0);
+        new ConcurrentHashMapTest(9, 1);
+        new ConcurrentHashMapTest(5, 5);
+
+        new SynchronizedReaderWriterHashMapTest(10, 0);
+        new SynchronizedReaderWriterHashMapTest(9, 1);
+        new SynchronizedReaderWriterHashMapTest(5, 5);
+
+        Tester.exec.shutdown();
+
+
+
+    }
+}
 public class MapComparisons {
     public static void main(String[] args) {
         Tester.initMain(args);
         new SynchronizedHashMapTest(10, 0);
         new SynchronizedHashMapTest(9, 1);
         new SynchronizedHashMapTest(5, 5);
+
         new ConcurrentHashMapTest(10, 0);
         new ConcurrentHashMapTest(9, 1);
         new ConcurrentHashMapTest(5, 5);
