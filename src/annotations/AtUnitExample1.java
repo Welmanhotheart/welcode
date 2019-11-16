@@ -1,8 +1,10 @@
 //: annotations/AtUnitExample1.java
 package annotations;
 
-import net.mindview.atunit.*;
-import net.mindview.util.*;
+import net.mindview.atunit.Test;
+import net.mindview.util.OSExecute;
+
+import java.net.URL;
 
 public class AtUnitExample1 {
     public String methodOne() {
@@ -41,8 +43,16 @@ public class AtUnitExample1 {
     }
 
     public static void main(String[] args) throws Exception {
+        URL resource =
+                Thread.currentThread().getContextClassLoader().getResource("");
+        String path = resource.getPath();
+        System.out.println(path);
+        Package aPackage = AtUnitExample1.class.getPackage();
+        String name = aPackage.getName();
+        name = name.replace(".", "/");
+        String fileDir = path + "/" + name + "/";
         OSExecute.command(
-                "java net.mindview.atunit.AtUnit AtUnitExample1");
+                "java -classpath " + path +" net.mindview.atunit.AtUnit  " + fileDir + "AtUnitExample1");
     }
 } /* Output:
 annotations.AtUnitExample1
