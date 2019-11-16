@@ -1,6 +1,8 @@
 //: annotations/database/Member.java
 package annotations.database;
 
+import java.sql.Blob;
+
 @DBTable(name = "MEMBER")
 public class Member {
     @SQLString(30)
@@ -12,6 +14,12 @@ public class Member {
     @SQLString(value = 30,
             constraints = @Constraints(primaryKey = true))
     String handle;
+
+    @SQLBlob
+    Blob image;
+
+    @SQLChar(1)
+    char gender;
     static int memberCount;
 
     public String getHandle() {
