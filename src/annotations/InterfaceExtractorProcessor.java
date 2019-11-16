@@ -8,12 +8,12 @@ package annotations;
 import com.sun.mirror.apt.AnnotationProcessor;
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
 import com.sun.mirror.declaration.MethodDeclaration;
+import com.sun.mirror.declaration.Modifier;
 import com.sun.mirror.declaration.ParameterDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
 public class InterfaceExtractorProcessor
@@ -32,16 +32,24 @@ public class InterfaceExtractorProcessor
                 env.getSpecifiedTypeDeclarations()) {
             ExtractInterface annot =
                     typeDecl.getAnnotation(ExtractInterface.class);
-            if (annot == null)
+            System.out.println("process()");
+            if (annot == null) {
                 break;
-            for (MethodDeclaration m : typeDecl.getMethods())
+            }
+            System.out.println("不为空");
+            for (MethodDeclaration m : typeDecl.getMethods()) {
                 if (m.getModifiers().contains(Modifier.PUBLIC) &&
-                        !(m.getModifiers().contains(Modifier.STATIC)))
+                        !(m.getModifiers().contains(Modifier.STATIC))) {
                     interfaceMethods.add(m);
+                }
+            }
+            System.out.println("interfaceMethods size" + interfaceMethods.size());
             if (interfaceMethods.size() > 0) {
                 try {
                     PrintWriter writer =
                             env.getFiler().createSourceFile(annot.value());
+                    System.out.println("annot.value()" + annot.value());
+                    System.out.println("");
                     writer.println("package " +
                             typeDecl.getPackage().getQualifiedName() + ";");
                     writer.println("public interface " +
