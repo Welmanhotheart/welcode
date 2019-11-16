@@ -41,6 +41,30 @@ public class TableCreator {
                     columnDefs.add(columnName + " INT" +
                             getConstraints(sInt.constraints()));
                 }
+
+                if(anns[0] instanceof SQLBlob) {
+                    SQLBlob sqlBlob = (SQLBlob)anns[0];
+                    if (sqlBlob.name().length() < 1) {
+                        columnName = field.getName().toUpperCase();
+                    } else {
+                        columnName = sqlBlob.name();
+                    }
+                    columnDefs.add(columnName + " BLOB" +
+                            getConstraints(sqlBlob.constraints()));
+                }
+
+                if(anns[0] instanceof SQLChar) {
+                    SQLChar sqlChar = (SQLChar)anns[0];
+                    if (sqlChar.name().length() < 1) {
+                        columnName = field.getName().toUpperCase();
+                    } else {
+                        columnName = sqlChar.name();
+                    }
+                    columnDefs.add(columnName + " CHAR(" +
+                            sqlChar.value() + ")" +
+                            getConstraints(sqlChar.constraints()));
+                }
+
                 if (anns[0] instanceof SQLString) {
                     SQLString sString = (SQLString) anns[0];
                     // Use field name if name not specified.
@@ -52,6 +76,7 @@ public class TableCreator {
                             sString.value() + ")" +
                             getConstraints(sString.constraints()));
                 }
+
                 StringBuilder createCommand = new StringBuilder(
                         "CREATE TABLE " + tableName + "(");
                 for (String columnDef : columnDefs)
