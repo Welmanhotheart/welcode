@@ -14,7 +14,7 @@ class AnnotationBaseClass{
         System.out.println("base class f()");
     }
 
-    @Deprecated
+//    @Deprecated
     public int add(int a, int b) {
         return a + b;
     }
