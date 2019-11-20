@@ -1,27 +1,29 @@
 //: annotations/HashSetTest.java
 package annotations;
 
-import java.util.*;
+import net.mindview.atunit.Test;
+import net.mindview.util.OSExecute;
 
-import net.mindview.atunit.*;
-import net.mindview.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class HashSetTest {
-    HashSet<String> testObject = new HashSet<String>();
+//    HashSet<String> testObject = new HashSet<String>();
+    List<String> testObject = new LinkedList<String>();
 
     @Test
-    void initialization() {
+    protected void initialization() {
         assert testObject.isEmpty();
     }
 
     @Test
-    void _contains() {
+    protected void _contains() {
         testObject.add("one");
         assert testObject.contains("one");
     }
 
     @Test
-    void _remove() {
+    protected void _remove() {
         testObject.add("one");
         testObject.remove("one");
         assert testObject.isEmpty();

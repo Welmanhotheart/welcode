@@ -14,8 +14,12 @@ public class OSExecute {
             BufferedReader results = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
             String s;
-            while ((s = results.readLine()) != null)
+            String s1 = results.readLine();
+            while (s1 != null) {
+                s = s1;
                 System.out.println(s);
+                s1 = results.readLine();
+            }
             BufferedReader errors = new BufferedReader(
                     new InputStreamReader(process.getErrorStream()));
             // Report errors and return nonzero value

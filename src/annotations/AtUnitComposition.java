@@ -10,16 +10,20 @@ public class AtUnitComposition {
 
     @Test
     boolean _methodOne() {
+
+        System.out.println(testObject);
         return
                 testObject.methodOne().equals("This is methodOne");
     }
 
     @Test
     boolean _methodTwo() {
+        System.out.println(testObject);
         return testObject.methodTwo() == 2;
     }
 
     public static void main(String[] args) throws Exception {
+
         OSExecute.command(
                 "java net.mindview.atunit.AtUnit AtUnitComposition");
     }

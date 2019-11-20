@@ -18,9 +18,13 @@ public class AtUnitExternalTest extends AtUnitExample1 {
 
     public static void main(String[] args) throws Exception {
         OSExecute.command(
-                "java net.mindview.atunit.AtUnit AtUnitExternalTest");
+                "java net.mindview.atunit.AtUnit D:/learnjavaworkspace/welcode/target/classes/annotations/AtUnitExternalTest");
     }
-} /* Output:
+}
+
+/*
+ Exec:java annotations.AtUnitExternalTest
+ Output:
 annotations.AtUnitExternalTest
   . _methodOne
   . _methodTwo This is methodTwo
