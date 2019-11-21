@@ -4,7 +4,7 @@ import java.util.WeakHashMap;
 
 public class WeakHashMapTest {
     public static void main(String[] args) {
-        WeakHashMap<Integer, String> map = new WeakHashMap<>();
+        WeakHashMap<Integer, String> map = new WeakHashMap<Integer, String>();
         Integer i = new Integer(2);
         String a = "weakHashMap";
         map.put(i,a);
