@@ -15,3 +15,4 @@ public class HeapOOM {
 		}
 	}
 }
+// -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError
