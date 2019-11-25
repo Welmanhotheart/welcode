@@ -18,3 +18,5 @@ public class JavaVMStackSOF {
 		}
 	}
 }
+
+// -Xss128k
