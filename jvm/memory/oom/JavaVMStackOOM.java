@@ -3,7 +3,7 @@ package memory.oom;
 public class JavaVMStackOOM {
 	private void dontStop() {
 		while(true) {
-			dontStop();
+
 		}
 	}
 	
