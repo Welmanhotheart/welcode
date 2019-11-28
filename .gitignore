@@ -1,6 +1,7 @@
 *.py
 *.class
 target/
+welcode.eml
 *.pyc
 *.m
 *.t
