@@ -11,8 +11,10 @@ welcode.eml
 *.bat
 *.eml
 log.*
+.idea/
 .generated
 snapshot.*
+*.eml
 .revision
 .settings
 bin
