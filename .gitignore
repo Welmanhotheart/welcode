@@ -6,6 +6,7 @@ welcode.eml
 *.m
 *.t
 *.jar
+*.hprof
 *.sh
 *.m*
 *.bat
