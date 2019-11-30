@@ -1023,6 +1023,7 @@ public class QuorumPeer extends ZooKeeperThread implements QuorumStats.Provider 
     /**
      * A 'view' is a node's current opinion of the membership of the entire
      * ensemble.
+     * 获取到所有Server，包含Observer
      */
     public Map<Long,QuorumPeer.QuorumServer> getView() {
         return Collections.unmodifiableMap(this.quorumPeers);
@@ -1031,11 +1032,13 @@ public class QuorumPeer extends ZooKeeperThread implements QuorumStats.Provider 
     /**
      * Observers are not contained in this view, only nodes with 
      * PeerType=PARTICIPANT.
+     * 这个view中不包含Observer
      */
     public Map<Long,QuorumPeer.QuorumServer> getVotingView() {
         return QuorumPeer.viewToVotingView(getView());
     }
 
+    // 将所有的Observer剔除
     static Map<Long,QuorumPeer.QuorumServer> viewToVotingView(
             Map<Long,QuorumPeer.QuorumServer> view) {
         Map<Long,QuorumPeer.QuorumServer> ret =
