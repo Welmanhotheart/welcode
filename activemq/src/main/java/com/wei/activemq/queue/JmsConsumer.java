@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class JmsConsumer {
-    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
+//    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
+private static final String ACTIVEMQ_URL = "tcp://localhost:61616"; // local broker
     private static final String QUEUE_NAME  = "queue-producer";
     public static void main(String[] args) throws JMSException, IOException {
 
