@@ -23,7 +23,7 @@ public class JmsConsumer_Pullin {
         // create session and
 
         //parameter1: 1.transaction  2.check in
-        Session session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
+        Session session = connection.createSession(true, Session.CLIENT_ACKNOWLEDGE);
 
         // create destination , theme or queue
         Queue queue = session.createQueue(QUEUE_NAME);
@@ -41,8 +41,12 @@ public class JmsConsumer_Pullin {
                 break;
             }
         }
-//        session.commit();
-        consumer.close();
+        /**
+        here using transaction and invocation of commit must be a pair,
+         otherwise the message will be repeatedly consumed
+          */
+        session.commit();
+       consumer.close();
         session.close();
         connection.close();
     }

@@ -24,7 +24,7 @@ public class JmsProduce_Pullin {
          * if transacted be set 'true', only if you first execute 'send' and then 'commit', will
          * the message be placed into the queue
          */
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
 
         // create destination , theme or queue
         Queue queue = session.createQueue(QUEUE_NAME);
@@ -37,7 +37,7 @@ public class JmsProduce_Pullin {
             producer.send(textMessage);
         }
         System.out.println("message sent over");
-//        session.commit();//using transaction
+        session.commit();//using transaction
         producer.close();
         session.close();
         connection.close();
