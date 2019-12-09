@@ -1,5 +1,6 @@
 package com.wei.activemq.queue;
 
+import com.wei.activemq.beans.Department;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
@@ -11,6 +12,7 @@ public class JmsProduce {
 
         // create connection factory
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
+
 
         // through connection factory, get connection and 'start'
         Connection connection = factory.createConnection();
@@ -25,9 +27,31 @@ public class JmsProduce {
         Queue queue = session.createQueue(QUEUE_NAME);
 
         MessageProducer producer = session.createProducer(queue);
-        for(int i = 0; i < 6; i++) {
+        //这里队列，默认是开启的持久化
+//        producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+        for(int i = 0; i < 3; i++) {
             TextMessage textMessage = session.createTextMessage("message-" + i);
             producer.send(textMessage);
+
+            MapMessage mapMessage = session.createMapMessage();
+            mapMessage.setString("k1","v1");
+            producer.send(mapMessage);
+
+            BytesMessage bytesMessage = session.createBytesMessage();
+            bytesMessage.writeBytes("hello, friend".getBytes());
+            producer.send(bytesMessage);
+
+            StreamMessage streamMessage = session.createStreamMessage();
+            streamMessage.writeLong(45);
+            producer.send(streamMessage);
+
+            Department department = new Department("1", "测试部");
+            ObjectMessage objectMessage = session.createObjectMessage();
+            objectMessage.setObject(department);
+            producer.send(objectMessage);
+
+            session.createObjectMessage();
+
         }
         System.out.println("message sent over");
         producer.close();
