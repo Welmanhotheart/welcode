@@ -1,9 +1,11 @@
 package com.wei.activemq.queue;
 
+import com.wei.activemq.beans.Department;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class JmsConsumer {
     private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
@@ -14,6 +16,7 @@ public class JmsConsumer {
         // create connection factory
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
 
+        factory.setTrustedPackages(Arrays.asList("com.wei.activemq.beans"));
         // through connection factory, get connection and 'start'
         Connection connection = factory.createConnection();
         connection.start();
@@ -65,9 +68,52 @@ public class JmsConsumer {
        consumer.setMessageListener(new MessageListener() {
            public void onMessage(Message message) {
                if (null != message && message instanceof  TextMessage) {
+                   System.out.println("text message");
                    TextMessage textMessage = (TextMessage) message;
                    try {
                        System.out.println(textMessage.getText());
+                   } catch (JMSException e) {
+                       e.printStackTrace();
+                   }
+               }
+               if (null != message && message instanceof  MapMessage) {
+                   System.out.println("map message");
+                   MapMessage mapMessage = (MapMessage) message;
+                   try {
+                       System.out.println(mapMessage.getString("k1"));
+                   } catch (JMSException e) {
+                       e.printStackTrace();
+                   }
+               }
+               if (null != message && message instanceof  BytesMessage) {
+                   System.out.println("byte message");
+                   BytesMessage bytesMessage = (BytesMessage) message;
+                   try {
+                       byte[] dst = new byte[(int)bytesMessage.getBodyLength()];
+                       bytesMessage.readBytes(dst);
+                       System.out.println(new String(dst));
+                   } catch (JMSException e) {
+                       e.printStackTrace();
+                   }
+               }
+               if (null != message && message instanceof  StreamMessage) {
+                   System.out.println("stream message");
+                   StreamMessage streamMessage = (StreamMessage) message;
+                   try {
+
+                       System.out.println(streamMessage.readLong());
+                   } catch (JMSException e) {
+                       e.printStackTrace();
+                   }
+               }
+
+               if (null != message && message instanceof  ObjectMessage) {
+                   System.out.println("object message");
+                   ObjectMessage objectMessage = (ObjectMessage) message;
+                   try {
+                       Department object = (Department) objectMessage.getObject();
+                       System.out.println(object);
+
                    } catch (JMSException e) {
                        e.printStackTrace();
                    }
@@ -90,6 +136,8 @@ public class JmsConsumer {
          *   3.1 every consumer has six messages
          *   3.2 first arrive,first get all and left nothing to the others
          *   3.3 everyone has half   (Yes)
+         *
+         * 4.if MQ server is down, what will happend？ can the consumers still get the message
          */
     }
 }
