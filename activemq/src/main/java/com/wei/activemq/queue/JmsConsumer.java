@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class JmsConsumer {
-    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61608";
-//private static final String ACTIVEMQ_URL = "tcp://localhost:61616"; // local broker
-    private static final String QUEUE_NAME  = "nio-auto";
+    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
+    //    private static final String ACTIVEMQ_URL = "failover:(tcp://192.168.73.130:61616,tcp://192.168.73.130:61617,tcp://192.168.73.130:61618)";
+    //private static final String ACTIVEMQ_URL = "tcp://localhost:61616"; // local broker
+    private static final String QUEUE_NAME  = "queue-01";
     public static void main(String[] args) throws JMSException, IOException {
 
         System.out.println("I am the second consumer");

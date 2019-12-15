@@ -1,14 +1,14 @@
 package com.wei.activemq.queue;
 
-import com.wei.activemq.beans.Department;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
 public class JmsProduce {
-    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61608";
+//    private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
+    private static final String ACTIVEMQ_URL = "failover:(tcp://192.168.73.130:61616,tcp://192.168.73.130:61617,tcp://192.168.73.130:61618)";
     //private static final String ACTIVEMQ_URL = "tcp://localhost:61616"; // local broker
-    private static final String QUEUE_NAME  = "nio-auto";
+    private static final String QUEUE_NAME  = "queue-cluster";
     public static void main(String[] args) throws JMSException {
 
         // create connection factory
@@ -28,31 +28,12 @@ public class JmsProduce {
         Queue queue = session.createQueue(QUEUE_NAME);
 
         MessageProducer producer = session.createProducer(queue);
+        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);//这里只有设置为持久化，才会在数据库中存储
         //这里队列，默认是开启的持久化
 //        producer.setDeliveryMode(DeliveryMode.PERSISTENT);
         for(int i = 0; i < 3; i++) {
-            TextMessage textMessage = session.createTextMessage("message-" + i);
+            TextMessage textMessage = session.createTextMessage("cluster-message-" + i);
             producer.send(textMessage);
-
-            MapMessage mapMessage = session.createMapMessage();
-            mapMessage.setString("k1","v1");
-            producer.send(mapMessage);
-
-            BytesMessage bytesMessage = session.createBytesMessage();
-            bytesMessage.writeBytes("hello, friend".getBytes());
-            producer.send(bytesMessage);
-
-            StreamMessage streamMessage = session.createStreamMessage();
-            streamMessage.writeLong(45);
-            producer.send(streamMessage);
-
-            Department department = new Department("1", "测试部");
-            ObjectMessage objectMessage = session.createObjectMessage();
-            objectMessage.setObject(department);
-            producer.send(objectMessage);
-
-            session.createObjectMessage();
-
         }
         System.out.println("message sent over");
         producer.close();
