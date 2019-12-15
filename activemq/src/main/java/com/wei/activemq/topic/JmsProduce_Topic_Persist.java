@@ -6,7 +6,7 @@ import javax.jms.*;
 
 public class JmsProduce_Topic_Persist {
     private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
-    private static final String TOPIC_NAME  = "topic-producer";
+    private static final String TOPIC_NAME  = "jdbc-topic-producer";
     public static void main(String[] args) throws JMSException {
         // create connection factory
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class JmsConsumer_Topic_Persist {
     private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
-    private static final String TOPIC_NAME  = "topic-producer";
+    private static final String TOPIC_NAME  = "jdbc-topic-producer";
     public static void main(String[] args) throws JMSException, IOException {
 
         System.out.println("I am the first  consumer");
@@ -28,7 +28,7 @@ public class JmsConsumer_Topic_Persist {
 
 
         //创建订阅者
-        TopicSubscriber topicSubscriber = session.createDurableSubscriber(topic, "remark");
+        TopicSubscriber topicSubscriber = session.createDurableSubscriber(topic, "jdbc-remark");
         connection.start();
 
 
