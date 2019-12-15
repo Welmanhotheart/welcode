@@ -7,7 +7,7 @@ import javax.jms.*;
 
 public class JmsProduce_Topic {
     private static final String ACTIVEMQ_URL = "tcp://192.168.73.130:61616";
-    private static final String TOPIC_NAME  = "topic-producer";
+    private static final String TOPIC_NAME  = "jdbc-topic-producer";
     public static void main(String[] args) throws JMSException, JMSException {
         // create connection factory
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
@@ -25,8 +25,9 @@ public class JmsProduce_Topic {
         Topic topic = session.createTopic(TOPIC_NAME);
 
         MessageProducer producer = session.createProducer(topic);
+        producer.setDeliveryMode(DeliveryMode.PERSISTENT);
         for(int i = 0; i < 6; i++) {
-            TextMessage textMessage = session.createTextMessage("message-" + i);
+            TextMessage textMessage = session.createTextMessage("jdbc-message-" + i);
             producer.send(textMessage);
         }
         System.out.println("message sent over");
