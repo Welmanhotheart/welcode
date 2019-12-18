@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>activemq</module>
+        <module>redis</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
