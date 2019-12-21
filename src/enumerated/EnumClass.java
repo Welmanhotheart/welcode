@@ -1,12 +1,32 @@
-//: enumerated/EnumClass.java
+package enumerated;//: enumerated/EnumClass.java
 // Capabilities of the Enum class
 
-import static net.mindview.util.Print.*;
 
-enum Shrubbery {GROUND, CRAWLING, HANGING}
+import static net.mindview.util.Print.*;
+//import static enumerated.Shrubbery.*; It's not possible for you to do this
+
+//enum SuperEnum {
+//    NICE,GOOD,BAD
+//}
+
+enum Shrubbery /*extends SuperEnum*/ {//cannot inherit from final 'enumerated.SuperEnum
+    GROUND, CRAWLING, HANGING
+}
 
 public class EnumClass {
     public static void main(String[] args) {
+
+        Class<? super Shrubbery> cls = Shrubbery.class.getSuperclass();
+        System.out.println(cls.getSimpleName());
+
+
+        /**
+         * 当调用values()的时候会执行enum的构造函数
+         * protected Enum(String name, int ordinal) {
+         this.name = name;
+         this.ordinal = ordinal;
+         }
+         */
         for (Shrubbery s : Shrubbery.values()) {
             print(s + " ordinal: " + s.ordinal());
             printnb(s.compareTo(Shrubbery.CRAWLING) + " ");
@@ -21,6 +41,8 @@ public class EnumClass {
             Shrubbery shrub = Enum.valueOf(Shrubbery.class, s);
             print(shrub);
         }
+
+
     }
 } /* Output:
 GROUND ordinal: 0
