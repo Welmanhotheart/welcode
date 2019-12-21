@@ -3,9 +3,18 @@
 // and send the output to the console.
 package net.mindview.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 public class OSExecute {
+    private static final String contextClassPath;
+
+    static {
+        URL resource =
+                Thread.currentThread().getContextClassLoader().getResource("");
+        contextClassPath = resource.getPath();
+    }
     public static void command(String command) {
         boolean err = false;
         try {
@@ -40,4 +49,37 @@ public class OSExecute {
             throw new OSExecuteException("Errors executing " +
                     command);
     }
+
+    public static void commandJavaExecute(Class cls, Object...args) {
+        String className = cls.getName();
+        StringBuilder builder = new StringBuilder();
+
+        if (args != null) {
+            for (Object arg : args) {
+                builder.append(String.valueOf(arg));
+                builder.append(" ");
+            }
+        }
+        OSExecute.command(
+                "java -classpath .;" + contextClassPath + " "  + className + " " + builder.toString());
+    }
+
+    public static void commandJavaDecode(Class cls, Object...args) {
+        String className = cls.getName();
+        StringBuilder builder = new StringBuilder();
+
+        if (args != null) {
+            for (Object arg : args) {
+                builder.append(String.valueOf(arg));
+                builder.append(" ");
+            }
+        }
+
+        OSExecute.command(
+                "javap -classpath .;" + contextClassPath + " "  + className + " " + builder.toString());
+
+    }
+
+
+
 } ///:~
