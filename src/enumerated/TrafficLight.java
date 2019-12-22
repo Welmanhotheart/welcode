@@ -1,4 +1,4 @@
-//: enumerated/TrafficLight.java
+package enumerated;//: enumerated/TrafficLight.java
 // Enums in switch statements.
 
 import static net.mindview.util.Print.*;
@@ -8,6 +8,7 @@ enum Signal {
     GREEN, YELLOW, RED,
 }
 
+
 public class TrafficLight {
     Signal color = Signal.RED;
 
@@ -15,6 +16,7 @@ public class TrafficLight {
         switch (color) {
             // Note that you don't have to say Signal.RED
             // in the case statement:
+            // Even if I comment out all the case statements, the compiler still doesn't complain
             case RED:
                 color = Signal.GREEN;
                 break;
