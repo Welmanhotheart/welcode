@@ -1,14 +1,29 @@
-//: enumerated/Reflection.java
+package enumerated;//: enumerated/Reflection.java
 // Analyzing enums using reflection.
 
-import java.lang.reflect.*;
-import java.util.*;
+import net.mindview.util.OSExecute;
 
-import net.mindview.util.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.Set;
+import java.util.TreeSet;
 
-import static net.mindview.util.Print.*;
+import static net.mindview.util.Print.print;
+import static net.mindview.util.Print.printnb;
 
-enum Explore {HERE, THERE}
+enum Explore {
+    HERE, THERE;
+
+    public static void main(String[] args) {
+        if (args != null) {
+            for (String arg : args) {
+                System.out.println(arg);
+            }
+        }
+
+    }
+
+}
 
 public class Reflection {
     public static Set<String> analyze(Class<?> enumClass) {
@@ -34,7 +49,9 @@ public class Reflection {
         exploreMethods.removeAll(enumMethods);
         print(exploreMethods);
         // Decompile the code for the enum:
-        OSExecute.command("javap Explore");
+        OSExecute.commandJavaDecode(Enum.class);
+
+        OSExecute.commandJavaExecute(Explore.class, 1, 2, "adsf");
     }
 } /* Output:
 ----- Analyzing class Explore -----
