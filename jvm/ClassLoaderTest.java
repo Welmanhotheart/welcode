@@ -1,4 +1,4 @@
-import reference.SoftReferenceTest;
+import interface_data.interface_1;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +20,9 @@ public class ClassLoaderTest{
                 }catch(IOException e){
                     throw new ClassNotFoundException(name);
                 }}};
-        Object obj=myLoader.loadClass("java.lang.MyClass").newInstance();
+        Object obj=myLoader.loadClass("interface_data.interfaceImpl1").newInstance();
         System.out.println(obj.getClass());
-        System.out.println(obj instanceof java.lang.MyClass );
+        System.out.println(obj instanceof interface_1);
     }}
 
 /**
