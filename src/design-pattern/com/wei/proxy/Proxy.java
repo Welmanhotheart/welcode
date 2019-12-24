@@ -43,7 +43,7 @@ public class Proxy {
                 "}\n";
 
             String useDir = System.getProperty("user.dir");
-            File file = new File(useDir + "\\src\\main\\java\\" +
+            File file = new File(useDir + "\\src\\design-pattern\\" +
                     Proxy.class.getPackage().getName().replaceAll("\\.", "/")
                     + "/"+ className +".java");
             try {
@@ -65,7 +65,9 @@ public class Proxy {
                     fileMgr.close();
                     URL[] urls = new URL[] {new URL("file:/" + System.getProperty("user.dir") +"/src/main/java")};
                     //load into memory and create an instance
-                    URLClassLoader ul = new URLClassLoader(urls);
+                    URLClassLoader ul = new URLClassLoader(urls, null);
+                    System.out.println(URLClassLoader.class.getClassLoader());
+                    System.out.println(ul.getParent());
                     Class c = ul.loadClass(Proxy.class.getPackage().getName() + "." + className);
                     Constructor constructor = c.getDeclaredConstructor(InvocationHandler.class);
                     return constructor.newInstance(h);
