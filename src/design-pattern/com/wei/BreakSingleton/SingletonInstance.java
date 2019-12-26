@@ -2,7 +2,7 @@ package com.wei.BreakSingleton;
 
 import java.io.Serializable;
 
-public class SingletonInstance  implements Serializable  {
+public class SingletonInstance  implements Serializable {
     private static final long serialVersionUID = -7327434548808172995L;
 
     private static volatile SingletonInstance  instance;
@@ -30,5 +30,10 @@ public class SingletonInstance  implements Serializable  {
     //
     private  Object readResolve() {
         return instance;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

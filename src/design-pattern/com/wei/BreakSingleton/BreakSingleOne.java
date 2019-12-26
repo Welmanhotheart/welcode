@@ -4,12 +4,12 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 
 public class BreakSingleOne {
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, ClassNotFoundException, CloneNotSupportedException {
 //        SingletonInstance instance = new SingletonInstance();
 
         SingletonInstance instance = SingletonInstance.getInstance();
 
-
+        Object clone = instance.clone();
 
         //I am going to break the singleton pattern，but failed
 //        Constructor<SingletonInstance> constructor = SingletonInstance.class.getDeclaredConstructor(null);
@@ -22,6 +22,7 @@ public class BreakSingleOne {
         out.writeObject(instance);
         out.flush();
 //
+
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("break-singleton"));
         SingletonInstance instance2 = (SingletonInstance) in.readObject();
          in.close();
