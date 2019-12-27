@@ -54,6 +54,11 @@
             <scope>provided</scope>
             <version>2.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.maven.util</groupId>
+            <artifactId>welman-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 </project>
