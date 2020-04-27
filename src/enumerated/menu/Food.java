@@ -21,4 +21,7 @@ public interface Food {
         BLACK_COFFEE, DECAF_COFFEE, ESPRESSO,
         LATTE, CAPPUCCINO, TEA, HERB_TEA;
     }
+    enum Cold implements Food {
+        MILK, JUICE;
+    }
 } ///:~

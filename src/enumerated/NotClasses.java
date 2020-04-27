@@ -1,5 +1,7 @@
-//: enumerated/NotClasses.java
+package enumerated;//: enumerated/NotClasses.java
 // {Exec: javap -c LikeClasses}
+
+import net.mindview.util.OSExecute;
 
 import static net.mindview.util.Print.*;
 
@@ -24,6 +26,9 @@ enum LikeClasses {
 }
 
 public class NotClasses {
+    public static void main(String[] args) {
+        OSExecute.commandJavaDecode(LikeClasses.class);
+    }
     // void f1(LikeClasses.WINKEN instance) {} // Nope
 } /* Output:
 Compiled from "NotClasses.java"

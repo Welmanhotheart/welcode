@@ -2,12 +2,14 @@
 // {Args: VendingMachineInput.txt}
 package enumerated;
 
-import java.util.*;
+import net.mindview.util.Generator;
+import net.mindview.util.TextFile;
 
-import net.mindview.util.*;
+import java.util.EnumMap;
+import java.util.Iterator;
 
 import static enumerated.Input.*;
-import static net.mindview.util.Print.*;
+import static net.mindview.util.Print.print;
 
 enum Category {
     MONEY(NICKEL, DIME, QUARTER, DOLLAR),

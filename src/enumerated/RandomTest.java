@@ -1,4 +1,4 @@
-//: enumerated/RandomTest.java
+package enumerated;//: enumerated/RandomTest.java
 
 import net.mindview.util.*;
 

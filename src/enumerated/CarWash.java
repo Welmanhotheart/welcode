@@ -1,4 +1,4 @@
-//: enumerated/CarWash.java
+package enumerated;//: enumerated/CarWash.java
 
 import java.util.*;
 
