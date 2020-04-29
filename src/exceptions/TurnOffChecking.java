@@ -1,4 +1,4 @@
-//: exceptions/TurnOffChecking.java
+package exceptions;//: exceptions/TurnOffChecking.java
 // "Turning off" Checked exceptions.
 
 import java.io.*;
