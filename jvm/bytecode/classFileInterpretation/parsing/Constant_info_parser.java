@@ -6,20 +6,17 @@ import java.io.InputStream;
 
 public abstract class Constant_info_parser {
     protected InputStream input;
-    protected Constant_info constant_info;
-    protected Constant_info_parser(InputStream inputStream, Constant_info constant_info) {
+    protected Constant_info_parser(InputStream inputStream) {
         this.input = inputStream;
-        this.constant_info = constant_info;
     }
     public Constant_info parse() {
-        fillMembers();
-        return constant_info;
+        return doParse();
+
     }
 
-    protected  abstract void fillMembers();
+    protected  abstract Constant_info doParse();
 
     public void dispose() {
-        this.constant_info = null;
         this.input = null;
     }
 }

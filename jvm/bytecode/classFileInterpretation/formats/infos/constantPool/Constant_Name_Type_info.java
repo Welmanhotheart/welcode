@@ -8,7 +8,7 @@ public class Constant_Name_Type_info extends Constant_info {
 
 
 
-    protected Constant_Name_Type_info(byte tag, short aindex, short bindex) {
+    public Constant_Name_Type_info( short aindex, short bindex) {
         super(PoolConstantInfoTag.CONSTANT_NAMEANDTYPE_INFO);
         this.aindex = aindex;
         this.bindex = bindex;

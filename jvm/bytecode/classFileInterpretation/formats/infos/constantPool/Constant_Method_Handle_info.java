@@ -8,7 +8,7 @@ public class Constant_Method_Handle_info extends Constant_info {
 
 
 
-    protected Constant_Method_Handle_info(byte tag, byte referenceKind, short referenceIndex) {
+    public Constant_Method_Handle_info(byte referenceKind, short referenceIndex) {
         super(PoolConstantInfoTag.CONSTANT_METHODHANDLE_INFO);
         this.referenceKind = referenceKind;
         this.referenceIndex = referenceIndex;

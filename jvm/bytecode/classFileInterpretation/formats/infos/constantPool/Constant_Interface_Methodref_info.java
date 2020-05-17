@@ -8,7 +8,7 @@ public class Constant_Interface_Methodref_info extends Constant_info {
 
 
 
-    protected Constant_Interface_Methodref_info(byte tag, short cls_info_index, short name_type_index) {
+    public Constant_Interface_Methodref_info(short cls_info_index, short name_type_index) {
         super(PoolConstantInfoTag.CONSTANT_INTERFACEMETHODREF_INFO);
         this.cls_info_index = cls_info_index;
         this.name_type_index = name_type_index;

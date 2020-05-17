@@ -4,7 +4,7 @@ import bytecode.classFileInterpretation.constants.Usize;
 import bytecode.classFileInterpretation.constants.tags.PoolConstantInfoTag;
 
 public class Constant_Double_info extends Constant_Number_info {
-    protected Constant_Double_info(byte tag) {
+    public Constant_Double_info() {
         super(PoolConstantInfoTag.CONSTANT_DOUBLE_INFO, Usize.U8);
     }
     
