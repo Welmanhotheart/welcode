@@ -7,32 +7,36 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class SingleFormatParser {
-    protected InputStream inputStream;
-    protected SingleFormat singleFormat;
+public class SingleFormatParser extends FormatParser {
+
     protected byte[] bytes;
 
     public SingleFormatParser(InputStream inputStream, SingleFormat singleFormat) {
-        this.inputStream = inputStream;
-        this.singleFormat = singleFormat;
-        this.bytes = new byte[this.singleFormat.getSize()];
+        super(inputStream, singleFormat);
+        this.bytes = new byte[this.format.getSize()];
     }
 
-    public void parse() {
-       readValue();
-       dispose();
+    public void readContent() {
+        fillBytes();
+        readValue();
     }
 
-    private void dispose() {
-        bytes = null;
-        this.inputStream = null;
-        this.singleFormat = null;
+    protected void dispose() {
+       bytes = null;
+       super.dispose();
+    }
+
+    private void fillBytes() {
+        try {
+            int size = this.bytes.length;
+            this.inputStream.read(this.bytes, 0, size);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void readValue() {
         try {
-            int size = this.bytes.length;
-            this.inputStream.read(this.bytes, 0, size);
             readValueForSingleFormat();
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,6 +44,9 @@ public class SingleFormatParser {
     }
 
     private void readValueForSingleFormat() throws IOException {
-        singleFormat.setValue(ByteUtils.bytes2Int(this.bytes,0, this.bytes.length));
+        SingleFormat format = (SingleFormat)this.format;
+        format.setValue(ByteUtils.bytes2Int(this.bytes,0, this.bytes.length));
     }
+
+
 }

@@ -41,4 +41,17 @@ public class ByteUtils {
         System.arraycopy(originalBytes, offset + len, newBytes, offset + replaceBytes.length, originalBytes.length - offset - len);
         return newBytes;
     }
+
+    public static String toHexString(byte[] bytes) {
+        StringBuilder builder = new StringBuilder(bytes.length * 2);
+        for (byte e : bytes) {
+            int v = e & 0xff;
+            String s = Integer.toHexString(v);
+            if(s.length() < 2) {
+                builder.append("0");
+            }
+            builder.append(s);
+        }
+        return builder.toString();
+    }
 }

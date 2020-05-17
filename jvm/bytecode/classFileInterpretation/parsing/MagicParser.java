@@ -7,10 +7,10 @@ import java.io.BufferedInputStream;
 
 public class MagicParser extends SingleFormatParser {
 
-    private Magic tmagic;
+
     public MagicParser(BufferedInputStream inputStream, Magic magic) {
         super(inputStream, magic);
-        tmagic = magic;
+
     }
 
     public void readValue() {
@@ -18,7 +18,8 @@ public class MagicParser extends SingleFormatParser {
     }
 
     private void readMagicDescString() {
-        int length = this.bytes.length;
-        tmagic.setDesc(ByteUtils.bytes2String(this.bytes,0 ,length));
+        Magic magic = (Magic) this.format;
+        magic.setDesc(ByteUtils.toHexString(this.bytes));
     }
+
 }
