@@ -1,8 +1,7 @@
-package bytecode.classFileInterpretation.parsing;
+package bytecode.classFileInterpretation.parsing.info;
 
 import bytecode.classFileInterpretation.factory.Constant_info_parserFactory;
 import bytecode.classFileInterpretation.formats.infos.ConstantPoolInfo;
-import bytecode.classFileInterpretation.formats.infos.Info;
 import bytecode.classFileInterpretation.formats.infos.constantPool.Constant_info;
 
 import java.io.BufferedInputStream;
@@ -16,7 +15,7 @@ public class ConstantPoolInfoParser extends InfoParser {
 
     public void readContent() {
         int constantCount = constant_infos.length;
-        for(int i = 0; i < constantCount; i++) {
+        for(int i = 1; i < constantCount; i++) {
             Constant_info_parser parser = Constant_info_parserFactory.getParserInstance(this.inputStream);
             constant_infos[i] = parser.parse();
             parser.dispose();

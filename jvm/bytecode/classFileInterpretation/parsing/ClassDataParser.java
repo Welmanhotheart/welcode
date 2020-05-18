@@ -3,6 +3,12 @@ package bytecode.classFileInterpretation.parsing;
 import bytecode.classFileInterpretation.ClassFormat;
 import bytecode.classFileInterpretation.formats.*;
 import bytecode.classFileInterpretation.formats.infos.ConstantPoolInfo;
+import bytecode.classFileInterpretation.formats.infos.FieldInfo;
+import bytecode.classFileInterpretation.formats.infos.InterFacesInfo;
+import bytecode.classFileInterpretation.parsing.info.ConstantPoolInfoParser;
+import bytecode.classFileInterpretation.parsing.info.FieldInfoParser;
+import bytecode.classFileInterpretation.parsing.info.InfoParser;
+import bytecode.classFileInterpretation.parsing.info.InterFacesInfoParser;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -80,24 +86,69 @@ public class ClassDataParser {
     }
 
     private void parseAccessFlags() {
-
+        ClassAccessFlag flag = new ClassAccessFlag();
+        SingleFormatParser parser = new SingleFormatParser(this.input, flag);
+        parser.parse();
+        this.classFormat.setAccessFlag(flag);
     }
 
     private void parseThisClass() {
-
+        ThisClass cls = new ThisClass();
+        SingleFormatParser parser = new SingleFormatParser(this.input, cls);
+        parser.parse();
+        this.classFormat.setThisClass(cls);
     }
 
     private void parseSuperClass() {
+        SuperClass spcls = new SuperClass();
+        SingleFormatParser parser = new SingleFormatParser(this.input, spcls);
+        parser.parse();
+        this.classFormat.setSuperClass(spcls);
 
     }
 
     private void parseInterfaces() {
+        parseInterfacesCount();
+        parseInterfaceInfo();
 
+    }
+
+    private void parseInterfacesCount() {
+        InterfacesCount interfacesCount = new InterfacesCount();
+        SingleFormatParser parser = new SingleFormatParser(this.input, interfacesCount);
+        parser.parse();
+        this.classFormat.setInterfacesCount(interfacesCount);
+    }
+
+    private void parseInterfaceInfo() {
+        InterFacesInfo interFacesInfo = new InterFacesInfo(this.classFormat.getInterfacesCount());
+        InterFacesInfoParser parse = new InterFacesInfoParser(this.input, interFacesInfo);
+        parse.parse();
+        this.classFormat.setInterFacesInfo(interFacesInfo);
     }
 
     private void parseFieldsInfo() {
+        parseFieldsCount();
+        parseFields();
+    }
+
+
+    private void parseFieldsCount() {
+        FieldsCount fieldsCount = new FieldsCount();
+        SingleFormatParser parser = new SingleFormatParser(this.input, fieldsCount);
+        parser.parse();
+        this.classFormat.setFieldsCount(fieldsCount);
 
     }
+    private void parseFields() {
+        FieldInfo fieldInfo = new FieldInfo(this.classFormat.getFieldsCount());
+        FieldInfoParser parser = new FieldInfoParser(this.input, fieldInfo);
+        parser.parse();
+        this.classFormat.setFieldInfo(fieldInfo);
+    }
+
+
+
 
     private void parseMethodsInfo() {
 

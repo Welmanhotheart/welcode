@@ -1,4 +1,4 @@
-package bytecode.classFileInterpretation.parsing.constantConcreteInfoParsers;
+package bytecode.classFileInterpretation.parsing.info.constantPool;
 
 import bytecode.classFileInterpretation.formats.infos.constantPool.Constant_Invoke_Dynamic_info;
 import bytecode.classFileInterpretation.formats.infos.constantPool.Constant_info;

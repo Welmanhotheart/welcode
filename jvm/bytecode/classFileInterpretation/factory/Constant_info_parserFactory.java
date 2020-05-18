@@ -1,8 +1,6 @@
 package bytecode.classFileInterpretation.factory;
 
 import bytecode.classFileInterpretation.constants.tags.PoolConstantInfoTag;
-import bytecode.classFileInterpretation.parsing.Constant_info_parser;
-import bytecode.classFileInterpretation.parsing.constantConcreteInfoParsers.*;
 
 import java.io.IOException;
 import java.io.InputStream;
