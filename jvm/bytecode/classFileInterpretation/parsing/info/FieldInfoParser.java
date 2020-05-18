@@ -1,6 +1,6 @@
 package bytecode.classFileInterpretation.parsing.info;
 
-import bytecode.classFileInterpretation.formats.Field;
+import bytecode.classFileInterpretation.Field;
 import bytecode.classFileInterpretation.formats.infos.FieldInfo;
 import bytecode.classFileInterpretation.parsing.FieldParser;
 
@@ -13,7 +13,7 @@ public class FieldInfoParser extends InfoParser {
     }
 
     public void readContent() {
-
+        this.fields = new Field[this.format.getSize()];
         int fieldsCount = this.fields.length;
         for(int i = 1; i < fieldsCount; i++) {
             FieldParser parser = new FieldParser(this.inputStream);

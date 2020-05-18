@@ -1,6 +1,6 @@
 package bytecode.classFileInterpretation.formats.infos;
 
-import bytecode.classFileInterpretation.formats.Field;
+import bytecode.classFileInterpretation.Field;
 import bytecode.classFileInterpretation.formats.FieldsCount;
 
 public class FieldInfo extends Info {

@@ -2,7 +2,7 @@ package bytecode.classFileInterpretation.parsing;
 
 import bytecode.classFileInterpretation.formats.AttributesCount;
 import bytecode.classFileInterpretation.formats.infos.AttributeInfo;
-import bytecode.classFileInterpretation.formats.Field;
+import bytecode.classFileInterpretation.Field;
 import bytecode.classFileInterpretation.parsing.info.AttributeInfoParser;
 import bytecode.classFileInterpretation.util.ByteUtils;
 
