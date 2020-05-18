@@ -1,15 +1,19 @@
 package bytecode.classFileInterpretation.factory;
 
 import bytecode.classFileInterpretation.constants.tags.PoolConstantInfoTag;
-import bytecode.classFileInterpretation.formats.infos.constantPool.*;
 import bytecode.classFileInterpretation.parsing.Constant_info_parser;
 import bytecode.classFileInterpretation.parsing.constantConcreteInfoParsers.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 常量池项目解析器工厂
+ */
 public final class Constant_info_parserFactory {
     static final Map<Byte, Class<? extends Constant_info_parser>> map = new ConcurrentHashMap<Byte, Class<? extends Constant_info_parser>>();
     static {
@@ -32,13 +36,24 @@ public final class Constant_info_parserFactory {
         Constant_info_parser parser = null;
         try {
             int read = inputStream.read();
+            System.out.println("tag：" + read);
             if(read > 0 && read <= PoolConstantInfoTag.CONSTANT_INVOKEDYNAMIC_INFO) {
-                Class<? extends Constant_info_parser> aClass = map.get(read);
+                Class<? extends Constant_info_parser> aClass = map.get((byte)read);//这里我没有加强转，直接报错
                 if (null != aClass) {
-
+                    Constructor<? extends Constant_info_parser> declaredConstructor = aClass.getDeclaredConstructor(InputStream.class);
+                    declaredConstructor.setAccessible(true);
+                    parser = declaredConstructor.newInstance(inputStream);
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
         return parser;
