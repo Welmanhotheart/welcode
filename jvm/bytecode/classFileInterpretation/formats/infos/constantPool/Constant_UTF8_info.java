@@ -19,4 +19,8 @@ public class Constant_UTF8_info extends Constant_info {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    public String getDesc() {
+        return desc;
+    }
 }

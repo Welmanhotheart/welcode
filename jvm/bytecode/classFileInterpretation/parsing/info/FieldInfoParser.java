@@ -1,7 +1,9 @@
 package bytecode.classFileInterpretation.parsing.info;
 
+import bytecode.classFileInterpretation.ClassFormat;
 import bytecode.classFileInterpretation.Field;
 import bytecode.classFileInterpretation.formats.infos.FieldInfo;
+import bytecode.classFileInterpretation.formats.infos.Info;
 import bytecode.classFileInterpretation.parsing.FieldParser;
 
 import java.io.BufferedInputStream;
@@ -15,8 +17,9 @@ public class FieldInfoParser extends InfoParser {
     public void readContent() {
         this.fields = new Field[this.format.getSize()];
         int fieldsCount = this.fields.length;
-        for(int i = 1; i < fieldsCount; i++) {
-            FieldParser parser = new FieldParser(this.inputStream);
+        ClassFormat classFormat = ((Info) this.format).getClassFormat();
+        for(int i = 0; i < fieldsCount; i++) {
+            FieldParser parser = new FieldParser(this.inputStream, classFormat);
             this.fields[i] = parser.parse();
             parser.dispose();
         }

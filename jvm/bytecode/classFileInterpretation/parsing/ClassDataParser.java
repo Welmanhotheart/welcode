@@ -141,7 +141,8 @@ public class ClassDataParser {
 
     }
     private void parseFields() {
-        FieldInfo fieldInfo = new FieldInfo(this.classFormat.getFieldsCount());
+
+        FieldInfo fieldInfo = new FieldInfo(this.classFormat.getFieldsCount(), this.classFormat);
         FieldInfoParser parser = new FieldInfoParser(this.input, fieldInfo);
         parser.parse();
         this.classFormat.setFieldInfo(fieldInfo);

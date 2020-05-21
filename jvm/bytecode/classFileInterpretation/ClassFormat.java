@@ -2,6 +2,7 @@ package bytecode.classFileInterpretation;
 
 import bytecode.classFileInterpretation.formats.*;
 import bytecode.classFileInterpretation.formats.infos.*;
+import bytecode.classFileInterpretation.formats.infos.constantPool.Constant_info;
 
 public class ClassFormat {
     private Magic magic;
@@ -55,6 +56,10 @@ public class ClassFormat {
 
     public ConstantPoolInfo getCp_info() {
         return cp_info;
+    }
+
+    public Constant_info getCp_info(int index) {
+        return cp_info.getConstant_info(index);
     }
 
     public void setCp_info(ConstantPoolInfo cp_info) {

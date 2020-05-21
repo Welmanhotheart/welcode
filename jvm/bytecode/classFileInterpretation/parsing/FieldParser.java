@@ -1,9 +1,9 @@
 package bytecode.classFileInterpretation.parsing;
 
-import bytecode.classFileInterpretation.formats.AttributesCount;
-import bytecode.classFileInterpretation.formats.infos.AttributeInfo;
+import bytecode.classFileInterpretation.ClassFormat;
 import bytecode.classFileInterpretation.Field;
-import bytecode.classFileInterpretation.parsing.info.AttributeInfoParser;
+import bytecode.classFileInterpretation.attributes.Attribute;
+import bytecode.classFileInterpretation.parsing.attribute.AttributeParserDelegate;
 import bytecode.classFileInterpretation.util.ByteUtils;
 
 import java.io.IOException;
@@ -11,14 +11,16 @@ import java.io.InputStream;
 
 public class FieldParser {
     private InputStream input;
+    private ClassFormat classFormat;
     private  short accessFlag;
     private  short nameIndex;
     private  short descriptorIndex;
-    private  AttributesCount attributesCount;
-    private  AttributeInfo attributeInfo;
+    private  short attributesCount;
+    private Attribute[] attributes;
 
-    public FieldParser(InputStream inputStream) {
+    public FieldParser(InputStream inputStream, ClassFormat format) {
         this.input = inputStream;
+        this.classFormat = format;
     }
 
     public Field parse() {
@@ -31,9 +33,9 @@ public class FieldParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        return new Field(accessFlag, nameIndex, descriptorIndex, attributesCount, attributeInfo);
+        Field field = new Field(accessFlag, nameIndex, descriptorIndex, attributesCount);
+        field.setAttributes(this.attributes);
+        return field;
     }
 
     private void parseAccessFlag() throws IOException {
@@ -49,22 +51,23 @@ public class FieldParser {
         this.descriptorIndex = ByteUtils.readShort(this.input);
     }
 
-    private void parseAttributesCount() {
-        this.attributesCount = new AttributesCount();
-        SingleFormatParser parser = new SingleFormatParser(this.input, this.attributesCount);
-        parser.parse();
+    private void parseAttributesCount() throws IOException {
+        this.attributesCount = ByteUtils.readShort(this.input);
 
     }
     private void ParseAttributeInfo(){
-        this.attributeInfo = new AttributeInfo(this.attributesCount);
-        AttributeInfoParser attributeInfoParser = new AttributeInfoParser(this.input, this.attributeInfo);
-        attributeInfoParser.parse();
+        this.attributes = new Attribute[this.attributesCount];
+
+        for(int i = 0; i < this.attributesCount; i++) {
+            AttributeParserDelegate delegate = new AttributeParserDelegate(this.input, this.classFormat);
+            attributes[i] =  delegate.parse();
+        }
+
     }
 
 
     public void dispose() {
-        attributesCount = null;
-        attributeInfo = null;
+        this.attributes = null;
         this.input = null;
     }
 }

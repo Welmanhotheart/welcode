@@ -11,7 +11,7 @@ public class ConstantPoolInfoParser extends InfoParser {
     private Constant_info[] constant_infos;
     public ConstantPoolInfoParser(BufferedInputStream input, ConstantPoolInfo constantPoolInfo) {
         super(input, constantPoolInfo);
-        constant_infos = new Constant_info[this.format.getSize()];
+        constant_infos = new Constant_info[this.format.getSize() ];
     }
 
     public void readContent() {

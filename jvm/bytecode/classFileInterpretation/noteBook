@@ -17,4 +17,6 @@ Constant_Integer_info_parser...处的几段代码有重复的地方，看能否�
 
 8.各个地方的异常处理，看能不能找到更好的解决方法.是否能够统一处理
 
-9.使用BufferredInputStream会出现的问题
+9.生成parser的工厂类地方，代码是否需要进行重新优化
+
+10.可以采用什么方式来替代set
