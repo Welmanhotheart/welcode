@@ -1,8 +1,5 @@
 package effective.item_11;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 public class TestRawClone {
     static class CloneableObject implements Cloneable{
         protected CloneableObject clone() throws CloneNotSupportedException {
