@@ -3,21 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+        <java.build.version>1.8</java.build.version>
+    </properties>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${java.build.version}</source>
+                    <target>${java.build.version}</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
-    </properties>
+
     <groupId>com.maven.welcode</groupId>
     <artifactId>welcode</artifactId>
     <version>1.0-SNAPSHOT</version>
