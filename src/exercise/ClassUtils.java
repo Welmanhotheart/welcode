@@ -13,7 +13,7 @@ import java.util.jar.JarFile;
  
 public class ClassUtils {
 	public static void main(String[] args) throws Exception {
-		String packageName = "testcase.typeinfo";
+		String packageName = "exercise.typeinfo";
 		Set<String> classNames = getClassName(packageName, false);
 		if (classNames != null) {
 			for (String className : classNames) {

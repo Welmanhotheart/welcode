@@ -54,7 +54,7 @@ public class PrintsHierarchy {
 	}
 	
 	public static void main(String[] args) {
-//		printsHierarchy(new BigRat(),0);
+		printsHierarchy(new BigRat(),0);
 //		printsHierarchy(new char[]{'a','c'},0);
 		Class cls = (new char[]{'a','c'}).getClass();
 		System.out.println(cls.isPrimitive());
@@ -65,6 +65,7 @@ public class PrintsHierarchy {
 class BigRat extends Rat {
 	private String name;
 	private String gender;
+	private static int counter;
 	public BigRat() {
 		
 	}
@@ -79,6 +80,12 @@ class BigRat extends Rat {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	private void getGenderDescriptor() {
+
+	}
+	public static int getCounter() {
+		return counter;
 	}
 	
 }
