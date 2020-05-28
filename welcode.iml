@@ -9,12 +9,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.javassist:javassist:3.23.1-GA" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib:2.1" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: asm:asm-util:1.3.4" level="project" />
     <orderEntry type="library" name="Maven: aspectwerkz:aspectwerkz-core:0.8.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.maven.util:welman-util:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.23.1-GA" level="project" />
