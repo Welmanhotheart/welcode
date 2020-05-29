@@ -13,6 +13,7 @@ import java.util.List;
 public class TestClassMethod {
     public static void main(String[] args) throws NoSuchFieldException {
         Class<?> cls = SubClass.class;
+        System.out.println(int.class.toString());
         printWithTag("toString" , cls.toString());
 
         printWithTag("isInstance", String.valueOf(cls.isInstance(new SubClass())));
@@ -23,15 +24,27 @@ public class TestClassMethod {
 
         printWithTag("getName", cls.getName());
 
-        printWithTag("getGenericSuperclass", cls.getGenericSuperclass());
+        printWithTag("getName int", int.class.getName());
+
+        printWithTag("getGenericSuperclass", cls.getGenericSuperclass());//待探讨
 
         printWithTag("getPackage", cls.getPackage());
+        printWithTag("new int[] getPackage", (new int[3]).getClass().getPackage());
+
+        printWithTag("int getPackage", int.class.getPackage());
 
         printWithTag("getComponentType", cls.getComponentType());
 
+        printWithTag("new SubClass[4] getComponentType", (new SubClass[4]).getClass().getComponentType());
+
         printWithTag("getModifiers", cls.getModifiers());
 
+        printWithTag("int getModifiers", int.class.getModifiers());
+
+        printWithTag("new int[3] getModifiers", (new int[3]).getClass().getModifiers());
+
         printWithTag("getSigners", cls.getSigners());//这里signer指的是啥意思
+
 
         printWithTag("getEnclosingMethod", cls.getEnclosingMethod()); //待测试
 
@@ -43,7 +56,20 @@ public class TestClassMethod {
 
         printWithTag("getSimpleName", cls.getSimpleName());
 
+        printWithTag("int getSimpleName", int.class.getSimpleName());
+
+        printWithTag("new int[3] getSimpleName", (new int[3]).getClass().getSimpleName());
+
+        printWithTag("new Integer[3] getSimpleName", (new Integer[3]).getClass().getSimpleName());
+
         printWithTag("getCanonicalName", cls.getCanonicalName());
+
+        printWithTag("new int getCanonicalName", int.class.getCanonicalName());
+
+        printWithTag("new int[3] getCanonicalName", (new int[3]).getClass().getCanonicalName());
+
+        printWithTag("new Integer[3] getCanonicalName", (new Integer[3]).getClass().getCanonicalName());
+
 
         printWithTag("isAnonymousClass", cls.isAnonymousClass());//待测试
 
@@ -55,9 +81,18 @@ public class TestClassMethod {
         printWithTag("getClasses", cls.getClasses());//待测试
 
 
+        printWithTag("new Integer[3] getFields", (new Integer[3]).getClass().getFields());
+
+        printWithTag("new int[3] getFields", (new int[3]).getClass().getFields());
+
+        printWithTag("int getFields", int.class.getFields());
+
+
         printWithTag("getFields", cls.getFields());
 
         printWithTag("getMethods", cls.getMethods());
+
+        printWithTag("int getConstructors", int.class.getConstructors());
 
         printWithTag("getConstructors", cls.getConstructors());
 

@@ -1,9 +1,9 @@
 package exercise.typeinfo.reflection;
 
-public class SuperClass<String> {
+public class SuperClass<String>  extends HigherClass implements SuperInterFace {
     private SubClass subClass;
     private String superId;
-    public int superPubField;
+    protected int superPubField;
     private static int superStaticPrivateCounterer;
     public static int superStaticPublicCounterer;
 
