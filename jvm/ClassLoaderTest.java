@@ -1,11 +1,22 @@
 import interface_data.interface_1;
+import tool.bytecode.impls.MoneyCalculaterImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 public class ClassLoaderTest{
     public static void main(String[]args)throws Exception{
+//        URL resource = MoneyCalculaterImpl.class.getResource("files/me.txt");
+//        System.out.println(resource.getPath());
+//        resource = MoneyCalculaterImpl.class.getResource("/noteBook_2018_11_07.txt");
+//        System.out.println(resource.getPath());
         ClassLoader myLoader=new ClassLoader(){
+            @Override
+            public String toString() {
+                return "myLoader";
+            }
+
             @Override
             public Class<?>loadClass(String name)throws ClassNotFoundException{
                 try{
