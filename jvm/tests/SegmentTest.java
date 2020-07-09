@@ -7,6 +7,9 @@ import java.util.Set;
 
 public class SegmentTest {
     public static void main(String[] args) {
+        String str = "/sqlserver221/my_db/dbo.huang";
+        String[] split = str.split("/|\\.");
+        System.out.println("sadfs\n\tafsf");
         Set<Integer> orderByEndPoints = new LinkedHashSet<Integer>(1);
         String userInput = "select * from stu order by Age , id desc ";
         String temp = userInput;
