@@ -20,7 +20,6 @@ public class ReaderWriterHashMap<K,V> extends HashMap<K,V> {
         Lock wlock = lock.writeLock();
         wlock.lock();
         Lock rlock = lock.readLock();
-//        print("in write 获取锁的读者:" + lock.getReadLockCount());
         try {
             return super.put(key, value);
         } finally {
@@ -35,7 +34,6 @@ public class ReaderWriterHashMap<K,V> extends HashMap<K,V> {
             // Show that multiple readers
             // may acquire the read lock:
 //            if (lock.getReadLockCount() > 1)
-//                print("获取锁的读者:" + lock.getReadLockCount());
             return super.get(key);
         } finally {
             rlock.unlock();
