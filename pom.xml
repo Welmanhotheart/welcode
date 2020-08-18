@@ -17,6 +17,7 @@
     </build>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <groupId>com.maven.welcode</groupId>
     <artifactId>welcode</artifactId>
@@ -51,12 +52,6 @@
             <artifactId>javassist</artifactId>
             <version>3.23.1-GA</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>nu.xom</groupId>-->
-            <!--<artifactId>website</artifactId>-->
-            <!--<version>1.2.10</version>-->
-        <!--</dependency>-->
 
     </dependencies>
 
