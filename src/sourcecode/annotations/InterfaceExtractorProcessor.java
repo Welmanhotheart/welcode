@@ -5,11 +5,16 @@
 // Multiplier.java -s ../annotations}
 package annotations;
 
-import com.sun.mirror.apt.*;
-import com.sun.mirror.declaration.*;
+import com.sun.mirror.apt.AnnotationProcessor;
+import com.sun.mirror.apt.AnnotationProcessorEnvironment;
+import com.sun.mirror.declaration.MethodDeclaration;
+import com.sun.mirror.declaration.ParameterDeclaration;
+import com.sun.mirror.declaration.TypeDeclaration;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 
 public class InterfaceExtractorProcessor
         implements AnnotationProcessor {

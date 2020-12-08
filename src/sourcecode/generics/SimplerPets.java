@@ -1,4 +1,4 @@
-//: generics/SimplerPets.java
+package generics;//: generics/SimplerPets.java
 
 import typeinfo.pets.*;
 

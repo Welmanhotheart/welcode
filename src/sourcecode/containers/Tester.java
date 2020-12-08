@@ -1,5 +1,6 @@
-//: containers/Tester.java
+package containers;//: containers/Tester.java
 // Applies Test objects to lists of different containers.
+
 
 import java.util.*;
 

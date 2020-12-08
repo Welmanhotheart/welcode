@@ -1,4 +1,4 @@
-//: innerclasses/Parcel8.java
+package innerclasses;//: innerclasses/Parcel8.java
 // Calling the base-class constructor.
 
 public class Parcel8 {

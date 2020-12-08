@@ -1,4 +1,4 @@
-//: holding/LinkedListFeatures.java
+package holding;//: holding/LinkedListFeatures.java
 
 import typeinfo.pets.*;
 

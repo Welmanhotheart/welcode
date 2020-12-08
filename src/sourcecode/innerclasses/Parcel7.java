@@ -1,5 +1,7 @@
-//: innerclasses/Parcel7.java
+package innerclasses;//: innerclasses/Parcel7.java
 // Returning an instance of an anonymous inner class.
+
+import innerclasses.Contents;
 
 public class Parcel7 {
     public Contents contents() {

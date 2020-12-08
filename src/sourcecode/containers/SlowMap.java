@@ -1,6 +1,6 @@
 //: containers/SlowMap.java
 // A Map implemented with ArrayLists.
-
+package containers;
 import java.util.*;
 
 import net.mindview.util.*;

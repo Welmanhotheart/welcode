@@ -1,6 +1,6 @@
 //: containers/CanonicalMapping.java
 // Demonstrates WeakHashMap.
-
+package containers;
 import java.util.*;
 
 class Element {

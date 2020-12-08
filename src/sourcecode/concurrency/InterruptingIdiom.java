@@ -1,7 +1,7 @@
 //: concurrency/InterruptingIdiom.java
 // General idiom for interrupting a task.
 // {Args: 1100}
-
+package concurrency;
 import java.util.concurrent.*;
 
 import static net.mindview.util.Print.*;

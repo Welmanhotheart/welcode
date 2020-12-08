@@ -1,4 +1,4 @@
-//: generics/Fill2.java
+package generics;//: generics/Fill2.java
 // Using adapters to simulate latent typing.
 // {main: Fill2Test}
 

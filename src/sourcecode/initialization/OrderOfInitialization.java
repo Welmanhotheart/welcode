@@ -1,6 +1,6 @@
 //: initialization/OrderOfInitialization.java
 // Demonstrates initialization order.
-
+package initialization;
 import static net.mindview.util.Print.*;
 
 // When the constructor is called to create a

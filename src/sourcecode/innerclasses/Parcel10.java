@@ -1,4 +1,4 @@
-//: innerclasses/Parcel10.java
+package innerclasses;//: innerclasses/Parcel10.java
 // Using "instance initialization" to perform
 // construction on an anonymous inner class.
 

@@ -1,4 +1,4 @@
-//: io/FileOutputShortcut.java
+package io;//: io/FileOutputShortcut.java
 
 import java.io.*;
 

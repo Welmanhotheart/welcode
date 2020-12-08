@@ -1,5 +1,5 @@
 //: initialization/PassingThis.java
-
+package initialization;
 class Person {
     public void eat(Apple apple) {
         Apple peeled = apple.getPeeled();

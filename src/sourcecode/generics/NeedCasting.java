@@ -1,4 +1,4 @@
-//: generics/NeedCasting.java
+package generics;//: generics/NeedCasting.java
 
 import java.io.*;
 import java.util.*;

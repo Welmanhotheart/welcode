@@ -1,4 +1,4 @@
-//: concurrency/SemaphoreDemo.java
+package concurrency;//: concurrency/SemaphoreDemo.java
 // Testing the Pool class
 
 import java.util.concurrent.*;

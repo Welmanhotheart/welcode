@@ -1,4 +1,4 @@
-//: containers/Unsupported.java
+package containers;//: containers/Unsupported.java
 // Unsupported operations in Java containers.
 
 import java.util.*;
