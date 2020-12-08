@@ -60,6 +60,33 @@ node_modules
 __pycache__
 *.pyc
 
+
+*.py
+*.class
+target/
+welcode.eml
+*.pyc
+*.m
+*.t
+*.jar
+*.hprof
+*.sh
+*.m*
+*.bat
+*.eml
+log.*
+.generated
+snapshot.*
+.revision
+bin
+
+conf
+contrib
+dist-maven
+lib
+recipes
+zookeeper-3.4.13.jar.*
+
 # classes
 *.class
 *.jar
