@@ -48,7 +48,7 @@ public class ThreadLocalDemo {
             this.threadLocalService = threadLocalService;
         }
 
-        public void setValue(String value) {
+        public void setValue(Str         ing value) {
             threadLocalService.setValue(value);
         }
 

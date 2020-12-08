@@ -15,6 +15,7 @@
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
         <java.build.version>1.8</java.build.version>
     </properties>
+    <packaging>pom</packaging>
     <build>
         <plugins>
             <plugin>
@@ -27,6 +28,12 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>test_idea</module>
+    </modules>
+    <properties>
+        <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+    </properties>
 
     <groupId>com.maven.welcode</groupId>
     <artifactId>welcode</artifactId>
