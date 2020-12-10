@@ -1,4 +1,4 @@
-//package memory.monitor;
+package memory.monitor;//package memory.monitor;
 //
 //import org.idea.jface.dialogs.MessageDialog;
 //import org.idea.swt.widgets.Display;

@@ -1,0 +1,110 @@
+Parallel Scavenge收集器及后面提到的G1收集器都没有使用传统的GC收集器代码框架，而
+另外独立实现，其余几种收集器则共用了部分的框架代码，详细内容可参考：
+http://blogs.sun.com/jonthecollector/entry/our_collectors。
+
+-XX:+HeapDumpOnOutOfMemoryError
+    可以让虚拟机在出现内存溢出异常时Dump出当前的内存堆转储快照以便事后进行分析
+
+-XmsXXM
+    堆的最小值
+--XmxXXM
+    堆的最大值
+-XX：PermSize=XXM
+    限制方法区大小
+-XX：MaxPermSize=XXM
+    限制方法区大小
+
+-XX：MaxDirectMemorySize=XXM
+    DirectMemory容量可通过-XX：MaxDirectMemorySize指定,如果不指定，则默认与Java堆最大值（-Xmx指定）一样
+
+对象的标记过程：
+    第一次直接从GC root下查找不可达的引用，然后标记并且进行筛选，筛选的依据是该对象是否有必要执行finalize方法
+    是否有必要执行finalize方法的依据是，该对象是否覆盖了finalize方法，或者该对象的是否还没有被执行finalize方法
+
+    当确定对象需要执行finalize方法后，并在稍后由一个由虚拟机自动建立的、 低优先级的Finalizer线程去执行
+    它。 这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束，这样做的原因是，如果一个
+    对象在finalize（）方法中执行缓慢，或者发生了死循环（更极端的情况），将很可能会导致F-Queue队列中其他
+    对象永久处于等待，甚至导致整个内存回收系统崩溃
+
+-Xnoclassgc
+    关闭CLASS的垃圾回收功能，就是虚拟机加载的类，即便是不使用，没有实例也不会回收。如果一个类20分钟还没有使用，
+    虚拟机会卸载这个类。如果这个类再次使用，虚拟机会重新加载这个类，由于虚拟机加载类包含了IO和内存分配的操作，
+    因此加载时会对性能有所影响。对于一般应用，这个参数对性能影响不大。
+
+
+-XX:SurvivorRatio=XX
+   新生代Eden代和survivor代的内存区域比例
+
+-XX:HandlePromotionFailure
+    是否允许分配担保失败，机老年代的剩余空间不足以应付新生代的整个Eden和Survivor区的所有对象都
+    存活的极端情况
+
+-XX：+UseConcMarkSweepGC
+    指定使用CMS作为老年代的收集器，那么也会默认使用ParNew作为新生代收集器
+
+-XX：+UseParNewGC
+    指定使用ParNew作为新生代收集器
+
+-XX：ParallelGCThreads=XX
+    ParNew收集器使用场景下，参数来限制垃圾收集的线程数
+
+-XX：MaxGCPauseMillis
+    Parallel Scavenge收集器使用场景下，控制最大垃圾收集停顿时间
+
+-XX：GCTimeRatio
+     Parallel Scavenge收集器使用场景下，直接设置吞吐量大小
+
+-XX：+UseAdaptiveSizePolicy
+    Parallel Scavenge收集器使用场景下，当这个参数打开之后，就不需要手工指定新生代的大小（-Xmn）、
+    Eden与Survivor区的比例（-XX：SurvivorRatio）、 晋升老年代对象年龄（-XX：PretenureSizeThreshold）
+    等细节参数了，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或者最大的吞吐量，
+    这种调节方式称为GC自适应的调节策略（GC Ergonomics）
+
+
+-XX：PretenureSizeThreshold=XXM
+    虚拟机令内存占用大小大于这个设置值的对象直接在老年代分配,这样做的目的是避免在Eden区及两个Survivor区之间发生大量的内存复制（复习
+                        一下：新生代采用复制算法收集内存）
+
+
+-XX：CMSInitiatingOccupancyFraction
+    CMS收集器使用场景下，也是由于在垃圾收集阶段用户线程还需要运行，那也就还需要预留有足够的内存空间给用户线程使用，
+    因此CMS收集器不能像其他收集器那样等到老年代几乎完全被填满了再进行收集，需要预留一部分空间提供并发收集时的程序运作使用。
+    在JDK 1.5的默认设置下，CMS收集器当老年代使用了68%的空间后就会被激活，这是一个偏保守的设置，如果在应用中老年代增长不是太快，
+    可以适当调高参数-XX：CMSInitiatingOccupancyFraction的值来提高触发百分比，以便降低内存回收次数从而获取更好的性能，
+    在JDK 1.6中，CMS收集器的启动阈值已经提升至92%。 要是CMS运行期间预留的内存无法满足程序需要，
+    就会出现一次“Concurrent Mode Failure”失败,这时虚拟机将启动后备预案：临时启用Serial Old收集器来重新进行老年代的垃圾收集，
+    这样停顿时间就很长了。 所以说参数-XX：CMSInitiatingOccupancyFraction设置得太高很容易导致大量“Concurrent Mode Failure”失败，
+    性能反而降低。
+
+    “还有最后一个缺点，在本节开头说过，CMS是一款基于“标记—清除”算法实现的收集
+    器，如果读者对前面这种算法介绍还有印象的话，就可能想到这意味着收集结束时会有大量
+    空间碎片产生。 空间碎片过多时，将会给大对象分配带来很大麻烦，往往会出现老年代还有
+    很大空间剩余，但是无法找到足够大的连续空间来分配当前对象，不得不提前触发一次Full
+    GC。 为了解决这个问题，CMS收集器提供了一个-XX：+UseCMSCompactAtFullCollection开
+    关参数（默认就是开启的），用于在CMS收集器顶不住要进行FullGC时开启内存碎片的合并
+    整理过程，内存整理的过程是无法并发的，空间碎片问题没有了，但停顿时间不得不变长。
+    虚拟机设计者还提供了另外一个参数-XX：CMSFullGCsBeforeCompaction，这个参数是用于
+    设置执行多少次不压缩的Full GC后，跟着来一次带压缩的（默认值为0，表示每次进入Full
+    GC时都进行碎片整理）”
+
+-XX：+UseSerialGC
+    虚拟机运行在Client模式下的默认值，打开此开关后，使用Serial+ Serial Old 的
+    收集器组合进行内存回收
+
+-XX:+UseParNewGC
+    打开此开关后，使用parNew + Serial Old 的搜集器组合进行内存回收
+
+-XX:useConcMarkSweepGC
+    打开此开关后，使用parNew + Serial Old + Serial Old 的搜集器组合进行内存回收
+    Serial Old 收集器将作为CMS收集器出现 Concurrent Mode Failure失败后的后备收集器使用
+
+-XX:UseParallelGC
+    虚拟机运行在Server模式下的默认值，打开此开关后，使用Pareallel Scavenge + Serial Old
+    (PS MarkSweep)的收集器组合进行内存回收
+
+-XX:UseParallelOldGC
+    打开此开关后，使用 Paralle Scavenge + Parallel Old的收集器组合进行内存回收
+
+-XX:MaxTenuringThreshold
+    晋升到老年代的对象年龄。每个对象在坚持过一次Minor GC 之后，年龄就增加1，当超过
+    这个参数值时就进入老年代

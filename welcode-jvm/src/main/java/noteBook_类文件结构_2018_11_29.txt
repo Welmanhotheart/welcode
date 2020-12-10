@@ -1,0 +1,432 @@
+1.背景介绍
+    10多年时间过去了，今天的计算机仍然只能识别0和1，但由于最近10年内虚拟机以及大量建立在虚拟机之上的程
+    序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，
+    越来越多的程序语言选择了与  @操作系统和机器指令集无关的、 @平台中立  的格式作为程序编译后的存储格式
+    （PS:字节码作为中立格式，最终被翻译成本地部署机器的native code 是由虚拟机来完成的)
+
+2.关于"无关性"要点总结
+    1.一次编写，到处运行（Write Once,Run Anywhere）,Sun公司以及其他虚拟机提供商发布了许多可以运行在
+      @各种硬件架构不同平台  上的虚拟机，这些虚拟机都可以载入和执行  @同一种平台无关的字节码  ，从而实现了程序的
+      “一次编写，到处运行”
+
+    2.各种不同平台的虚拟机与所有平台都统一使用的  @程序存储格式——字节码（ByteCode） 是构成平台无关性的基石
+
+    3.本节标题中刻意省略了“平台”二字，那是因为笔者注意到虚拟机的另外一种中立特性——语言无关性正越来越被开发者所重视
+
+    4.@Java语言规范    和    @Java虚拟机规范
+
+    5.@语言中立特性  在Java虚拟机发展到JDK 1.7～1.8的时候，被JVM设计者通过JSR-292基本兑现
+
+    6.Clojure、 Groovy、 JRuby、 Jython、 Scala都可在java虚拟机 上执行
+        【@由各自的编译器编译成字节码 .class文件，然后再由java虚拟机执行】
+        【未来展望：Java虚拟机语言无关性能否超越平台无关性】
+
+    7.语言无关性基础 -----  @虚拟机  和  @字节码存储格式
+        7.1 Java虚拟机<===========>字节码，不考虑语言来源是否是Java
+        7.2 出于安全考虑，Java虚拟机规范要求在Class文件中使用许多  @强制性的语法和结构化约束
+
+    8.字节码描述能力强于Java语言，能Java所不能，为其他语言实现提供基础
+          Java语言中的各种变量、 关键字和运算符号的语义最终都是由多条字节码命令组合而成的，
+          因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更加强大.因此，
+          有一些Java语言本身无法有效支持的语言特性不代表字节码本身无法有效支持，这也为其他语言
+          实现一些有别于Java的语言特性提供了基础。
+
+
+3.Class类文件的结构
+    注意：任何一个Class文件都对应着唯一一个类或接口的定义信息，但反过来说，类或接
+       口并不一定都得定义在文件里（譬如类或接口也可以通过类加载器直接生成）。 本章中，笔
+       者只是通俗地将任意一个有效的类或接口所应当满足的格式称为“Class文件格式”，实际上它
+       并不一定以磁盘文件的形式存在
+
+    class结构文件特点：
+
+        1.是一组以8位字节为基础单位的二进制流，各个数据项目严格有序，紧凑排列，文件内容几乎全部是程序运行
+          的必要数据
+
+        2.当遇到需要占用8位字节以上空间的数据项时，则会按照  @高位在前  的方式分割成若干个8位字节进行存储
+
+        3.采用一种类似于C语言结构体的伪结构来存储数据，这种伪结构中只有两种数据类型：无符号数和表（后面的解析都以这两种类型为基础）
+
+        4.无符号数属于基本的数据类型，以u1、 u2、 u4、 u8来分别代表1个字节、 2个字节、 4个
+          字节和8个字节的无符号数，无符号数可以用来描述  @数字、 @索引引用、 @数量值  或者按照UTF-8
+          编码构成字符串值
+
+        5.表是由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性地
+          以“_info”结尾。 表用于描述有层次关系的复合结构的数据，@整个Class文件本质上就是一张表
+
+        6. @class表结构：imgs\class_structure.png
+
+
+        7.无论是无符号数还是表，当需要描述同一类型但数量不定的多个数据时，经常会使用一
+          个前置的容量计数器加若干个连续的数据项的形式，这时称这一系列连续的某一类型的数据
+          为某一类型的集合。
+          【例如 @class表结构 中的 methods, 前置的容量计数器：methods_count(u2类型);
+          若干个连续的数据项：methods（method_info）】
+
+        8.@class表结构不像XML等描述语言，它没有分隔符，所以class表结构中的数据项，无论是顺序还是数量，
+            ，甚至于数据存储的字节序（Byte Ordering,Class文件中字节序为Big-Endian）这样的细节，
+            都是被严格限定的，哪个字节代表什么含义，长度是多少，先后顺序如何，都不允许改变
+
+
+魔数与Class文件的版本
+    魔数：CA FE BA BE
+
+    class文件的版本：紧接着魔数的4个字节存储的是Class文件的版本号
+        1.第5和第6个字节是次版本号（Minor Version）
+        2.第7和第8个字节是主版本号（Major Version）
+        【主版本对照表：
+            JDK 1.8 = 52
+            JDK 1.7 = 51
+            JDK 1.6 =50
+            JDK 1.5 = 49
+            JDK 1.4 = 48
+            JDK 1.3 = 47
+            JDK 1.2 = 46
+            JDK 1.1 = 45
+          】
+        【注意：！！！高版本的JDK能向下兼容以前版本的Class文件，但不能运行以后版本的Class文
+            件，即使文件格式并未发生任何变化，虚拟机也必须拒绝执行超过其版本号的Class文件。】
+
+常量池
+    概述：
+        主次版本号之后的是常量池入口,可被理解为Class文件之中的资源仓库【class表结构中有许多数据项会引用常量池】
+        是占用class文件空间最大的数据项目之一，同时它还是在Class文件中第一个出现的表类型数据项目
+
+    常量池中常量的数量表示：
+        1.由于常量池中常量的数量是不固定的，所以在常量池的入口需要放置一项u2类型的数
+                  据，代表常量池容量计数值（constant_pool_count）。
+
+        2.与Java中语言习惯不一样的是，这个容量计数是从1而不是0开始的，例如常量池容量（偏移地址：0x00000008）为十六
+        进制数0x0016，即十进制的22，这就代表常量池中有21项常量，索引值范围为1～21。
+
+        3.在Class文件格式规范制定之时，@设计者将第0项常量空出来是有特殊考虑的，这样做的目的在
+        于满足后面某些指向常量池的索引值的数据在特定情况下需要表达“不引用任何一个常量池
+        项目”的含义，这种情况就可以把索引值置为0来表示。
+
+        4.Class文件结构中只有常量池的容量计数是从1开始，对于其他集合类型，包括@接口索引集合、 @字段表集合、 @方法表集合等的容量
+        计数都与一般习惯相同，是从0开始的
+
+    常量池存放数据类型：
+        1.字面量（Literal）
+            字面量比较接近于Java语言层面的常量概念,如文本字符串、 声明为final的常量值
+        2.符号引用（Symbolic References）。
+            字面量比较接近于Java语言层面的常量概念，如文本字符串、 声明为final的常量值等。 而符
+            号引用则属于编译原理方面的概念，包括了下面三类常量：
+                2.1 类和接口的全限定名（Fully Qualified Name）
+                2.2 字段的名称和描述符（Descriptor）
+                2.3 方法的名称和描述符
+
+    虚拟机加载class文件：
+        1.而是在虚拟机加载Class文件的时候进行动态连接。
+
+        2.在Class文件中不会保存各个方法、 字段的最终内存布局信息，因此这些字段、
+          方法的符号引用不经过运行期转换的话无法得到真正的内存入口地址，也就无法直接被虚拟机使用。
+
+        3.当虚拟机运行时，需要从常量池获得对应的符号引用，再在类创建时或运行时解析、 翻译到具体的内存地址之中
+
+        4.class文件中的符号引用相当于记录相对信息？？？？
+
+
+    常量池项目类型：imgs\constant_items.png
+
+        CONSTANT_Class_info型常量结构:
+            1.结构：imgs/CONSTANT_Class_info
+                1.tag属性值：7【表示类或符号的接口引用】
+                2.name_index: 是一个索引值，它指向常量池中一个CONSTANT_Utf8_info类型常量，
+                              此常量代表了这个类（或者接口）的全限定名
+        CONSTANT_Utf8_info型常量结构：
+             1.结构：imgs/CONSTANT_Utf8_info
+                            1.tag属性值：1【UTF-8编码的字符串】
+                            2.length: 这个UTF-8编码的字符串长度是多少字节
+                            3.bytes：字符串值的字节
+        常量池结构总表：
+
+访问标志
+    在常量池结束之后，紧接着的两个字节代表访问标志（access_flags），这个标志用于识别一些类或者接口层次的访问信息
+    详见：imgs/class_access_flags.png
+
+    access_flags中一共有16个标志位可以使用，当前只定义了其中8个[1]，没有使用到的标志
+    位要求一律为0
+
+类索引、 父类索引与接口索引集合
+    1.类索引（this_class）和父类索引（super_class）都是一个u2类型的数据，是指向常量池中CONSTANT_Class_info型数据
+      的一个索引
+
+    2.接口索引集合（interfaces）是一组u2类型的数据的集合，分别指向常量池中不同CONSTANT_Class_info型数据
+
+    3.Class文件中由这三项数据来确定这个类的继承关系
+        1.类索引用于确定这个类的全限定名
+            【除了java.lang.Object之外，所有的Java类都有父类，因此除了java.lang.Object外，所有Java类的父类索引都不为0】
+        2.父类索引用于确定这个类的父类的全限定名。 由于Java语言不允许多重继承，所以父类索引只有一个
+
+        3.接口索引集合就用来描述这个类实现了哪些接口，这些被实现的接口将按implements语句（如果这个类本身
+                是一个接口，则应当是extends语句）后的接口顺序从左到右排列在接口索引集合中
+
+字段表集合
+    1.字段表（field_info）用于描述接口或者类中声明的变量。
+
+    2.字段（field）包括类级变量(static修饰)以及实例级变量，但不包括在方法内部声明的局部变量。
+
+    3.字段信息可以包括的信息有：字段的作用域（public、 private、 protected修饰
+    符）、 是实例变量还是类变量（static修饰符）、 可变性（final）、 并发可见性（volatile修饰
+    符，是否强制从主内存读写）、 可否被序列化（transient修饰符）、 字段数据类型（基本类
+    型、 对象、 数组）、 字段名称。 上述这些信息中，各个修饰符都是布尔值，要么有某个修饰
+    符，要么没有，很适合使用标志位来表示。
+
+     字段表结构详见：imgs/field_structure.png
+
+     字段访问标志详见：imgs/field_access_flags.png
+
+    4.跟随access_flags标志的是两项索引值：name_index和descriptor_index。 它们都是对常量池的引用，
+        1.name_index表示字段的简单名称
+            1.1 如private static int m , 简单名称为m
+            1.2 如private static ClassA a, 简单名称为a
+        2.descriptor_index 表示字段和方法的描述符
+
+        3.关于"简单名称”、 “描述符” 以及前面出现过多次的“全限定名”的概念解释
+            3.1 全限定名,
+                如：“org/fenixsoft/clazz/TestClass”是这个类的全限定名，仅仅是把类全名中的“.”替换成
+                        了“/”而已，为了使连续的多个全限定名之间不产生混淆，在使用时最后一般会加入一
+                        个“；”表示全限定名结束
+
+            3.2 简单名称，简单名称是指没有类型和参数修饰的方法或者字段名称
+                如：
+                     3.2.1 private static int m , 简单名称为m
+                     3.2.2 如private static ClassA a, 简单名称为a
+                     3.2.3 如 public static void inc(), 简单名称为 inc
+            3.3 描述符
+                描述符的作用是用来描述字段的数据类型、 方法的@参数列表（包括@数量、 @类型以及@顺序）和@返回值。 根据描
+                述符规则，基本数据类型（byte、 char、 double、 float、 int、 long、 short、 boolean）以及代表
+                无返回值的void类型都用一个大写字符来表示，而对象类型则用字符L加对象的全限定名来表示
+                详见：imgs/discriptor_char_mean.png
+                    3.3.1 对于数组类型
+                        如：对于数组类型，每一维度将使用一个前置的“[”字符来描述，如一个定义
+                        为“java.lang.String[][]”类型的二维数组，将被记录为：“[[Ljava/lang/String；”，一个整型数
+                        组“int[]”将被记录为“[I”。
+                    3.3.2 描述方法时，按照先参数列表，后返回值的顺序描述，参数列表按照参数的严格顺序放在一组小括号“（）”之内
+                        如：
+                            1.如方法void inc（）的描述符为“（）V”
+                            2.方法java.lang.String toString（）的描述符为“（）Ljava/lang/String
+                            3.方法int indexOf（char[]source,int sourceOffset,int sourceCount,char[]target,int targetOffset,int
+                              targetCount,int fromIndex）的描述符为“（[CII[CIII）I”
+
+            3.4 关于字段描述符之后的attrubute_info
+                字段表都包含的固定数据项目到descriptor_index为止就结束了，不过在descriptor_index
+                之后跟随着一个属性表集合用于存储一些额外的信息，字段都可以在属性表中描述零至多项
+                的额外信息。 对于本例中的字段private int m，它的属性表计数器为0，也就是没有需要额外描述的信
+                息，但是，如果将字段m的声明改为“final static int m=123；”，那就可能会存在一项名称为
+                ConstantValue的属性，其值指向常量123。 关于attribute_info的其他内容，将在6.3.7节介绍属
+                性表的数据项目时再进一步讲解
+
+
+    5 关于字段表中是否存在父类或者父接口中继承而来的字段
+        5.1 字段表集合中！！！！不会列出从超类或者父接口中继承而来的字段
+        5.2 但有可能列出原本Java代码之中不存在的字段，譬如在内部类中为了保持对外部类的访问性，
+              会自动添加指向外部类实例的字段
+              【ps:这样可以解释为什么内部类可以访问外部类】
+
+    6.关于字段重载
+        Java语言中字段是无法重载的，两个字段的数据类型、 修饰符不管是否相同，都必须使用不一样的名称，
+        但是对于字节码来讲，如果两个字段的描述符不一致，那字段重名就是合法的
+        【还是字节码强大，能Java所不能！！！！】
+
+
+
+
+
+方法表集合
+    Class文件存储格式中对方法的描述与对字段的描述几乎采用了完全一致的方式，方法表的结构如
+    同字段表一样，依次包括了访问标志（access_flags）、 名称索引（name_index）、 描述符索
+    引（descriptor_index）、 属性表集合（attributes）几项
+
+    方法表集合结构详见：
+        imgs/method_structure.png
+
+    这些数据项目的含义也非常类似，仅在访问标志和属性表集合的可选项中有所区别。
+
+    方法访问标志详见：imgs/method_access_flags.png
+
+    1.访问标志与字段的区别
+
+
+        1.volatile关键字和transient关键字不能修饰方法却能修饰字段，所以方法表的访问标志中没有了
+          ACC_VOLATILE标志和ACC_TRANSIENT标志。
+        2.与之相对的，synchronized、 native、 strictfp和abstract关键字可以修饰方法，但不能修饰字段
+          所以方法表的访问标志中增加了ACC_SYNCHRONIZED、ACC_NATIVE、 ACC_STRICTFP和ACC_ABSTRACT标志
+
+    2.关于方法的code属性
+
+
+    3.父类方法信息是否会存在于子类中
+        如果父类方法在子类中没有被重写（Override），方法表集合
+        中就不会出现来自父类的方法信息。 但同样的，有可能会出现由编译器自动添加的方法，最
+        典型的便是类构造器“＜clinit＞”方法和实例构造器“＜init＞”[1]方法。
+        【类构造器，实例构造器】
+
+    4.关于重载方法
+        4.1 对于java语言，要重载（Overload）一个方法，除了要与原方法具有相同的简单名称之
+            外，还要求必须拥有一个与原方法不同的@特征签名(特征签名就是一个方法中各个参数在
+            常量池中的字段符号引用的集合)，也就是因为返回值不会包含在特征签名中，因此Java语言
+        里面是无法仅仅依靠返回值的不同来对一个已有方法进行重载的。
+
+        4.2 对于字节码，特征签名的范围更大一些，只要描述符不是完全一致的两个方法也可以共存。 也就是说，如
+        果两个方法有相同的名称和特征签名，但返回值不同，那么也是可以合法共存于同一个Class文件中的。
+        【再一次能Java所不能】
+
+        4.3
+        【@特征签名就是参数列表】
+
+
+属性表集合
+    背景：属性表（attribute_info）在前面的讲解之中已经出现过数次，在Class文件、 字段表、 方
+         法表都可以携带自己的属性表集合，以用于描述某些场景专有的信息。
+    1.属性表排列特点
+        1.1 与Class文件中其他的数据项目要求严格的@顺序、 @长度 和@内容 不同，属性表集合的限制稍
+        微宽松了一些，不再要求各个属性表具有严格顺序，并且只要不与已有属性名重复，任何人
+        实现的编译器都可以向属性表中写入自己定义的属性信息，Java虚拟机运行时会忽略掉它不
+        认识的属性。 为了能正确解析Class文件，《Java虚拟机规范（第2版）》 中预定义了9项虚拟
+        机实现应当能识别的属性，而在最新的《Java虚拟机规范（Java SE 7）》 版中，预定义属性
+        已经增加到21项，具体内容见表6-13。
+
+    2.每个属性的表结构，详见：imgs/property_structure.png
+
+        2.1 Code属性表
+            1.Java程序方法体中的代码经过Javac编译器处理后，最终变为字节码指令存储在Code属性
+              内。
+            2.Code属性出现在方法表的属性集合之中，但并非所有的方法表都必须存在这个属性，譬
+              如接口或者抽象类中的方法就不存在Code属性，如果方法表有Code属性存在，那么它的结构
+            将，详见：imgs/property_code_structure.png。
+
+            3.attribute_name_index，attribute_name_index是一项指向CONSTANT_Utf8_info型常量的索引，
+             常量值固定为“Code”，它代表了该属性的属性名称
+
+            4.attribute_length，attribute_length指示了属性值的长度
+
+                    【由于属性名称索引与属性长度一共为6字节，
+                    所以属性值的长度固定为整个属性表长度减去6个字节】
+            5.max_stack,代表了操作数栈（Operand Stacks）深度的最大值。 在方法执行的任意时刻，
+              操作数栈都不会超过这个深度。 !!!!虚拟机运行的时候需要根据这个值来分配栈帧（Stack Frame）中的操作栈深度。
+
+            6.max_locals，代表了局部变量表所需的存储空间。
+                1.max_locals的单位是Slot,Slot是虚拟机为局部变量分配内存所使用的最小单位。
+                2.对于byte、 char、 float、 int、 short、 boolean 和returnAddress等长度不超过32位的数据类型，
+                每个局部变量占用1个Slot，而double和long这 两种64位的数据类型则需要两个Slot来存放。
+                3.局部变量包含
+                  3.1 方法参数（包括实例方法中的隐藏参数“this”）、
+                  3.2 显式异常处理器的参数（Exception Handler Parameter，就是try-catch语句中catch
+                        块所定义的异常）、
+                  3.3 方法体中定义的局部变量都需要使用局部变量表来存放。
+
+                  3.4 另外，并不是在方法中用到了多少个局部变量，就把这些局部变量所占Slot之和作为max_locals的值，
+                      原因是局部变量表中的Slot可以重用，当代码执行超出一个局部变量的作用域时，这个局部变量
+                      所占的Slot可以被其他局部变量所使用，Javac编译器会根据变量的作用域来分配Slot给各个
+                      变量使用，然后计算出max_locals的大小。
+                      【比如for循环里面声明的局部变量，离开for循环之后，其占用的Slot空间就消失了】
+
+                  3.5 code_length和code用来存储Java源程序编译后生成的字节码指令。
+                       1.code_length代表字节码长度
+                       2.code是用于存储字节码指令的一系列字节流。
+                            1.字节码指令，每个指令就是一个u1类型的单字节
+                            2.虚拟机读取到code中的一个字节码时，可以知道如下信息：
+                                1.字节码代表的是什么指令
+                                2.指令后面是否需要跟随参数，以及参数应当如何理解。
+
+                            3.字节码种类及数目
+                                1.取值范围为0x00～0xFF，对应十进制的0～255，也就是一共可以表达256条指令
+                                  Java虚拟机规范已经定义了其中约200条编码值对应的指令含义，编码与指令之间
+                                  的对应关系可查阅本书的附录B“@@@@虚拟机字节码指令表”。
+                            4.
+
+                       3.关于code_length长度允许问题
+                            1.虽然它是一个u4类型的长度值，理论上最大值可以达到2的32次方-1，
+                            2.但是虚拟机规范中明确限制了一个方法不允许超过65535条字节码指令，
+                              即它实际只使用了u2的长度，如果超过这个限制，Javac编译器也会拒绝编译。
+                            3.编写Java代码时，不要刻意去编写一个超长的方法来为难编译
+
+                            4.关于jsp编译问题，
+                                编译一个很复杂的JSP文件时，某些JSP编译器会把JSP内容和页面输出的信息归并于一个方法之中，
+                                就可能因为方法生成字节码超长的原因而导致编译失败。
+
+
+            7.异常表，结构详见；imgs/property_code_exception_table_structure.png
+                它包含4个字段，这些字段的含义为：如果当字节码在第start_pc行[1]到第end_pc行之间
+                （不含第end_pc行）出现了类型为catch_type或者其子类的异常
+                （catch_type为指向一个CONSTANT_Class_info型常量的索引），则转到第handler_pc行继续
+                处理。 当catch_type的值为0时，代表任意异常情况都需要转向到handler_pc处进行处理
+
+        2.2 Exceptions属性，结构详见：imgs/property_exceptions_structure.png
+            Exceptions属性中的number_of_exceptions项表示方法可能抛出number_of_exceptions种受查
+            异常，每一种受查异常使用一个exception_index_table项表示，exception_index_table是一个指
+            向常量池中CONSTANT_Class_info型常量的索引，代表了该受查异常的类型。
+
+        2.3 LineNumberTable属性，结构详见：imgs/property_lineNumberTable_structure.png
+             1. 功能：用于描述Java源码行号与字节码行号（字节码的偏移量）之间的对应关系。
+
+             2. 特点：它并不是运行时必需的属性，但默认会生成到Class文件之中，
+
+             3. 如何避免不生成：可以在Javac中分别使用-g：none或-g：lines选项来取消或要求生成这项信息。
+
+             4. 不生成会有什么后果：对程序运行产生的最主要的影响就是当抛出异常时，堆栈中将不会显示出错的行号
+                【说白了，就是不利于调试】
+
+             5.line_number_table是一个数量为line_number_table_length、 类型为line_number_info的集
+               合，line_number_info表包括了start_pc和line_number两个u2类型的数据项，前者是字节码行
+               号，后者是Java源码行号
+
+        2.4.LocalVariableTable属性,结构详见：imgs/property_localVariableTable_structure.png
+            1.local_variable_info项目代表了一个栈帧与源码中的局部变量的关联,代表源码与局部变量的映射关系
+               结构详见：imgs/property_localVariableTable_localVariable_info_structure.png
+
+                1.start_pc和length属性,分别代表了这个局部变量的生命周期开始的字节码偏移量及其作用
+                范围覆盖的长度，两者结合起来就是这个局部变量在字节码之中的作用域范围。
+
+                2.name_index和descriptor_index都是指向常量池中CONSTANT_Utf8_info型常量的索引，分
+                  别代表了局部变量的名称以及这个局部变量的描述符。
+
+                3.index是这个局部变量在栈帧局部变量表中Slot的位置。 当这个变量数据类型是64位类型
+                时（double和long），它占用的Slot为index和index+1两个。
+
+        2.5 LocalVariableTypeTable
+                顺便提一下，在JDK 1.5引入泛型之后，LocalVariableTable属性增加了一个“姐妹属性”：
+                LocalVariableTypeTable，这个新增的属性结构与LocalVariableTable非常相似，仅仅是把记录
+                的字段描述符的descriptor_index替换成了字段的特征签名（Signature），对于非泛型类型来
+                说，描述符和特征签名能描述的信息是基本一致的，但是泛型引入之后，由于描述符中泛型
+                的参数化类型被擦除掉[3]，描述符就不能准确地描述泛型类型了，因此出现了
+                LocalVariableTypeTable。
+
+        2.6 ConstantValue属性，结构详见：imgs/property_constantValue_structure.png
+            1.ConstantValue属性的作用是通知虚拟机自动为静态变量赋值!!!。 只有被static关键字修饰的
+              变量（类变量）才可以使用这项属性。
+
+            2.虚拟机的赋值方式
+                1.对于非static类型的变量（也就是实例变量）的赋值是在实例构造器＜init＞方法中进行的；
+                2.而对于类变量，则有两种方式可以选择：
+                    2.1 在类构造器＜clinit＞方法中或者使用ConstantValue属性。
+
+                3.目前Sun Javac编译器的选择
+                    3.1 如果同时使用final和static来修饰一个变量（按照习惯，这里称“常量”更贴切），
+                        并且这个变量的数据类型是基本类型或者java.lang.String的话，就生成ConstantValue属性来进行初始化
+                        【编译时常量】
+                    3.2 如果这个变量没有被final修饰，或者并非基本类型及字符串，则将会选择在＜clinit＞方法中进行初始化。
+            3.数据结构
+                1.ConstantValue属性是一个定长属性
+                2.它的attribute_length数据项值必须固定为2
+                3.constantvalue_index数据项代表了常量池中一个字面量常量的引用，根据字
+                  段类型的不同，字面量可以是CONSTANT_Long_info、 CONSTANT_Float_info、
+                  CONSTANT_Double_info、 CONSTANT_Integer_info、 CONSTANT_String_info常量中的一种
+        2.7 InnerClasses属性，结构详见 imgs/property_innerClass_structure.png
+                功能：InnerClasses属性用于记录内部类与宿主类之间的关联。 如果一个类中定义了内部类，那
+                        编译器将会为它以及它所包含的内部类生成InnerClasses属性。
+                数据项：
+                    1.number_of_classes代表需要记录多少个内部类信息，每一个内部类的信息都由一
+                      个inner_classes_info表进行描述。
+
+                    2.inner_classes_info表的结构详见 imgs/property_InnerClasses_inner_classes_info.png
+                        2.1 inner_class_info_index和outer_class_info_index都是指向常量池中CONSTANT_Class_info
+                            型常量的索引，分别代表了内部类和宿主类的符号引用。
+                        2.2 inner_name_index是指向常量池中CONSTANT_Utf8_info型常量的索引，代表这个内部类
+                            的名称，如果是匿名内部类，那么这项值为0。
+                        2.3 inner_class_access_flags是内部类的访问标志，类似于类的access_flags，它的取值范围
+                            详见 imgs/property_InnerClasses_inner_classes_info_inner_class_access_flags.png
+
+        【属性表集合里的属性介绍到此，后面的不再赘述】

@@ -6,8 +6,10 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>activemq</module>
-        <module>redis</module>
+        <module>welcode-activemq</module>
+        <module>welcode-redis</module>
+        <module>welcode-test-idea</module>
+        <module>welcode-jvm</module>
         <module>abnio</module>
         <module>netty-file-parent-master</module>
     </modules>
@@ -15,25 +17,7 @@
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
         <java.build.version>1.8</java.build.version>
     </properties>
-    <packaging>pom</packaging>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.build.version}</source>
-                    <target>${java.build.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <modules>
-        <module>test_idea</module>
-    </modules>
-    <properties>
-        <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
-    </properties>
+
 
     <groupId>com.maven.welcode</groupId>
     <artifactId>welcode</artifactId>
@@ -44,11 +28,6 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
         </dependency>
 
         <dependency>
@@ -64,11 +43,6 @@
             <version>3.23.1-GA</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>nu.xom</groupId>-->
-            <!--<artifactId>website</artifactId>-->
-            <!--<version>1.2.10</version>-->
-        <!--</dependency>-->
 
     </dependencies>
 
@@ -78,8 +52,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${java.build.version}</source>
+                    <target>${java.build.version}</target>
                 </configuration>
             </plugin>
         </plugins>
