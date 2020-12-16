@@ -10,7 +10,9 @@
         <module>welcode-redis</module>
         <module>welcode-test-idea</module>
         <module>welcode-jvm</module>
-        <module>abnio</module>
+        <module>welcode-design-pattern</module>
+        <module>welcode-java-rest</module>
+        <module>welcode-abnio</module>
         <module>netty-file-parent-master</module>
     </modules>
     <properties>
