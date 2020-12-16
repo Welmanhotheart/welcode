@@ -15,6 +15,7 @@
         <module>welcode-abnio</module>
         <module>java-instrumentation-app</module>
         <module>java-instrumentation-agent-attach</module>
+        <module>java-instrumentation-agent</module>
         <module>netty-file-parent-master</module>
     </modules>
     <properties>
