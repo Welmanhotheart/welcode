@@ -6,11 +6,13 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>welcode-activemq</module>
+
+
         <module>welcode-redis</module>
         <module>welcode-test-idea</module>
         <module>welcode-jvm</module>
         <module>welcode-design-pattern</module>
+        <module>welcode-free-code</module>
         <module>welcode-java-rest</module>
         <module>welcode-abnio</module>
         <module>java-instrumentation-app</module>

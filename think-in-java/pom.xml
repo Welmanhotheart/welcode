@@ -11,10 +11,5 @@
 
     <artifactId>think-in-java</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>netty-file-client</module>
-        <module>netty-file-server</module>
-    </modules>
-
 
 </project>

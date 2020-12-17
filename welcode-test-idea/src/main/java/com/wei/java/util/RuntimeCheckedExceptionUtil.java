@@ -1,7 +1,6 @@
 package com.wei.java.util;
 
 
-import com.sun.istack.internal.NotNull;
 
 /***
  * TODO
@@ -10,7 +9,7 @@ import com.sun.istack.internal.NotNull;
  */
 public class RuntimeCheckedExceptionUtil {
 
-    public static <T extends Throwable>  void throwsException(@NotNull T customizedException , Throwable receivedException) throws T {
+    public static <T extends Throwable>  void throwsException( T customizedException , Throwable receivedException) throws T {
         throw getWrappedException(customizedException, receivedException);
     }
 
@@ -23,7 +22,7 @@ public class RuntimeCheckedExceptionUtil {
         return getWrappedException(new RuntimeException(), receivedException);
     }
 
-    public static <T extends Throwable>  T getWrappedException(@NotNull T customizedException , Throwable receivedException) {
+    public static <T extends Throwable>  T getWrappedException( T customizedException , Throwable receivedException) {
         customizedException.initCause(receivedException);
         return customizedException;
     }
