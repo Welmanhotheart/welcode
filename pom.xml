@@ -16,6 +16,7 @@
         <module>java-instrumentation-app</module>
         <module>java-instrumentation-agent-attach</module>
         <module>java-instrumentation-agent</module>
+        <module>think-in-java</module>
         <module>netty-file-parent-master</module>
     </modules>
     <properties>
