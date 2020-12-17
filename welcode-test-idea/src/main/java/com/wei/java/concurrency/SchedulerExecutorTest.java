@@ -16,7 +16,7 @@ public class SchedulerExecutorTest {
     public static void main(String[] args) throws IOException {
         SchedulerExecutorTest executorTest = new SchedulerExecutorTest();
         executorTest.scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
-                                                         @Override
+
                                                          public void run() {
                                                              System.out.println("saljdfs");
                                                          }
