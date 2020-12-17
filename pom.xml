@@ -21,7 +21,7 @@
     </modules>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
-        <java.build.version>1.8</java.build.version>
+        <java.build.version>8</java.build.version>
     </properties>
 
 
@@ -52,17 +52,6 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.build.version}</source>
-                    <target>${java.build.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
 
 </project>
