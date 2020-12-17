@@ -6,8 +6,6 @@
 
     <packaging>pom</packaging>
     <modules>
-
-
         <module>welcode-redis</module>
         <module>welcode-test-idea</module>
         <module>welcode-jvm</module>
