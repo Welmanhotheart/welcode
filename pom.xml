@@ -18,6 +18,7 @@
         <module>java-instrumentation-agent</module>
         <module>think-in-java</module>
         <module>netty-file-parent-master</module>
+        <module>welcode-mongo</module>
     </modules>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
