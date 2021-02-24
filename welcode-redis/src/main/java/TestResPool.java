@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class TestResPool {
-    private static String host_name = "192.168.1.221";
+    private static String host_name = "192.168.3.17";
 
 //    private static int port = 6379;
-    private static int port = 6479;
+    private static int port = 6391;
 
     private static String password = "Hello123$";
 
