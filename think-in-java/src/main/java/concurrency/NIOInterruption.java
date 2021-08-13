@@ -1,6 +1,4 @@
-package concurrency;//: concurrency/NIOInterruption.java
-package sourcecode.concurrency;//: concurrency/NIOInterruption.java
-// Interrupting a blocked NIO channel.
+package concurrency;
 
 import java.net.*;
 import java.nio.*;
