@@ -19,6 +19,8 @@
         <module>think-in-java</module>
         <module>netty-file-parent-master</module>
         <module>welcode-mongo</module>
+        <module>welcode-ehcache</module>
+
     </modules>
     <properties>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
