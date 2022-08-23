@@ -34,6 +34,7 @@ class TestLinkedBlockingQueueTaskProducer extends RecursiveTask<Integer> {
                 }
             } catch (InterruptedException e) {
 
+
             }
             System.out.println("take:" + take);
         }
