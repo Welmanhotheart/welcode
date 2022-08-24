@@ -20,6 +20,7 @@
         <module>netty-file-parent-master</module>
         <module>welcode-mongo</module>
         <module>welcode-ehcache</module>
+        <module>datasource-tools</module>
 
     </modules>
     <properties>
